@@ -2,7 +2,7 @@ name: basic
 description: A basic game built in Flutter.
 
 # Prevent accidental publishing to pub.dev.
-publish_to: 'none'
+publish_to: "none"
 
 version: 0.0.1+1
 
@@ -32,6 +32,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/sprites/
     - assets/music/
     - assets/sfx/
 

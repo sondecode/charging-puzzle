@@ -10,7 +10,7 @@ import 'game_internals/score.dart';
 import 'level_selection/level_selection_screen.dart';
 import 'level_selection/levels.dart';
 import 'main_menu/main_menu_screen.dart';
-import 'play_session/play_session_screen.dart';
+import 'play_session/play_session_screen_origin.dart';
 import 'settings/settings_screen.dart';
 import 'style/my_transition.dart';
 import 'style/palette.dart';

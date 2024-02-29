@@ -11,27 +11,47 @@ const gameLevels = [
     achievementIdIOS: 'first_win',
     // You get this string when you configure an achievement in Play Console.
     achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
+    initMap: [
+      // Represent the initial grid state using a 2D list of strings
+      // "E": empty space, "C": car, "S": solar panel, "1-X": puzzle piece IDs
+      ["C_2", "L_4"],
+      ["L_1", "L_2"],
+      ["S_1", "L_4"],
+      // Add more rows as needed based on your grid size
+    ],
+    winMap: [
+      // Represent the initial grid state using a 2D list of strings
+      // "E": empty space, "C": car, "S": solar panel, "1-X": puzzle piece IDs
+      ["C_2", "0"],
+      ["L_1", "L_3"],
+      ["S_1", "L_4"],
+      // Add more rows as needed based on your grid size
+    ],
   ),
-  GameLevel(
-    number: 2,
-    difficulty: 42,
-  ),
-  GameLevel(
-    number: 3,
-    difficulty: 62,
-  ),
-  GameLevel(
-    number: 4,
-    difficulty: 100,
-    achievementIdIOS: 'finished',
-    achievementIdAndroid: 'CdfIhE96aspNWLGSQg',
-  ),
+  // GameLevel(
+  //   number: 2,
+  //   difficulty: 42,
+  // ),
+  // GameLevel(
+  //   number: 3,
+  //   difficulty: 62,
+  // ),
+  // GameLevel(
+  //   number: 4,
+  //   difficulty: 100,
+  //   achievementIdIOS: 'finished',
+  //   achievementIdAndroid: 'CdfIhE96aspNWLGSQg',
+  // ),
 ];
 
 class GameLevel {
   final int number;
 
   final int difficulty;
+
+  final List<List<String>> initMap;
+
+  final List<List<String>> winMap;
 
   /// The achievement to unlock when the level is finished, if any.
   final String? achievementIdIOS;
@@ -43,6 +63,8 @@ class GameLevel {
   const GameLevel({
     required this.number,
     required this.difficulty,
+    required this.initMap,
+    required this.winMap,
     this.achievementIdIOS,
     this.achievementIdAndroid,
   }) : assert(
