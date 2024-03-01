@@ -28,6 +28,32 @@ const gameLevels = [
       // Add more rows as needed based on your grid size
     ],
   ),
+  GameLevel(
+    number: 2,
+    difficulty: 5,
+    // TODO: When ready, change these achievement IDs.
+    // You configure this in App Store Connect.
+    achievementIdIOS: 'first_win',
+    // You get this string when you configure an achievement in Play Console.
+    achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
+    initMap: [
+      // Represent the initial grid state using a 2D list of strings
+      // "E": empty space, "C": car, "S": solar panel, "1-X": puzzle piece IDs
+      ["C_2", "L_4", "L_3"],
+      ["L_1", "L_2", "L_3"],
+      ["S_1", "L_4", "L_3"],
+
+      // Add more rows as needed based on your grid size
+    ],
+    winMap: [
+      // Represent the initial grid state using a 2D list of strings
+      // "E": empty space, "C": car, "S": solar panel, "1-X": puzzle piece IDs
+      ["C_2", "0", "L_3"],
+      ["L_1", "L_3", "L_3"],
+      ["S_1", "L_4", "L_3"],
+      // Add more rows as needed based on your grid size
+    ],
+  ),
   // GameLevel(
   //   number: 2,
   //   difficulty: 42,

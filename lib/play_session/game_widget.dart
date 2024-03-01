@@ -2,6 +2,8 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:basic/common/function.dart';
+import 'package:basic/sprites/puzzle_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,93 +15,82 @@ import '../level_selection/levels.dart';
 /// This widget defines the game UI itself, without things like the settings
 /// button or the back button.
 ///
-class PuzzleTile extends StatefulWidget {
-  final String type; // Tile type (e.g., "C_2", "L_1", "S_1")
-  // final bool isFixed; // Whether the tile is fixed (like the solar panel)
-  final Function onTap;
-  const PuzzleTile({super.key, required this.type, required this.onTap});
-
-  @override
-  State<PuzzleTile> createState() => _PuzzleTileState();
-}
-
-class _PuzzleTileState extends State<PuzzleTile> {
-  double rotationAngle = 0.0;
-  @override
-  Widget build(BuildContext context) {
-    // Replace placeholders with the actual image paths based on your tile types
-    final image = Image.asset('assets/images/sprites/pipe-straight-white.png');
-
-    return GestureDetector(
-        onTap: () {
-          print(rotationAngle);
-          setState(() {
-            rotationAngle += 90.0;
-            if (rotationAngle == 360) rotationAngle = 0;
-          });
-          widget.onTap(); // Call the onTap callback function
-        },
-        child: Transform.rotate(
-          angle: rotationAngle * (3.14159265359 / 180),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.green,
-              border: Border.all(color: Colors.grey),
-            ),
-            child: image,
-            // Center(child: Text(widget.type)),
-          ),
-        ));
-  }
-}
 
 class GameWidget extends StatefulWidget {
   const GameWidget({super.key});
-
   @override
   State<GameWidget> createState() => _GameWidgetState();
 }
 
 class _GameWidgetState extends State<GameWidget> {
+  late List<List<String>> stateMap;
+
+  @override
+  void initState() {
+    super.initState();
+    final level = context.read<GameLevel>();
+    stateMap = List.generate(
+      level.initMap.length,
+      (i) => List<String>.from(level.initMap[i]),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final level = context.watch<GameLevel>();
+    final double _width = MediaQuery.of(context).size.width * 0.90;
+    final double _height = MediaQuery.of(context).size.height * 0.90;
+
+    final bool widthLarger = _width >= _height;
+    final bool widthMapLarger = stateMap.first.length >= stateMap.length;
+
+    // final level = context.watch<GameLevel>();
+
+    // stateMap = level.initMap;
     final levelState = context.watch<LevelState>();
+    final result = [
+      ["I_5", "I_5"],
+      ["I_5", "I_5"],
+      ["I_5", "I_5"]
+    ];
 
     return SizedBox(
+      height: _height,
+      width: _height / stateMap.length * stateMap.first.length,
       child: Stack(children: [
-        Container(
-          child: Padding(
-            padding: const EdgeInsets.all(100.0),
-            child: SingleChildScrollView(
-              // physics: const NeverScrollableScrollPhysics(),
-              child: GridView.builder(
-                  shrinkWrap: true,
-                  padding: EdgeInsets.zero,
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: level.initMap.first.length,
-                  ),
-                  itemCount: level.initMap.length * level.initMap.first.length,
-                  // Adjust based on your grid size
-                  itemBuilder: (context, index) {
-                    int i, j = 0;
-                    i = (index / level.initMap.first.length).floor();
-                    j = (index % level.initMap.first.length);
+        Padding(
+          padding: const EdgeInsets.all(100.0),
+          child: SingleChildScrollView(
+            // physics: const NeverScrollableScrollPhysics(),
+            child: GridView.builder(
+                shrinkWrap: true,
+                padding: EdgeInsets.zero,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: stateMap.first.length,
+                ),
+                itemCount: stateMap.length * stateMap.first.length,
+                // Adjust based on your grid size
+                itemBuilder: (context, index) {
+                  int i, j = 0;
+                  i = (index / stateMap.first.length).floor();
+                  j = (index % stateMap.first.length);
 
-                    return SizedBox(
-                      child: PuzzleTile(
-                        type: level.initMap[i][j],
-                        onTap: () {
-                          setState(() {
-                            // Change the color of the tile to red
-                            // You can add logic here to change color conditionally
-                          });
-                        },
-                      ),
-                    );
-                  }),
-            ),
+                  return SizedBox(
+                    child: PuzzleTile(
+                      type: stateMap[i][j],
+                      onTap: () {
+                        setState(() {
+                          context.read<AudioController>().playSfx(SfxType.wssh);
+                          stateMap[i][j] = "I_5"; // Update the stateMap
+                          print(stateMap);
+                          if (mapsEqual(stateMap, result)) {
+                            levelState.evaluate();
+                          }
+                        });
+                      },
+                    ),
+                  );
+                }),
           ),
         ),
       ]),
