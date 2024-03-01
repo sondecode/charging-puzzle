@@ -24,6 +24,7 @@ class GameWidget extends StatefulWidget {
 
 class _GameWidgetState extends State<GameWidget> {
   late List<List<String>> stateMap;
+  late bool isWin = false;
 
   @override
   void initState() {
@@ -72,6 +73,7 @@ class _GameWidgetState extends State<GameWidget> {
 
                   return SizedBox(
                     child: PuzzleTile(
+                      hide: level.winMap[i][j] == "0" && isWin,
                       type: stateMap[i][j],
                       onTap: () {
                         setState(() {
@@ -90,6 +92,7 @@ class _GameWidgetState extends State<GameWidget> {
                           // Update the stateMap
                           print(stateMap);
                           if (checkMap(stateMap, level.winMap)) {
+                            isWin = true;
                             levelState.evaluate();
                           }
                         });
