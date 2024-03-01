@@ -43,15 +43,10 @@ class _GameWidgetState extends State<GameWidget> {
     final bool widthLarger = _width >= _height;
     final bool widthMapLarger = stateMap.first.length >= stateMap.length;
 
-    // final level = context.watch<GameLevel>();
+    final level = context.watch<GameLevel>();
 
     // stateMap = level.initMap;
     final levelState = context.watch<LevelState>();
-    final result = [
-      ["I_5", "I_5"],
-      ["I_5", "I_5"],
-      ["I_5", "I_5"]
-    ];
 
     return SizedBox(
       height: _height,
@@ -81,9 +76,20 @@ class _GameWidgetState extends State<GameWidget> {
                       onTap: () {
                         setState(() {
                           context.read<AudioController>().playSfx(SfxType.wssh);
-                          stateMap[i][j] = "I_5"; // Update the stateMap
+                          final data = stateMap[i][j].split('_');
+                          if (data.first == 'I') {
+                            if (data[1] == '1') {
+                              stateMap[i][j] = "I_0";
+                            } else {
+                              stateMap[i][j] = "I_1";
+                            }
+                          } else {
+                            stateMap[i][j] =
+                                '${data.first}_${(int.parse(data[1]) + 1) % 4}';
+                          }
+                          // Update the stateMap
                           print(stateMap);
-                          if (mapsEqual(stateMap, result)) {
+                          if (checkMap(stateMap, level.winMap)) {
                             levelState.evaluate();
                           }
                         });

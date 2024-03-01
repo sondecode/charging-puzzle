@@ -8,3 +8,17 @@ bool mapsEqual(List<List<String>> a, List<List<String>> b) {
   }
   return true;
 }
+
+bool checkMap(List<List<String>> map1, List<List<String>> map2) {
+  if (map1.length != map2.length) return false;
+
+  for (int i = 0; i < map1.length; i++) {
+    if (map1[i].length != map2[i].length) return false;
+
+    for (int j = 0; j < map1[i].length; j++) {
+      if (map1[i][j] == "0" || map2[i][j] == "0") continue;
+      if (map1[i][j] != map2[i][j]) return false;
+    }
+  }
+  return true;
+}

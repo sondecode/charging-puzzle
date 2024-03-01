@@ -14,17 +14,17 @@ const gameLevels = [
     initMap: [
       // Represent the initial grid state using a 2D list of strings
       // "E": empty space, "C": car, "S": solar panel, "1-X": puzzle piece IDs
-      ["C_2", "L_4"],
-      ["L_1", "L_2"],
-      ["S_1", "L_4"],
+      ["C_1", "L_3"],
+      ["L_0", "L_1"],
+      ["S_0", "L_3"],
       // Add more rows as needed based on your grid size
     ],
     winMap: [
       // Represent the initial grid state using a 2D list of strings
       // "E": empty space, "C": car, "S": solar panel, "1-X": puzzle piece IDs
-      ["C_2", "0"],
-      ["L_1", "L_3"],
-      ["S_1", "L_4"],
+      ["C_1", "0"],
+      ["L_0", "L_2"],
+      ["S_0", "L_3"],
       // Add more rows as needed based on your grid size
     ],
   ),
@@ -39,7 +39,7 @@ const gameLevels = [
     initMap: [
       // Represent the initial grid state using a 2D list of strings
       // "E": empty space, "C": car, "S": solar panel, "1-X": puzzle piece IDs
-      ["C_2", "L_4", "L_3"],
+      ["C_2", "L_2", "L_3"],
       ["L_1", "L_2", "L_3"],
       ["S_1", "L_4", "L_3"],
 

@@ -12,10 +12,20 @@ class PuzzleTile extends StatefulWidget {
 
 class _PuzzleTileState extends State<PuzzleTile> {
   double rotationAngle = 0.0;
+  String letter = "I";
+
+  @override
+  void initState() {
+    super.initState();
+    final data = widget.type.split('_');
+    rotationAngle = int.parse(data[1]) * 90;
+    letter = data.first;
+  }
+
   @override
   Widget build(BuildContext context) {
     // Replace placeholders with the actual image paths based on your tile types
-    final image = Image.asset('assets/images/sprites/pipe-straight-white.png');
+    final image = Image.asset('assets/images/sprites/${letter}_sprite.png');
 
     return GestureDetector(
         onTap: () {
