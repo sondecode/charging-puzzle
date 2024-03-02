@@ -54,7 +54,7 @@ class _GameWidgetState extends State<GameWidget> {
       width: _height / stateMap.length * stateMap.first.length,
       child: Stack(children: [
         Padding(
-          padding: const EdgeInsets.all(100.0),
+          padding: const EdgeInsets.all(50.0),
           child: SingleChildScrollView(
             // physics: const NeverScrollableScrollPhysics(),
             child: GridView.builder(

@@ -78,10 +78,6 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
           // of the game.
           body: Stack(
             children: [
-              MyButton(
-                onPressed: () => GoRouter.of(context).go('/play'),
-                child: const Text('Back'),
-              ),
               // This is the main layout of the play session screen,
               // with a settings button on top, the actual play area
               // in the middle, and a back button at the bottom.
@@ -98,7 +94,17 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
                       ),
                     ),
                   ),
-                  GameWidget(),
+                  Expanded(
+                    // The actual UI of the game.
+                    child: GameWidget(),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: MyButton(
+                      onPressed: () => GoRouter.of(context).go('/play'),
+                      child: const Text('Back'),
+                    ),
+                  ),
                 ],
               ),
               // This is the confetti animation that is overlaid on top of the
