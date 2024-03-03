@@ -81,31 +81,41 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
               // This is the main layout of the play session screen,
               // with a settings button on top, the actual play area
               // in the middle, and a back button at the bottom.
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: InkResponse(
-                      onTap: () => GoRouter.of(context).push('/settings'),
-                      child: Image.asset(
-                        'assets/images/settings.png',
-                        semanticLabel: 'Settings',
-                      ),
+              Container(
+                color: Colors.red,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: MyButton(
+                            onPressed: () => GoRouter.of(context).go('/play'),
+                            child: const Text('Back'),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: InkResponse(
+                            onTap: () => GoRouter.of(context).push('/settings'),
+                            child: Image.asset(
+                              'assets/images/settings.png',
+                              semanticLabel: 'Settings',
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  Expanded(
-                    // The actual UI of the game.
-                    child: GameWidget(),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: MyButton(
-                      onPressed: () => GoRouter.of(context).go('/play'),
-                      child: const Text('Back'),
-                    ),
-                  ),
-                ],
+                    GameWidget(),
+                    // Expanded(
+                    //   // The actual UI of the game.
+                    //   child: GameWidget(),
+                    // ),
+                  ],
+                ),
               ),
               // This is the confetti animation that is overlaid on top of the
               // game when the player wins.

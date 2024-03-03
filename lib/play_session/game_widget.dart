@@ -28,6 +28,7 @@ class _GameWidgetState extends State<GameWidget> {
   late bool isWin = false;
 
   //Car Cood
+  late String letterCar = "C";
   late String spriteImage = 'assets/images/sprites/C_sprite.png';
   late double _endX = 0.0;
   late double _endY = 0.0;
@@ -52,9 +53,9 @@ class _GameWidgetState extends State<GameWidget> {
     final step = flow[currentIndex];
     setState(() {
       if (step >= 0) {
-        spriteImage = 'assets/images/sprites/C_${step}_sprite.png';
+        spriteImage = 'assets/images/sprites/${letterCar}_${step}_sprite.png';
       } else {
-        spriteImage = 'assets/images/sprites/C_${1}_sprite.png';
+        spriteImage = 'assets/images/sprites/${letterCar}_${1}_sprite.png';
       }
 
       switch (step) {
@@ -99,8 +100,13 @@ class _GameWidgetState extends State<GameWidget> {
     // stateMap = level.initMap;
     final levelState = context.watch<LevelState>();
 
-    return SizedBox(
-      height: _height,
+    return Container(
+      color: Colors.green,
+      height: widthLarger
+          ? _height
+          : squareMap
+              ? _width
+              : _height,
       width: _height / stateMap.length * stateMap.first.length,
       child: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -119,20 +125,20 @@ class _GameWidgetState extends State<GameWidget> {
                 i = (index / stateMap.first.length).floor();
                 j = (index % stateMap.first.length);
 
+                final data = stateMap[i][j].split('_');
+                if (isCar(data.first)) {
+                  letterCar = data.first;
+                }
+
                 return SizedBox(
                   child: PuzzleTile(
                     width: _height / stateMap.length,
-                    startBg: stateMap[i][j].split('_').first == "C" && isWin,
+                    startBg: isCar(data.first) && isWin,
                     hide: level.winMap[i][j] == "0" && isWin,
                     type: stateMap[i][j],
                     onTap: () async {
                       setState(() {
                         context.read<AudioController>().playSfx(SfxType.wssh);
-                        final data = stateMap[i][j].split('_');
-
-                        if (data.first == 'I') {
-                          carDirect = (int.parse(data[1]) + 1) % 4;
-                        }
 
                         if (data.first == 'I') {
                           if (data[1] == '1') {

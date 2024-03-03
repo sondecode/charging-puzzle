@@ -22,3 +22,8 @@ bool checkMap(List<List<String>> map1, List<List<String>> map2) {
   }
   return true;
 }
+
+bool isCar(String letterToCheck) {
+  final letters = ["C", "T", "B"];
+  return letters.contains(letterToCheck);
+}

@@ -1,3 +1,4 @@
+import 'package:basic/common/function.dart';
 import 'package:flutter/material.dart';
 
 class PuzzleTile extends StatefulWidget {
@@ -78,7 +79,7 @@ class _PuzzleTileState extends State<PuzzleTile> {
                 ? Container()
                 : Stack(
                     children: [
-                      letter == "C"
+                      isCar(letter)
                           ? Container(
                               width: widget.width,
                               height: widget.width,
