@@ -90,21 +90,42 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: MyButton(
-                            onPressed: () => GoRouter.of(context).go('/play'),
-                            child: const Text('Back'),
+                        ElevatedButton(
+                          onPressed: () => GoRouter.of(context).push('/'),
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.all(20), // Remove padding
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  10.0), // Adjust corner radius
+                            ),
+                            backgroundColor:
+                                Colors.green, // Set background color
+                          ),
+                          child: Icon(
+                            size: 30,
+                            Icons.home,
+                            color: Colors.white,
                           ),
                         ),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: InkResponse(
-                            onTap: () => GoRouter.of(context).push('/settings'),
-                            child: Image.asset(
-                              'assets/images/settings.png',
-                              semanticLabel: 'Settings',
+                        SizedBox(
+                          width: 10,
+                        ),
+                        ElevatedButton(
+                          onPressed: () =>
+                              GoRouter.of(context).push('/settings'),
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.all(20), // Remove padding
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  10.0), // Adjust corner radius
                             ),
+                            backgroundColor:
+                                Colors.green, // Set background color
+                          ),
+                          child: Icon(
+                            size: 30,
+                            Icons.settings,
+                            color: Colors.white,
                           ),
                         ),
                       ],

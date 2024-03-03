@@ -2,8 +2,6 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class MyButton extends StatefulWidget {
@@ -17,46 +15,12 @@ class MyButton extends StatefulWidget {
   State<MyButton> createState() => _MyButtonState();
 }
 
-class _MyButtonState extends State<MyButton>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller = AnimationController(
-    duration: const Duration(milliseconds: 300),
-    vsync: this,
-  );
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
+class _MyButtonState extends State<MyButton> {
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (event) {
-        _controller.repeat();
-      },
-      onExit: (event) {
-        _controller.stop(canceled: false);
-      },
-      child: RotationTransition(
-        turns: _controller.drive(const _MySineTween(0.005)),
-        child: FilledButton(
-          onPressed: widget.onPressed,
-          child: widget.child,
-        ),
-      ),
+    return TextButton(
+      onPressed: widget.onPressed,
+      child: widget.child,
     );
-  }
-}
-
-class _MySineTween extends Animatable<double> {
-  final double maxExtent;
-
-  const _MySineTween(this.maxExtent);
-
-  @override
-  double transform(double t) {
-    return sin(t * 2 * pi) * maxExtent;
   }
 }

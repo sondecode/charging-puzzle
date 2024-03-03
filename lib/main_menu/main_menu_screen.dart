@@ -9,72 +9,90 @@ import 'package:provider/provider.dart';
 import '../audio/audio_controller.dart';
 import '../audio/sounds.dart';
 import '../settings/settings.dart';
-import '../style/my_button.dart';
 import '../style/palette.dart';
-import '../style/responsive_screen.dart';
 
 class MainMenuScreen extends StatelessWidget {
   const MainMenuScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final double _width = MediaQuery.of(context).size.width;
+    final double _height = MediaQuery.of(context).size.height;
+
     final palette = context.watch<Palette>();
     final settingsController = context.watch<SettingsController>();
     final audioController = context.watch<AudioController>();
 
     return Scaffold(
-      backgroundColor: palette.backgroundMain,
-      body: ResponsiveScreen(
-        squarishMainArea: Center(
-          child: Transform.rotate(
-            angle: -0.1,
-            child: const Text(
-              'Flutter Game Template!',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'Permanent Marker',
-                fontSize: 55,
-                height: 1,
+      backgroundColor: palette.backgroundLevelSelection,
+      body: Stack(children: [
+        SizedBox(
+          height: _height,
+          width: _width,
+          child: FittedBox(
+              fit: BoxFit.fitHeight,
+              child: Image.asset('assets/images/sprites/background.png')),
+        ),
+        Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text(
+                'Flutter Game Template!',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'Electric',
+                  fontSize: 90,
+                  height: 1,
+                ),
               ),
-            ),
+              _gap,
+              ElevatedButton(
+                onPressed: () {
+                  audioController.playSfx(SfxType.buttonTap);
+                  GoRouter.of(context).go('/play');
+                },
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.all(20), // Remove padding
+                  shape: RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.circular(10.0), // Adjust corner radius
+                  ),
+                  backgroundColor: Colors.green, // Set background color
+                ),
+                child: Icon(
+                  size: 100,
+                  Icons.play_arrow,
+                  color: Colors.white,
+                ),
+              ),
+            ],
           ),
         ),
-        rectangularMenuArea: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            MyButton(
-              onPressed: () {
-                audioController.playSfx(SfxType.buttonTap);
-                GoRouter.of(context).go('/play');
-              },
-              child: const Text('Play'),
-            ),
-            _gap,
-            MyButton(
-              onPressed: () => GoRouter.of(context).push('/settings'),
-              child: const Text('Settings'),
-            ),
-            _gap,
-            Padding(
-              padding: const EdgeInsets.only(top: 32),
-              child: ValueListenableBuilder<bool>(
-                valueListenable: settingsController.audioOn,
-                builder: (context, audioOn, child) {
-                  return IconButton(
-                    onPressed: () => settingsController.toggleAudioOn(),
-                    icon: Icon(audioOn ? Icons.volume_up : Icons.volume_off),
-                  );
-                },
+        Positioned(
+          right: 20,
+          top: 20,
+          child: ElevatedButton(
+            onPressed: () => GoRouter.of(context).push('/settings'),
+            style: ElevatedButton.styleFrom(
+              padding: EdgeInsets.all(20), // Remove padding
+              shape: RoundedRectangleBorder(
+                borderRadius:
+                    BorderRadius.circular(10.0), // Adjust corner radius
               ),
+              backgroundColor: Colors.green, // Set background color
             ),
-            _gap,
-            const Text('Music by Mr Smith'),
-            _gap,
-          ],
-        ),
-      ),
+            child: Icon(
+              size: 30,
+              Icons.settings,
+              color: Colors.white,
+            ),
+          ),
+        )
+      ]),
     );
   }
 
-  static const _gap = SizedBox(height: 10);
+  static const _gap = SizedBox(height: 100);
 }

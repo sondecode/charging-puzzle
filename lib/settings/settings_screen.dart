@@ -9,14 +9,13 @@ import 'package:provider/provider.dart';
 import '../player_progress/player_progress.dart';
 import '../style/my_button.dart';
 import '../style/palette.dart';
-import '../style/responsive_screen.dart';
 import 'custom_name_dialog.dart';
 import 'settings.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
-  static const _gap = SizedBox(height: 60);
+  static const _gap = SizedBox(height: 20);
 
   @override
   Widget build(BuildContext context) {
@@ -24,64 +23,75 @@ class SettingsScreen extends StatelessWidget {
     final palette = context.watch<Palette>();
 
     return Scaffold(
-      backgroundColor: palette.backgroundSettings,
-      body: ResponsiveScreen(
-        squarishMainArea: ListView(
+        backgroundColor: palette.backgroundSettings,
+        body: Column(
           children: [
-            _gap,
-            const Text(
-              'Settings',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'Permanent Marker',
-                fontSize: 55,
-                height: 1,
-              ),
-            ),
-            _gap,
-            const _NameChangeLine(
-              'Name',
-            ),
-            ValueListenableBuilder<bool>(
-              valueListenable: settings.soundsOn,
-              builder: (context, soundsOn, child) => _SettingsLine(
-                'Sound FX',
-                Icon(soundsOn ? Icons.graphic_eq : Icons.volume_off),
-                onSelected: () => settings.toggleSoundsOn(),
-              ),
-            ),
-            ValueListenableBuilder<bool>(
-              valueListenable: settings.musicOn,
-              builder: (context, musicOn, child) => _SettingsLine(
-                'Music',
-                Icon(musicOn ? Icons.music_note : Icons.music_off),
-                onSelected: () => settings.toggleMusicOn(),
-              ),
-            ),
-            _SettingsLine(
-              'Reset progress',
-              const Icon(Icons.delete),
-              onSelected: () {
-                context.read<PlayerProgress>().reset();
+            Column(
+              children: [
+                _gap,
+                const Text(
+                  'Settings',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: 'Electric',
+                    fontSize: 55,
+                    height: 1,
+                  ),
+                ),
+                _gap,
+                const _NameChangeLine(
+                  'Name',
+                ),
+                ValueListenableBuilder<bool>(
+                  valueListenable: settings.soundsOn,
+                  builder: (context, soundsOn, child) => _SettingsLine(
+                    'Sound FX',
+                    Icon(soundsOn ? Icons.graphic_eq : Icons.volume_off),
+                    onSelected: () => settings.toggleSoundsOn(),
+                  ),
+                ),
+                ValueListenableBuilder<bool>(
+                  valueListenable: settings.musicOn,
+                  builder: (context, musicOn, child) => _SettingsLine(
+                    'Music',
+                    Icon(musicOn ? Icons.music_note : Icons.music_off),
+                    onSelected: () => settings.toggleMusicOn(),
+                  ),
+                ),
+                _SettingsLine(
+                  'Reset progress',
+                  const Icon(Icons.delete),
+                  onSelected: () {
+                    context.read<PlayerProgress>().reset();
 
-                final messenger = ScaffoldMessenger.of(context);
-                messenger.showSnackBar(
-                  const SnackBar(
-                      content: Text('Player progress has been reset.')),
-                );
+                    final messenger = ScaffoldMessenger.of(context);
+                    messenger.showSnackBar(
+                      const SnackBar(
+                          content: Text('Player progress has been reset.')),
+                    );
+                  },
+                ),
+                _gap,
+              ],
+            ),
+            Spacer(),
+            MyButton(
+              onPressed: () {
+                GoRouter.of(context).pop();
               },
+              child: const Text(
+                'Back',
+                style: TextStyle(
+                  color: Colors.blueGrey,
+                  fontFamily: 'Electric',
+                  fontSize: 25,
+                  height: 1,
+                ),
+              ),
             ),
             _gap,
           ],
-        ),
-        rectangularMenuArea: MyButton(
-          onPressed: () {
-            GoRouter.of(context).pop();
-          },
-          child: const Text('Back'),
-        ),
-      ),
-    );
+        ));
   }
 }
 
@@ -104,7 +114,7 @@ class _NameChangeLine extends StatelessWidget {
           children: [
             Text(title,
                 style: const TextStyle(
-                  fontFamily: 'Permanent Marker',
+                  fontFamily: 'Electric',
                   fontSize: 30,
                 )),
             const Spacer(),
@@ -113,7 +123,7 @@ class _NameChangeLine extends StatelessWidget {
               builder: (context, name, child) => Text(
                 '‘$name’',
                 style: const TextStyle(
-                  fontFamily: 'Permanent Marker',
+                  fontFamily: 'Electric',
                   fontSize: 30,
                 ),
               ),
@@ -150,7 +160,7 @@ class _SettingsLine extends StatelessWidget {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
-                  fontFamily: 'Permanent Marker',
+                  fontFamily: 'Electric',
                   fontSize: 30,
                 ),
               ),
