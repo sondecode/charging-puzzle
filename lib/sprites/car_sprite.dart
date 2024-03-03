@@ -27,7 +27,11 @@ class _CarWidgetState extends State<CarWidget> {
       left: widget.endX,
       top: widget.endY,
       duration: Duration(milliseconds: widget.duration),
-      child: widget.image,
+      child: SizedBox(
+        height: widget.width,
+        width: widget.width,
+        child: widget.image,
+      ),
     );
   }
 }

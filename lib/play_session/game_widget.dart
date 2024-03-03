@@ -92,7 +92,7 @@ class _GameWidgetState extends State<GameWidget> {
     final double _height = MediaQuery.of(context).size.height * 0.90;
 
     final bool widthLarger = _width >= _height;
-    final bool widthMapLarger = stateMap.first.length >= stateMap.length;
+    final bool squareMap = stateMap.first.length == stateMap.length;
 
     final level = context.watch<GameLevel>();
 
@@ -150,7 +150,13 @@ class _GameWidgetState extends State<GameWidget> {
                       if (checkMap(stateMap, level.winMap)) {
                         isWin = true;
                         await drivingCar(
-                            level.flow, 0, _height / stateMap.length);
+                            level.flow,
+                            0,
+                            widthLarger
+                                ? _height / stateMap.length
+                                : squareMap
+                                    ? _width / stateMap.length
+                                    : _height / stateMap.length);
                         Future.delayed(
                             Duration(
                                 milliseconds: stepDuration * level.flow.length),
@@ -168,7 +174,7 @@ class _GameWidgetState extends State<GameWidget> {
                   return CarWidget(
                       width: widthLarger
                           ? _height / stateMap.length
-                          : widthMapLarger
+                          : squareMap
                               ? _width / stateMap.length
                               : _height / stateMap.length,
                       endX: _endX,

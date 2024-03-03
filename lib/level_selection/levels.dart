@@ -64,8 +64,8 @@ const gameLevels = [
         -1,
         1,
         0,
-        1,
-        2
+        0,
+        1
       ]),
   // GameLevel(
   //   number: 2,
