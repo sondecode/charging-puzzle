@@ -5,8 +5,15 @@ class PuzzleTile extends StatefulWidget {
   // final bool isFixed; // Whether the tile is fixed (like the solar panel)
   final Function onTap;
   final bool hide;
+  final bool startBg;
+  final double width;
   const PuzzleTile(
-      {super.key, required this.type, required this.onTap, required this.hide});
+      {super.key,
+      required this.type,
+      required this.onTap,
+      required this.hide,
+      required this.width,
+      required this.startBg});
 
   @override
   State<PuzzleTile> createState() => _PuzzleTileState();
@@ -29,15 +36,23 @@ class _PuzzleTileState extends State<PuzzleTile> {
       disable = true;
     }
 
-    if (letter == "C") {
-      final image = Image.asset('assets/images/sprites/${letter}_sprite.png');
-      final bg = Image.asset('assets/images/sprites/start_bg.png');
-      sprite = Stack(
-        children: [bg, image],
-      );
-    } else {
-      sprite = Image.asset('assets/images/sprites/${letter}_sprite.png');
-    }
+    // if (letter == "C") {
+    //   final image = Image.asset('assets/images/sprites/${letter}_sprite.png');
+    //   final bg = Image.asset('assets/images/sprites/start_bg.png');
+    //   if (widget.startBg) {
+    //     sprite = Stack(
+    //       children: [bg],
+    //     );
+    //   } else {
+    //     sprite = Stack(
+    //       children: [bg, image],
+    //     );
+    //   }
+    // } else {
+
+    // }
+
+    sprite = Image.asset('assets/images/sprites/${letter}_sprite.png');
   }
 
   @override
@@ -46,7 +61,6 @@ class _PuzzleTileState extends State<PuzzleTile> {
         onTap: disable
             ? null
             : () {
-                print(rotationAngle);
                 setState(() {
                   rotationAngle += 90.0;
                   if (rotationAngle == 360) rotationAngle = 0;
@@ -60,7 +74,28 @@ class _PuzzleTileState extends State<PuzzleTile> {
               color: Colors.green,
               border: Border.all(color: Colors.grey),
             ),
-            child: widget.hide ? Container() : sprite,
+            child: widget.hide
+                ? Container()
+                : Stack(
+                    children: [
+                      letter == "C"
+                          ? Container(
+                              width: widget.width,
+                              height: widget.width,
+                              child: FittedBox(
+                                  fit: BoxFit.fill,
+                                  child: Image.asset(
+                                      'assets/images/sprites/start_bg.png')))
+                          : Container(),
+                      widget.startBg
+                          ? Container()
+                          : SizedBox(
+                              width: widget.width,
+                              height: widget.width,
+                              child:
+                                  FittedBox(fit: BoxFit.fill, child: sprite)),
+                    ],
+                  ),
             // Center(child: Text(widget.type)),
           ),
         ));

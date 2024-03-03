@@ -3,6 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:basic/common/function.dart';
+import 'package:basic/sprites/car_sprite.dart';
 import 'package:basic/sprites/puzzle_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +27,13 @@ class _GameWidgetState extends State<GameWidget> {
   late List<List<String>> stateMap;
   late bool isWin = false;
 
+  //Car Cood
+  late String spriteImage = 'assets/images/sprites/C_sprite.png';
+  late double _endX = 0.0;
+  late double _endY = 0.0;
+  late int carDirect = 0;
+  final stepDuration = 400;
+
   @override
   void initState() {
     super.initState();
@@ -34,6 +42,48 @@ class _GameWidgetState extends State<GameWidget> {
       level.initMap.length,
       (i) => List<String>.from(level.initMap[i]),
     );
+  }
+
+  Future<void> drivingCar(
+      List<int> flow, int currentIndex, double width) async {
+    // Base case: if all steps are completed, return
+    if (currentIndex >= flow.length) return;
+
+    final step = flow[currentIndex];
+    setState(() {
+      if (step >= 0) {
+        spriteImage = 'assets/images/sprites/C_${step}_sprite.png';
+      } else {
+        spriteImage = 'assets/images/sprites/C_${1}_sprite.png';
+      }
+
+      switch (step) {
+        case 3:
+          _endY -= width;
+          break;
+        case 1:
+          _endY += width;
+          break;
+        case 2:
+          _endX -= width;
+          break;
+        case 0:
+          _endX += width;
+          break;
+        default:
+          _endY = 0;
+          _endX = 0;
+          break;
+      }
+    });
+
+    // Calculate the duration for this step// Adjust duration as needed
+
+    // Wait for the duration of this step
+    Future.delayed(Duration(milliseconds: stepDuration), () async {
+      // Move to the next step
+      await drivingCar(flow, currentIndex + 1, width);
+    });
   }
 
   @override
@@ -52,57 +102,83 @@ class _GameWidgetState extends State<GameWidget> {
     return SizedBox(
       height: _height,
       width: _height / stateMap.length * stateMap.first.length,
-      child: Stack(children: [
-        Padding(
-          padding: const EdgeInsets.all(50.0),
-          child: SingleChildScrollView(
-            // physics: const NeverScrollableScrollPhysics(),
-            child: GridView.builder(
-                shrinkWrap: true,
-                padding: EdgeInsets.zero,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: stateMap.first.length,
-                ),
-                itemCount: stateMap.length * stateMap.first.length,
-                // Adjust based on your grid size
-                itemBuilder: (context, index) {
-                  int i, j = 0;
-                  i = (index / stateMap.first.length).floor();
-                  j = (index % stateMap.first.length);
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Stack(children: [
+          GridView.builder(
+              shrinkWrap: true,
+              padding: EdgeInsets.zero,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: stateMap.first.length,
+              ),
+              itemCount: stateMap.length * stateMap.first.length,
+              // Adjust based on your grid size
+              itemBuilder: (context, index) {
+                int i, j = 0;
+                i = (index / stateMap.first.length).floor();
+                j = (index % stateMap.first.length);
 
-                  return SizedBox(
-                    child: PuzzleTile(
-                      hide: level.winMap[i][j] == "0" && isWin,
-                      type: stateMap[i][j],
-                      onTap: () {
-                        setState(() {
-                          context.read<AudioController>().playSfx(SfxType.wssh);
-                          final data = stateMap[i][j].split('_');
-                          if (data.first == 'I') {
-                            if (data[1] == '1') {
-                              stateMap[i][j] = "I_0";
-                            } else {
-                              stateMap[i][j] = "I_1";
-                            }
+                return SizedBox(
+                  child: PuzzleTile(
+                    width: _height / stateMap.length,
+                    startBg: stateMap[i][j].split('_').first == "C" && isWin,
+                    hide: level.winMap[i][j] == "0" && isWin,
+                    type: stateMap[i][j],
+                    onTap: () async {
+                      setState(() {
+                        context.read<AudioController>().playSfx(SfxType.wssh);
+                        final data = stateMap[i][j].split('_');
+
+                        if (data.first == 'I') {
+                          carDirect = (int.parse(data[1]) + 1) % 4;
+                        }
+
+                        if (data.first == 'I') {
+                          if (data[1] == '1') {
+                            stateMap[i][j] = "I_0";
                           } else {
-                            stateMap[i][j] =
-                                '${data.first}_${(int.parse(data[1]) + 1) % 4}';
+                            stateMap[i][j] = "I_1";
                           }
-                          // Update the stateMap
-                          print(stateMap);
-                          if (checkMap(stateMap, level.winMap)) {
-                            isWin = true;
-                            levelState.evaluate();
-                          }
+                        } else {
+                          stateMap[i][j] =
+                              '${data.first}_${(int.parse(data[1]) + 1) % 4}';
+                        }
+                        // Update the stateMap
+                        print(stateMap);
+                      });
+                      if (checkMap(stateMap, level.winMap)) {
+                        isWin = true;
+                        await drivingCar(
+                            level.flow, 0, _height / stateMap.length);
+                        Future.delayed(
+                            Duration(
+                                milliseconds: stepDuration * level.flow.length),
+                            () async {
+                          // Move to the next step
+                          levelState.evaluate();
                         });
-                      },
-                    ),
-                  );
-                }),
-          ),
-        ),
-      ]),
+                      }
+                    },
+                  ),
+                );
+              }),
+          isWin
+              ? Builder(builder: (context) {
+                  return CarWidget(
+                      width: widthLarger
+                          ? _height / stateMap.length
+                          : widthMapLarger
+                              ? _width / stateMap.length
+                              : _height / stateMap.length,
+                      endX: _endX,
+                      endY: _endY,
+                      duration: 500,
+                      image: Image.asset(spriteImage));
+                })
+              : Container()
+        ]),
+      ),
     );
   }
 }
