@@ -2,6 +2,7 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:basic/player_progress/player_progress.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +21,7 @@ class MainMenuScreen extends StatelessWidget {
     final double _height = MediaQuery.of(context).size.height;
 
     final palette = context.watch<Palette>();
+    final playerProgress = context.watch<PlayerProgress>();
     final settingsController = context.watch<SettingsController>();
     final audioController = context.watch<AudioController>();
 
@@ -39,7 +41,7 @@ class MainMenuScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Text(
-                'Flutter Game Template!',
+                'Electric Vehicles\nPuzzle!',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Electric',
@@ -62,8 +64,39 @@ class MainMenuScreen extends StatelessWidget {
                   backgroundColor: Colors.green, // Set background color
                 ),
                 child: Icon(
-                  size: 100,
+                  size: 120,
                   Icons.play_arrow,
+                  color: Colors.white,
+                ),
+              ),
+              _gap,
+              Text(
+                'tìm khách hàng:',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'Electric',
+                  fontSize: 30,
+                  height: 1,
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  print(playerProgress.highestLevelReached);
+                  // if (playerProgress.highestLevelReached)
+                  // audioController.playSfx(SfxType.buttonTap);
+                  // GoRouter.of(context).go('/play');
+                },
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.all(20), // Remove padding
+                  shape: RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.circular(10.0), // Adjust corner radius
+                  ),
+                  backgroundColor: Colors.green, // Set background color
+                ),
+                child: Icon(
+                  size: 50,
+                  Icons.radar,
                   color: Colors.white,
                 ),
               ),
@@ -73,26 +106,91 @@ class MainMenuScreen extends StatelessWidget {
         Positioned(
           right: 20,
           top: 20,
-          child: ElevatedButton(
-            onPressed: () => GoRouter.of(context).push('/settings'),
-            style: ElevatedButton.styleFrom(
-              padding: EdgeInsets.all(20), // Remove padding
-              shape: RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.circular(10.0), // Adjust corner radius
+          child: Row(
+            children: [
+              ElevatedButton(
+                onPressed: () => GoRouter.of(context).push('/shopping'),
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.all(20), // Remove padding
+                  shape: RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.circular(10.0), // Adjust corner radius
+                  ),
+                  backgroundColor: Colors.green, // Set background color
+                ),
+                child: Icon(
+                  size: 30,
+                  Icons.shopping_cart,
+                  color: Colors.white,
+                ),
               ),
-              backgroundColor: Colors.green, // Set background color
-            ),
-            child: Icon(
-              size: 30,
-              Icons.settings,
-              color: Colors.white,
-            ),
+              SizedBox(
+                width: 10,
+              ),
+              ElevatedButton(
+                onPressed: () => GoRouter.of(context).push('/settings'),
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.all(20), // Remove padding
+                  shape: RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.circular(10.0), // Adjust corner radius
+                  ),
+                  backgroundColor: Colors.green, // Set background color
+                ),
+                child: Icon(
+                  size: 30,
+                  Icons.settings,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        ),
+        Positioned(
+          left: 20,
+          top: 20,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(
+                    size: 40,
+                    Icons.monetization_on,
+                  ),
+                  Text(
+                    playerProgress.money.toString(),
+                    style: TextStyle(
+                      fontFamily: 'Electric',
+                      fontSize: 30,
+                      height: 1,
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  Icon(
+                    size: 40,
+                    Icons.energy_savings_leaf,
+                  ),
+                  Text(
+                    playerProgress.energy.toString(),
+                    style: TextStyle(
+                      fontFamily: 'Electric',
+                      fontSize: 30,
+                      height: 1,
+                    ),
+                  )
+                ],
+              ),
+            ],
           ),
         )
       ]),
     );
   }
 
-  static const _gap = SizedBox(height: 100);
+  static const _gap = SizedBox(height: 50);
 }

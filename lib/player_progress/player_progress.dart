@@ -4,6 +4,7 @@
 
 import 'dart:async';
 
+import 'package:basic/shopping/items.dart';
 import 'package:flutter/foundation.dart';
 
 import 'persistence/local_storage_player_progress_persistence.dart';
@@ -12,6 +13,14 @@ import 'persistence/player_progress_persistence.dart';
 /// Encapsulates the player's progress.
 class PlayerProgress extends ChangeNotifier {
   static const maxHighestScoresPerPlayer = 10;
+
+  int _money = 100;
+
+  int _energy = 10;
+
+  int _curVehicle = 1;
+
+  List<int> _bought = [1];
 
   /// By default, settings are persisted using
   /// [LocalStoragePlayerProgressPersistence] (i.e. NSUserDefaults on iOS,
@@ -29,6 +38,35 @@ class PlayerProgress extends ChangeNotifier {
 
   /// The highest level that the player has reached so far.
   int get highestLevelReached => _highestLevelReached;
+
+  int get curVehicle => _curVehicle;
+
+  int get money => _money;
+
+  int get energy => _energy;
+
+  bool isBought(int number) {
+    return _bought.contains(number);
+  }
+
+  void buyVehicle(int id) {
+    int cost = vehicleType.firstWhere((element) => element.number == id).cost;
+    // Check if cost is not null and if you have enough money to buy the vehicle
+    if (_money >= cost && !isBought(id)) {
+      _bought.add(id);
+      _money -= cost;
+      print(_money);
+      notifyListeners();
+    }
+  }
+
+  void useVehicle(int id) {
+    if (_curVehicle != id) {
+      _curVehicle = id;
+      print('change successful');
+      notifyListeners();
+    }
+  }
 
   /// Resets the player's progress so it's like if they just started
   /// playing the game for the first time.

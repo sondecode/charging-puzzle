@@ -89,8 +89,8 @@ class _GameWidgetState extends State<GameWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final double _width = MediaQuery.of(context).size.width * 0.85 + 90;
-    final double _height = MediaQuery.of(context).size.height * 0.85;
+    final double _width = MediaQuery.of(context).size.width * 0.85 + 65;
+    final double _height = MediaQuery.of(context).size.height * 0.85 - 190;
 
     final bool widthLarger = _width >= _height;
     final bool squareMap = stateMap.first.length == stateMap.length;
@@ -126,14 +126,14 @@ class _GameWidgetState extends State<GameWidget> {
                 j = (index % stateMap.first.length);
 
                 final data = stateMap[i][j].split('_');
-                if (isCar(data.first)) {
+                if (isStart(data.first)) {
                   letterCar = data.first;
                 }
 
                 return SizedBox(
                   child: PuzzleTile(
                     width: _height / stateMap.length,
-                    startBg: isCar(data.first) && isWin,
+                    startBg: isStart(data.first) && isWin,
                     hide: level.winMap[i][j] == "0" && isWin,
                     type: stateMap[i][j],
                     onTap: () async {

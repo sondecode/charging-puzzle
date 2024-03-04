@@ -3,6 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:basic/play_session/play_session_screen.dart';
+import 'package:basic/shopping/item_shopping.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -81,6 +82,11 @@ final router = GoRouter(
           path: 'settings',
           builder: (context, state) =>
               const SettingsScreen(key: Key('settings')),
+        ),
+        GoRoute(
+          path: 'shopping',
+          builder: (context, state) =>
+              const ItemShoppingScreen(key: Key('shopping')),
         ),
       ],
     ),

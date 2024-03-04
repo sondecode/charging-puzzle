@@ -57,6 +57,9 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
 
+    final double _width = MediaQuery.of(context).size.width;
+    final double _height = MediaQuery.of(context).size.height;
+
     return MultiProvider(
       providers: [
         Provider.value(value: widget.level),
@@ -79,58 +82,73 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
           // of the game.
           body: Stack(
             children: [
-              // This is the main layout of the play session screen,
-              // with a settings button on top, the actual play area
-              // in the middle, and a back button at the bottom.
+              SizedBox(
+                height: _height,
+                width: _width,
+                child: FittedBox(
+                    fit: BoxFit.fitHeight,
+                    child: Image.asset('assets/images/sprites/background.png')),
+              ),
               Container(
-                color: Colors.red,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top: 20, right: 20),
+                      padding: const EdgeInsets.all(20),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          ElevatedButton(
-                            onPressed: () => GoRouter.of(context).push('/'),
-                            style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.all(20), // Remove padding
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                    10.0), // Adjust corner radius
+                          Text(
+                            widget.level.name,
+                            style: TextStyle(
+                              fontFamily: 'Electric',
+                              fontSize: 30,
+                              height: 1,
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              ElevatedButton(
+                                onPressed: () => GoRouter.of(context).push('/'),
+                                style: ElevatedButton.styleFrom(
+                                  padding: EdgeInsets.all(20), // Remove padding
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(
+                                        10.0), // Adjust corner radius
+                                  ),
+                                  backgroundColor:
+                                      Colors.green, // Set background color
+                                ),
+                                child: Icon(
+                                  size: 30,
+                                  Icons.home,
+                                  color: Colors.white,
+                                ),
                               ),
-                              backgroundColor:
-                                  Colors.green, // Set background color
-                            ),
-                            child: Icon(
-                              size: 30,
-                              Icons.home,
-                              color: Colors.white,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          ElevatedButton(
-                            onPressed: () =>
-                                GoRouter.of(context).push('/settings'),
-                            style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.all(20), // Remove padding
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                    10.0), // Adjust corner radius
+                              SizedBox(
+                                width: 10,
                               ),
-                              backgroundColor:
-                                  Colors.green, // Set background color
-                            ),
-                            child: Icon(
-                              size: 30,
-                              Icons.settings,
-                              color: Colors.white,
-                            ),
-                          ),
+                              ElevatedButton(
+                                onPressed: () =>
+                                    GoRouter.of(context).push('/settings'),
+                                style: ElevatedButton.styleFrom(
+                                  padding: EdgeInsets.all(20), // Remove padding
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(
+                                        10.0), // Adjust corner radius
+                                  ),
+                                  backgroundColor:
+                                      Colors.green, // Set background color
+                                ),
+                                child: Icon(
+                                  size: 30,
+                                  Icons.settings,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          )
                         ],
                       ),
                     ),

@@ -1,5 +1,7 @@
 import 'package:basic/common/function.dart';
+import 'package:basic/style/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PuzzleTile extends StatefulWidget {
   final String type; // Tile type (e.g., "C_2", "L_1", "S_1")
@@ -33,7 +35,7 @@ class _PuzzleTileState extends State<PuzzleTile> {
     rotationAngle = int.parse(data[1]) * 90;
     letter = data.first;
 
-    if (letter == "S") {
+    if (isEnd(letter)) {
       disable = true;
     }
 
@@ -58,6 +60,7 @@ class _PuzzleTileState extends State<PuzzleTile> {
 
   @override
   Widget build(BuildContext context) {
+    final palette = context.watch<Palette>();
     return GestureDetector(
         onTap: disable
             ? null
@@ -72,14 +75,14 @@ class _PuzzleTileState extends State<PuzzleTile> {
           angle: rotationAngle * (3.14159265359 / 180),
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.green,
+              color: palette.backgroundLevelSelection,
               border: Border.all(color: Colors.grey),
             ),
             child: widget.hide
                 ? Container()
                 : Stack(
                     children: [
-                      isCar(letter)
+                      isStart(letter)
                           ? Container(
                               width: widget.width,
                               height: widget.width,
