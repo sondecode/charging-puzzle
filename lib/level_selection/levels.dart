@@ -4,6 +4,7 @@
 
 const gameLevels = [
   GameLevel(
+      name: "Home",
       number: 1,
       difficulty: 5,
       // TODO: When ready, change these achievement IDs.
@@ -35,6 +36,7 @@ const gameLevels = [
         2
       ]),
   GameLevel(
+      name: "Garage",
       number: 2,
       difficulty: 5,
       // TODO: When ready, change these achievement IDs.
@@ -92,6 +94,8 @@ class GameLevel {
 
   final List<List<String>> winMap;
 
+  final String name;
+
   final List<int> flow;
 
   /// The achievement to unlock when the level is finished, if any.
@@ -103,6 +107,7 @@ class GameLevel {
 
   const GameLevel({
     required this.number,
+    this.name = "Home",
     required this.difficulty,
     required this.initMap,
     required this.winMap,

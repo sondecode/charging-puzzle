@@ -49,8 +49,22 @@ class LevelSelectionScreen extends StatelessWidget {
 
                     GoRouter.of(context).go('/play/session/${level.number}');
                   },
-                  leading: Text(level.number.toString()),
-                  title: Text('Level #${level.number}'),
+                  leading: Text(
+                    level.number.toString(),
+                    style: TextStyle(
+                      fontFamily: 'Electric',
+                      fontSize: 20,
+                      height: 1,
+                    ),
+                  ),
+                  title: Text(
+                    level.name,
+                    style: TextStyle(
+                      fontFamily: 'Electric',
+                      fontSize: 20,
+                      height: 1,
+                    ),
+                  ),
                 )
             ],
           ),

@@ -16,7 +16,6 @@ import '../game_internals/score.dart';
 import '../level_selection/levels.dart';
 import '../player_progress/player_progress.dart';
 import '../style/confetti.dart';
-import '../style/my_button.dart';
 import '../style/palette.dart';
 import 'game_widget.dart';
 
@@ -35,6 +34,8 @@ class PlaySessionScreen extends StatefulWidget {
 }
 
 class _PlaySessionScreenState extends State<PlaySessionScreen> {
+  static const _gap = SizedBox(height: 20);
+
   static final _log = Logger('PlaySessionScreen');
 
   static const _celebrationDuration = Duration(milliseconds: 2000);
@@ -84,57 +85,64 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
               Container(
                 color: Colors.red,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () => GoRouter.of(context).push('/'),
-                          style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.all(20), // Remove padding
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                  10.0), // Adjust corner radius
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20, right: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () => GoRouter.of(context).push('/'),
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.all(20), // Remove padding
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                    10.0), // Adjust corner radius
+                              ),
+                              backgroundColor:
+                                  Colors.green, // Set background color
                             ),
-                            backgroundColor:
-                                Colors.green, // Set background color
-                          ),
-                          child: Icon(
-                            size: 30,
-                            Icons.home,
-                            color: Colors.white,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        ElevatedButton(
-                          onPressed: () =>
-                              GoRouter.of(context).push('/settings'),
-                          style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.all(20), // Remove padding
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                  10.0), // Adjust corner radius
+                            child: Icon(
+                              size: 30,
+                              Icons.home,
+                              color: Colors.white,
                             ),
-                            backgroundColor:
-                                Colors.green, // Set background color
                           ),
-                          child: Icon(
-                            size: 30,
-                            Icons.settings,
-                            color: Colors.white,
+                          SizedBox(
+                            width: 10,
                           ),
-                        ),
-                      ],
+                          ElevatedButton(
+                            onPressed: () =>
+                                GoRouter.of(context).push('/settings'),
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.all(20), // Remove padding
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                    10.0), // Adjust corner radius
+                              ),
+                              backgroundColor:
+                                  Colors.green, // Set background color
+                            ),
+                            child: Icon(
+                              size: 30,
+                              Icons.settings,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    GameWidget(),
-                    // Expanded(
-                    //   // The actual UI of the game.
-                    //   child: GameWidget(),
-                    // ),
+                    Expanded(
+                      // The actual UI of the game.
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          GameWidget(),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),

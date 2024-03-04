@@ -76,6 +76,7 @@ class MyApp extends StatelessWidget {
 
           return MaterialApp.router(
             title: 'My Flutter Game',
+            debugShowCheckedModeBanner: false,
             theme: ThemeData.from(
               colorScheme: ColorScheme.fromSeed(
                 seedColor: palette.darkPen,

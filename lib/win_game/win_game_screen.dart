@@ -9,10 +9,11 @@ import 'package:provider/provider.dart';
 import '../game_internals/score.dart';
 import '../style/my_button.dart';
 import '../style/palette.dart';
-import '../style/responsive_screen.dart';
 
 class WinGameScreen extends StatelessWidget {
   final Score score;
+
+  static const _gap = SizedBox(height: 20);
 
   const WinGameScreen({
     super.key,
@@ -27,41 +28,41 @@ class WinGameScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: palette.backgroundPlaySession,
-      body: ResponsiveScreen(
-        squarishMainArea: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            gap,
-            const Center(
-              child: Text(
-                'You won!',
-                style: TextStyle(fontFamily: 'Electric', fontSize: 50),
-              ),
-            ),
-            gap,
-            Center(
-              child: Text(
-                'Score: ${score.score}\n'
-                'Time: ${score.formattedTime}',
-                style: const TextStyle(fontFamily: 'Electric', fontSize: 20),
-              ),
-            ),
-          ],
-        ),
-        rectangularMenuArea: MyButton(
-          onPressed: () {
-            GoRouter.of(context).go('/play');
-          },
-          child: const Text(
-            'Continue',
-            style: TextStyle(
-              color: Colors.blueGrey,
-              fontFamily: 'Electric',
-              fontSize: 25,
-              height: 1,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          gap,
+          const Center(
+            child: Text(
+              'You won!',
+              style: TextStyle(fontFamily: 'Electric', fontSize: 50),
             ),
           ),
-        ),
+          gap,
+          Center(
+            child: Text(
+              'Score: ${score.score}\n'
+              'Time: ${score.formattedTime}',
+              style: const TextStyle(fontFamily: 'Electric', fontSize: 20),
+            ),
+          ),
+          Spacer(),
+          MyButton(
+            onPressed: () {
+              GoRouter.of(context).go('/play');
+            },
+            child: const Text(
+              'Continue',
+              style: TextStyle(
+                color: Colors.blueGrey,
+                fontFamily: 'Electric',
+                fontSize: 25,
+                height: 1,
+              ),
+            ),
+          ),
+          _gap
+        ],
       ),
     );
   }

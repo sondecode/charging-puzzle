@@ -89,8 +89,8 @@ class _GameWidgetState extends State<GameWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final double _width = MediaQuery.of(context).size.width * 0.90;
-    final double _height = MediaQuery.of(context).size.height * 0.90;
+    final double _width = MediaQuery.of(context).size.width * 0.85 + 90;
+    final double _height = MediaQuery.of(context).size.height * 0.85;
 
     final bool widthLarger = _width >= _height;
     final bool squareMap = stateMap.first.length == stateMap.length;
