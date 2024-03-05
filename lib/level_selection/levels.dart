@@ -49,6 +49,29 @@ const gameLevels = [
         0,
         1
       ]),
+  GameLevel(
+      name: "WC",
+      number: 3,
+      difficulty: 5,
+      achievementIdIOS: 'first_win',
+      achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
+      initMap: [
+        ["T_0", "I_0", "L_2"],
+        ["L_2", "I_0", "L_3"],
+        ["L_0", "I_1", "S_3"],
+      ],
+      winMap: [
+        ["T_1", "0", "0"],
+        ["L_0", "I_1", "L_2"],
+        ["0", "0", "S_3"],
+      ],
+      flow: [
+        -1,
+        1,
+        0,
+        0,
+        1
+      ]),
 ];
 
 class GameLevel {

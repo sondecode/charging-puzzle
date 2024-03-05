@@ -4,6 +4,8 @@
 
 import 'dart:async';
 
+import 'package:basic/game_internals/transport_state.dart';
+import 'package:basic/transport/finding.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logging/logging.dart' hide Level;
@@ -17,26 +19,25 @@ import '../level_selection/levels.dart';
 import '../player_progress/player_progress.dart';
 import '../style/confetti.dart';
 import '../style/palette.dart';
-import 'game_widget.dart';
 
 /// This widget defines the entirety of the screen that the player sees when
 /// they are playing a level.
 ///
 /// It is a stateful widget because it manages some state of its own,
 /// such as whether the game is in a "celebration" state.
-class PlaySessionScreen extends StatefulWidget {
-  final GameLevel level;
+class TransportScreen extends StatefulWidget {
+  final Booking booking;
 
-  const PlaySessionScreen(this.level, {super.key});
+  const TransportScreen(this.booking, {super.key});
 
   @override
-  State<PlaySessionScreen> createState() => _PlaySessionScreenState();
+  State<TransportScreen> createState() => _TransportScreenState();
 }
 
-class _PlaySessionScreenState extends State<PlaySessionScreen> {
+class _TransportScreenState extends State<TransportScreen> {
   static const _gap = SizedBox(height: 20);
 
-  static final _log = Logger('PlaySessionScreen');
+  static final _log = Logger('TransportScreen');
 
   static const _celebrationDuration = Duration(milliseconds: 2000);
 
@@ -62,13 +63,13 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
 
     return MultiProvider(
       providers: [
-        Provider.value(value: widget.level),
+        Provider.value(value: widget.booking),
         // Create and provide the [LevelState] object that will be used
         // by widgets below this one in the widget tree.
         ChangeNotifierProvider(
-          create: (context) => LevelState(
-            goal: widget.level.difficulty,
-            onWin: _playerWon,
+          create: (context) => TransportState(
+            onFrom: _playerWon,
+            onTo: _playerWon,
           ),
         ),
       ],
@@ -100,7 +101,7 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            widget.level.name,
+                            widget.booking.customer.name,
                             style: TextStyle(
                               fontFamily: 'Electric',
                               fontSize: 30,
@@ -157,7 +158,7 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
-                          GameWidget(),
+                          // TransportWidget(),
                         ],
                       ),
                     ),
@@ -184,16 +185,14 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
   }
 
   Future<void> _playerWon() async {
-    _log.info('Level ${widget.level.number} won');
+    // final score = Score(
+    //   widget.level.number,
+    //   widget.level.difficulty,
+    //   DateTime.now().difference(_startOfPlay),
+    // );
 
-    final score = Score(
-      widget.level.number,
-      widget.level.difficulty,
-      DateTime.now().difference(_startOfPlay),
-    );
-
-    final playerProgress = context.read<PlayerProgress>();
-    playerProgress.setLevelReached(widget.level.number);
+    // final playerProgress = context.read<PlayerProgress>();
+    // playerProgress.setLevelReached(widget.level.number);
 
     // Let the player see the game just after winning for a bit.
     await Future<void>.delayed(_preCelebrationDuration);
@@ -210,6 +209,6 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
     await Future<void>.delayed(_celebrationDuration);
     if (!mounted) return;
 
-    GoRouter.of(context).go('/play/won', extra: {'score': score});
+    GoRouter.of(context).go('/');
   }
 }

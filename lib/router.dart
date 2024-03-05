@@ -4,6 +4,8 @@
 
 import 'package:basic/play_session/play_session_screen.dart';
 import 'package:basic/shopping/item_shopping.dart';
+import 'package:basic/transport/finding.dart';
+import 'package:basic/transport/transport_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -87,6 +89,20 @@ final router = GoRouter(
           path: 'shopping',
           builder: (context, state) =>
               const ItemShoppingScreen(key: Key('shopping')),
+        ),
+        GoRoute(
+          path: 'transport',
+          pageBuilder: (context, state) {
+            Booking sample = state.extra as Booking;
+            return buildMyTransition<void>(
+              key: ValueKey('transport'),
+              color: context.watch<Palette>().backgroundPlaySession,
+              child: TransportScreen(
+                sample,
+                key: const Key('transport'),
+              ),
+            );
+          },
         ),
       ],
     ),

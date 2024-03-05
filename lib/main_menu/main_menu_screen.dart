@@ -3,6 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:basic/player_progress/player_progress.dart';
+import 'package:basic/transport/finding.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +42,7 @@ class MainMenuScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Text(
-                'Electric Vehicles\nPuzzle!',
+                'Electric Vehicles\nDriver!',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Electric',
@@ -71,7 +72,7 @@ class MainMenuScreen extends StatelessWidget {
               ),
               _gap,
               Text(
-                'tìm khách hàng:',
+                'finding customers:',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Electric',
@@ -81,10 +82,12 @@ class MainMenuScreen extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  print(playerProgress.highestLevelReached);
-                  // if (playerProgress.highestLevelReached)
-                  // audioController.playSfx(SfxType.buttonTap);
-                  // GoRouter.of(context).go('/play');
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return RadarDialog();
+                    },
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.all(20), // Remove padding
