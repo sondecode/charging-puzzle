@@ -68,6 +68,11 @@ class PlayerProgress extends ChangeNotifier {
     }
   }
 
+  void setMoney(int earn) {
+    _money += earn;
+    notifyListeners();
+  }
+
   /// Resets the player's progress so it's like if they just started
   /// playing the game for the first time.
   void reset() {

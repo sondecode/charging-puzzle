@@ -5,18 +5,17 @@
 import 'dart:async';
 
 import 'package:basic/game_internals/transport_state.dart';
+import 'package:basic/player_progress/player_progress.dart';
+import 'package:basic/transport/address.dart';
 import 'package:basic/transport/finding.dart';
+import 'package:basic/transport/transport2_widget.dart';
+import 'package:basic/transport/transport_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:logging/logging.dart' hide Level;
 import 'package:provider/provider.dart';
 
 import '../audio/audio_controller.dart';
 import '../audio/sounds.dart';
-import '../game_internals/level_state.dart';
-import '../game_internals/score.dart';
-import '../level_selection/levels.dart';
-import '../player_progress/player_progress.dart';
 import '../style/confetti.dart';
 import '../style/palette.dart';
 
@@ -35,15 +34,13 @@ class TransportScreen extends StatefulWidget {
 }
 
 class _TransportScreenState extends State<TransportScreen> {
-  static const _gap = SizedBox(height: 20);
-
-  static final _log = Logger('TransportScreen');
-
   static const _celebrationDuration = Duration(milliseconds: 2000);
 
   static const _preCelebrationDuration = Duration(milliseconds: 500);
 
   bool _duringCelebration = false;
+
+  bool pickDone = false;
 
   late DateTime _startOfPlay;
 
@@ -68,7 +65,7 @@ class _TransportScreenState extends State<TransportScreen> {
         // by widgets below this one in the widget tree.
         ChangeNotifierProvider(
           create: (context) => TransportState(
-            onFrom: _playerWon,
+            onFrom: _pickSuccess,
             onTo: _playerWon,
           ),
         ),
@@ -101,7 +98,15 @@ class _TransportScreenState extends State<TransportScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            widget.booking.customer.name,
+                            !pickDone
+                                ? gameAddress
+                                    .firstWhere((element) =>
+                                        element.number == widget.booking.from)
+                                    .name
+                                : gameAddress
+                                    .firstWhere((element) =>
+                                        element.number == widget.booking.end)
+                                    .name,
                             style: TextStyle(
                               fontFamily: 'Electric',
                               fontSize: 30,
@@ -157,7 +162,12 @@ class _TransportScreenState extends State<TransportScreen> {
                       // The actual UI of the game.
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
+                          !pickDone
+                              ? TransportWidget(
+                                  addressNumber: widget.booking.from)
+                              : Transport2Widget(
+                                  addressNumber: widget.booking.end)
                           // TransportWidget(),
                         ],
                       ),
@@ -184,15 +194,22 @@ class _TransportScreenState extends State<TransportScreen> {
     );
   }
 
+  void _pickSuccess() {
+    setState(() {
+      pickDone = true;
+    });
+  }
+
   Future<void> _playerWon() async {
     // final score = Score(
     //   widget.level.number,
     //   widget.level.difficulty,
     //   DateTime.now().difference(_startOfPlay),
     // );
+    print(DateTime.now().difference(_startOfPlay));
+    final playerProgress = context.read<PlayerProgress>();
 
-    // final playerProgress = context.read<PlayerProgress>();
-    // playerProgress.setLevelReached(widget.level.number);
+    playerProgress.setMoney(20);
 
     // Let the player see the game just after winning for a bit.
     await Future<void>.delayed(_preCelebrationDuration);

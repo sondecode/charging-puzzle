@@ -24,11 +24,11 @@ bool checkMap(List<List<String>> map1, List<List<String>> map2) {
 }
 
 bool isStart(String letterToCheck) {
-  final letters = ["C", "T", "B"];
+  final letters = ["C", "T", "B", "X"];
   return letters.contains(letterToCheck);
 }
 
 bool isEnd(String letterToCheck) {
-  final letters = ["S"];
+  final letters = ["S", "Y"];
   return letters.contains(letterToCheck);
 }

@@ -28,12 +28,15 @@ class TransportState extends ChangeNotifier {
     //   onWin();
     // }
     onFrom();
+    notifyListeners();
   }
 
   void evaluateTo() {
     // if (_progress >= goal) {
     //   onWin();
     // }
+
     onTo();
+    notifyListeners();
   }
 }

@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:basic/level_selection/levels.dart';
 import 'package:basic/transport/customer.dart';
+import 'package:basic/transport/address.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -15,7 +15,7 @@ class _RadarDialogState extends State<RadarDialog>
   late AnimationController _controller;
   late Animation<double> _animation;
   Customer? _selectedCustomer;
-  List<GameLevel> _selectedAddress = [];
+  List<Address> _selectedAddress = [];
   int _distance = 1;
 
   bool _completed = false; // Flag to track completion
@@ -38,7 +38,7 @@ class _RadarDialogState extends State<RadarDialog>
             setState(() {
               _selectedCustomer =
                   customerList[Random().nextInt(customerList.length)];
-              _selectedAddress = List.from(gameLevels);
+              _selectedAddress = List.from(gameAddress);
               _selectedAddress.shuffle();
               _selectedAddress = _selectedAddress.sublist(0, 2);
               _distance = Random().nextInt(100) + 1;

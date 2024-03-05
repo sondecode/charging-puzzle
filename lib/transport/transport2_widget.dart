@@ -17,14 +17,14 @@ import '../audio/sounds.dart';
 /// button or the back button.
 ///
 
-class TransportWidget extends StatefulWidget {
+class Transport2Widget extends StatefulWidget {
   final int addressNumber;
-  const TransportWidget({super.key, required this.addressNumber});
+  const Transport2Widget({super.key, required this.addressNumber});
   @override
-  State<TransportWidget> createState() => _TransportWidgetState();
+  State<Transport2Widget> createState() => _Transport2WidgetState();
 }
 
-class _TransportWidgetState extends State<TransportWidget> {
+class _Transport2WidgetState extends State<Transport2Widget> {
   late List<List<String>> stateMap;
   late bool isWin = false;
   late Address mapAddress;
@@ -173,7 +173,7 @@ class _TransportWidgetState extends State<TransportWidget> {
                                 milliseconds: stepDuration *
                                     mapAddress.flow.length), () async {
                           // Move to the next step
-                          transportState.onFrom();
+                          transportState.onTo();
                         });
                       }
                     },

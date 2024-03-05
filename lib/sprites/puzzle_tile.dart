@@ -55,6 +55,15 @@ class _PuzzleTileState extends State<PuzzleTile> {
 
     // }
 
+    //To-do
+    if (letter == "X") {
+      letter = "C";
+    }
+
+    if (letter == "Y") {
+      letter = "S";
+    }
+
     sprite = Image.asset('assets/images/sprites/${letter}_sprite.png');
   }
 
