@@ -5,28 +5,28 @@
 const vehicleType = [
   VehicleType(
     number: 1,
-    name: "Falizz",
+    name: "faliz",
     cost: 10,
     speed: 1,
     bonus: 1,
   ),
   VehicleType(
     number: 2,
-    name: "VF3",
+    name: "vf3",
     cost: 10,
     speed: 1.2,
     bonus: 1.2,
   ),
   VehicleType(
     number: 3,
-    name: "VF5",
+    name: "vf5",
     cost: 50,
     speed: 1.3,
     bonus: 1.5,
   ),
   VehicleType(
     number: 4,
-    name: "VBus",
+    name: "vbus",
     cost: 100,
     speed: 1,
     bonus: 2,
@@ -43,7 +43,7 @@ class VehicleType {
   final String name;
 
   const VehicleType({
-    this.name = "VF1",
+    this.name = "vf1",
     required this.number,
     required this.speed,
     required this.bonus,

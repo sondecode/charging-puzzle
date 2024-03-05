@@ -101,7 +101,10 @@ class _GameWidgetState extends State<GameWidget> {
     final levelState = context.watch<LevelState>();
 
     return Container(
-      color: Colors.green,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.green,
+      ),
       height: widthLarger
           ? _height
           : squareMap

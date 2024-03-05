@@ -84,7 +84,7 @@ class _PuzzleTileState extends State<PuzzleTile> {
           angle: rotationAngle * (3.14159265359 / 180),
           child: Container(
             decoration: BoxDecoration(
-              color: palette.backgroundLevelSelection,
+              color: Colors.green,
               border: Border.all(color: Colors.grey),
             ),
             child: widget.hide

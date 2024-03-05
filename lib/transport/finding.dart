@@ -146,12 +146,12 @@ class _RadarDialogState extends State<RadarDialog>
                                 ),
                                 SizedBox(height: 5),
                                 Text(
-                                  "From: ${_selectedAddress.first.name}",
+                                  "Pickup point: ${_selectedAddress.first.name}",
                                   style: TextStyle(fontSize: 16.0),
                                 ),
                                 SizedBox(height: 5),
                                 Text(
-                                  "To: ${_selectedAddress.last.name}",
+                                  "Drop-off point: ${_selectedAddress.last.name}",
                                   style: TextStyle(fontSize: 16.0),
                                 ),
                                 SizedBox(height: 5),

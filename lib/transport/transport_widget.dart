@@ -102,7 +102,10 @@ class _TransportWidgetState extends State<TransportWidget> {
     final transportState = context.watch<TransportState>();
 
     return Container(
-      color: Colors.green,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.green,
+      ),
       height: widthLarger
           ? _height
           : squareMap
