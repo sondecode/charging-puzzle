@@ -4,18 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class PuzzleTile extends StatefulWidget {
-  final String type; // Tile type (e.g., "C_2", "L_1", "S_1")
+  final String letter; // Tile type (e.g., "C_2", "L_1", "S_1")
   // final bool isFixed; // Whether the tile is fixed (like the solar panel)
   final Function onTap;
   final bool hide;
   final bool startBg;
   final double width;
+  final int angle;
   const PuzzleTile(
       {super.key,
-      required this.type,
+      required this.letter,
       required this.onTap,
       required this.hide,
       required this.width,
+      required this.angle,
       required this.startBg});
 
   @override
@@ -31,35 +33,14 @@ class _PuzzleTileState extends State<PuzzleTile> {
   @override
   void initState() {
     super.initState();
-    final data = widget.type.split('_');
-    rotationAngle = int.parse(data[1]) * 90;
-    letter = data.first;
+    rotationAngle = widget.angle * 90;
+    letter = widget.letter;
 
     if (isEnd(letter)) {
       disable = true;
     }
 
-    // if (letter == "C") {
-    //   final image = Image.asset('assets/images/sprites/${letter}_sprite.png');
-    //   final bg = Image.asset('assets/images/sprites/start_bg.png');
-    //   if (widget.startBg) {
-    //     sprite = Stack(
-    //       children: [bg],
-    //     );
-    //   } else {
-    //     sprite = Stack(
-    //       children: [bg, image],
-    //     );
-    //   }
-    // } else {
-
-    // }
-
     //To-do
-    if (letter == "X") {
-      letter = "C";
-    }
-
     if (letter == "Y") {
       letter = "S";
     }

@@ -5,14 +5,14 @@
 const vehicleType = [
   VehicleType(
     number: 1,
-    name: "faliz",
+    name: "feliz",
     cost: 10,
     speed: 1,
     bonus: 1,
   ),
   VehicleType(
     number: 2,
-    name: "vf3",
+    name: "C",
     cost: 10,
     speed: 1.2,
     bonus: 1.2,
@@ -49,4 +49,8 @@ class VehicleType {
     required this.bonus,
     required this.cost,
   });
+}
+
+VehicleType findCar(int id) {
+  return vehicleType.firstWhere((element) => element.number == id);
 }

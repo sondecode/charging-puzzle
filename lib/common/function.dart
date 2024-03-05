@@ -24,7 +24,7 @@ bool checkMap(List<List<String>> map1, List<List<String>> map2) {
 }
 
 bool isStart(String letterToCheck) {
-  final letters = ["C", "T", "B", "X"];
+  final letters = ["C", "T", "B", "X", "feliz"];
   return letters.contains(letterToCheck);
 }
 

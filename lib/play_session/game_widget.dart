@@ -138,7 +138,8 @@ class _GameWidgetState extends State<GameWidget> {
                     width: _height / stateMap.length,
                     startBg: isStart(data.first) && isWin,
                     hide: level.winMap[i][j] == "0" && isWin,
-                    type: stateMap[i][j],
+                    letter: data.first,
+                    angle: int.parse(data.last),
                     onTap: () async {
                       setState(() {
                         context.read<AudioController>().playSfx(SfxType.wssh);

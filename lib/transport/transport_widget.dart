@@ -4,6 +4,8 @@
 
 import 'package:basic/common/function.dart';
 import 'package:basic/game_internals/transport_state.dart';
+import 'package:basic/player_progress/player_progress.dart';
+import 'package:basic/shopping/items.dart';
 import 'package:basic/sprites/car_sprite.dart';
 import 'package:basic/sprites/puzzle_tile.dart';
 import 'package:basic/transport/address.dart';
@@ -100,6 +102,7 @@ class _TransportWidgetState extends State<TransportWidget> {
 
     // stateMap = level.initMap;
     final transportState = context.watch<TransportState>();
+    final playerProgress = context.watch<PlayerProgress>();
 
     return Container(
       decoration: BoxDecoration(
@@ -133,8 +136,7 @@ class _TransportWidgetState extends State<TransportWidget> {
                 if (isStart(data.first)) {
                   letterCar = data.first;
                   if (letterCar == "X") {
-                    //To-do
-                    letterCar = "C";
+                    letterCar = findCar(playerProgress.curVehicle).name;
                   }
                 }
 
@@ -143,7 +145,8 @@ class _TransportWidgetState extends State<TransportWidget> {
                     width: _height / stateMap.length,
                     startBg: isStart(data.first) && isWin,
                     hide: mapAddress.winMap[i][j] == "0" && isWin,
-                    type: stateMap[i][j],
+                    letter: data.first == 'X' ? letterCar : data.first,
+                    angle: int.parse(data.last),
                     onTap: () async {
                       setState(() {
                         context.read<AudioController>().playSfx(SfxType.wssh);
