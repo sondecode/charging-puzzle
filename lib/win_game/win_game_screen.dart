@@ -28,41 +28,43 @@ class WinGameScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: palette.backgroundPlaySession,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          gap,
-          const Center(
-            child: Text(
-              'You won!',
-              style: TextStyle(fontFamily: 'Electric', fontSize: 50),
-            ),
-          ),
-          gap,
-          Center(
-            child: Text(
-              'Score: ${score.score}\n'
-              'Time: ${score.formattedTime}',
-              style: const TextStyle(fontFamily: 'Electric', fontSize: 20),
-            ),
-          ),
-          Spacer(),
-          MyButton(
-            onPressed: () {
-              GoRouter.of(context).go('/play');
-            },
-            child: const Text(
-              'Continue',
-              style: TextStyle(
-                color: Colors.blueGrey,
-                fontFamily: 'Electric',
-                fontSize: 25,
-                height: 1,
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            gap,
+            const Center(
+              child: Text(
+                'You won!',
+                style: TextStyle(fontFamily: 'Electric', fontSize: 50),
               ),
             ),
-          ),
-          _gap
-        ],
+            gap,
+            Center(
+              child: Text(
+                'Score: ${score.score}\n'
+                'Time: ${score.formattedTime}',
+                style: const TextStyle(fontFamily: 'Electric', fontSize: 20),
+              ),
+            ),
+            Spacer(),
+            MyButton(
+              onPressed: () {
+                GoRouter.of(context).go('/play');
+              },
+              child: const Text(
+                'Continue',
+                style: TextStyle(
+                  color: Colors.blueGrey,
+                  fontFamily: 'Electric',
+                  fontSize: 25,
+                  height: 1,
+                ),
+              ),
+            ),
+            _gap
+          ],
+        ),
       ),
     );
   }

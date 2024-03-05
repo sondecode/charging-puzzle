@@ -25,66 +25,68 @@ class LevelSelectionScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: palette.backgroundLevelSelection,
-      body: Column(children: [
-        const Padding(
-          padding: EdgeInsets.all(16),
-          child: Center(
-            child: Text(
-              'Select level',
-              style: TextStyle(fontFamily: 'Electric', fontSize: 30),
+      body: SafeArea(
+        child: Column(children: [
+          const Padding(
+            padding: EdgeInsets.all(16),
+            child: Center(
+              child: Text(
+                'Select level',
+                style: TextStyle(fontFamily: 'Electric', fontSize: 30),
+              ),
             ),
           ),
-        ),
-        const SizedBox(height: 50),
-        Expanded(
-          child: ListView(
-            children: [
-              for (final level in gameLevels)
-                ListTile(
-                  enabled:
-                      playerProgress.highestLevelReached >= level.number - 1,
-                  onTap: () {
-                    final audioController = context.read<AudioController>();
-                    audioController.playSfx(SfxType.buttonTap);
+          const SizedBox(height: 50),
+          Expanded(
+            child: ListView(
+              children: [
+                for (final level in gameLevels)
+                  ListTile(
+                    enabled:
+                        playerProgress.highestLevelReached >= level.number - 1,
+                    onTap: () {
+                      final audioController = context.read<AudioController>();
+                      audioController.playSfx(SfxType.buttonTap);
 
-                    GoRouter.of(context).go('/play/session/${level.number}');
-                  },
-                  leading: Text(
-                    level.number.toString(),
-                    style: TextStyle(
-                      fontFamily: 'Electric',
-                      fontSize: 20,
-                      height: 1,
+                      GoRouter.of(context).go('/play/session/${level.number}');
+                    },
+                    leading: Text(
+                      level.number.toString(),
+                      style: TextStyle(
+                        fontFamily: 'Electric',
+                        fontSize: 20,
+                        height: 1,
+                      ),
                     ),
-                  ),
-                  title: Text(
-                    level.name,
-                    style: TextStyle(
-                      fontFamily: 'Electric',
-                      fontSize: 20,
-                      height: 1,
+                    title: Text(
+                      level.name,
+                      style: TextStyle(
+                        fontFamily: 'Electric',
+                        fontSize: 20,
+                        height: 1,
+                      ),
                     ),
-                  ),
-                )
-            ],
-          ),
-        ),
-        MyButton(
-          onPressed: () {
-            GoRouter.of(context).pop();
-          },
-          child: const Text(
-            'Back',
-            style: TextStyle(
-              color: Colors.blueGrey,
-              fontFamily: 'Electric',
-              fontSize: 25,
-              height: 1,
+                  )
+              ],
             ),
           ),
-        ),
-        _gap,
-      ]),
+          MyButton(
+            onPressed: () {
+              GoRouter.of(context).pop();
+            },
+            child: const Text(
+              'Back',
+              style: TextStyle(
+                color: Colors.blueGrey,
+                fontFamily: 'Electric',
+                fontSize: 25,
+                height: 1,
+              ),
+            ),
+          ),
+          _gap,
+        ]),
+      ),
     );
   }
 }

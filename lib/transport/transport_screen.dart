@@ -78,116 +78,122 @@ class _TransportScreenState extends State<TransportScreen> {
           // The stack is how you layer widgets on top of each other.
           // Here, it is used to overlay the winning confetti animation on top
           // of the game.
-          body: Stack(
-            children: [
-              SizedBox(
-                height: _height,
-                width: _width,
-                child: FittedBox(
-                    fit: BoxFit.fitHeight,
-                    child: Image.asset('assets/images/sprites/background.png')),
-              ),
-              Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            !pickDone
-                                ? gameAddress
-                                    .firstWhere((element) =>
-                                        element.number == widget.booking.from)
-                                    .name
-                                : gameAddress
-                                    .firstWhere((element) =>
-                                        element.number == widget.booking.end)
-                                    .name,
-                            style: TextStyle(
-                              fontFamily: 'Electric',
-                              fontSize: 30,
-                              height: 1,
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              ElevatedButton(
-                                onPressed: () => GoRouter.of(context).pop('/'),
-                                style: ElevatedButton.styleFrom(
-                                  padding: EdgeInsets.all(20), // Remove padding
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(
-                                        10.0), // Adjust corner radius
-                                  ),
-                                  backgroundColor:
-                                      Colors.green, // Set background color
-                                ),
-                                child: Icon(
-                                  size: 30,
-                                  Icons.home,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              ElevatedButton(
-                                onPressed: () =>
-                                    GoRouter.of(context).push('/settings'),
-                                style: ElevatedButton.styleFrom(
-                                  padding: EdgeInsets.all(20), // Remove padding
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(
-                                        10.0), // Adjust corner radius
-                                  ),
-                                  backgroundColor:
-                                      Colors.green, // Set background color
-                                ),
-                                child: Icon(
-                                  size: 30,
-                                  Icons.settings,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      // The actual UI of the game.
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          !pickDone
-                              ? TransportWidget(
-                                  addressNumber: widget.booking.from)
-                              : Transport2Widget(
-                                  addressNumber: widget.booking.end)
-                          // TransportWidget(),
-                        ],
-                      ),
-                    ),
-                  ],
+          body: SafeArea(
+            child: Stack(
+              children: [
+                SizedBox(
+                  height: _height,
+                  width: _width,
+                  child: FittedBox(
+                      fit: BoxFit.cover,
+                      child: Image.asset(
+                          'assets/images/sprites/background-dark.jpg')),
                 ),
-              ),
-              // This is the confetti animation that is overlaid on top of the
-              // game when the player wins.
-              SizedBox.expand(
-                child: Visibility(
-                  visible: _duringCelebration,
-                  child: IgnorePointer(
-                    child: Confetti(
-                      isStopped: !_duringCelebration,
+                Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              !pickDone
+                                  ? gameAddress
+                                      .firstWhere((element) =>
+                                          element.number == widget.booking.from)
+                                      .name
+                                  : gameAddress
+                                      .firstWhere((element) =>
+                                          element.number == widget.booking.end)
+                                      .name,
+                              style: TextStyle(
+                                  fontFamily: 'Electric',
+                                  fontSize: 30,
+                                  height: 1,
+                                  color: palette.backgroundMain),
+                            ),
+                            Row(
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () =>
+                                      GoRouter.of(context).pop('/'),
+                                  style: ElevatedButton.styleFrom(
+                                    padding:
+                                        EdgeInsets.all(20), // Remove padding
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(
+                                          10.0), // Adjust corner radius
+                                    ),
+                                    backgroundColor:
+                                        Colors.green, // Set background color
+                                  ),
+                                  child: Icon(
+                                    size: 30,
+                                    Icons.home,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                ElevatedButton(
+                                  onPressed: () =>
+                                      GoRouter.of(context).push('/settings'),
+                                  style: ElevatedButton.styleFrom(
+                                    padding:
+                                        EdgeInsets.all(20), // Remove padding
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(
+                                          10.0), // Adjust corner radius
+                                    ),
+                                    backgroundColor:
+                                        Colors.green, // Set background color
+                                  ),
+                                  child: Icon(
+                                    size: 30,
+                                    Icons.settings,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        // The actual UI of the game.
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            !pickDone
+                                ? TransportWidget(
+                                    addressNumber: widget.booking.from)
+                                : Transport2Widget(
+                                    addressNumber: widget.booking.end)
+                            // TransportWidget(),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                // This is the confetti animation that is overlaid on top of the
+                // game when the player wins.
+                SizedBox.expand(
+                  child: Visibility(
+                    visible: _duringCelebration,
+                    child: IgnorePointer(
+                      child: Confetti(
+                        isStopped: !_duringCelebration,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
