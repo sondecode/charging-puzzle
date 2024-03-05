@@ -14,7 +14,7 @@ import 'persistence/player_progress_persistence.dart';
 class PlayerProgress extends ChangeNotifier {
   static const maxHighestScoresPerPlayer = 10;
 
-  int _money = 100;
+  int _money = 0;
 
   int _energy = 10;
 
@@ -54,8 +54,7 @@ class PlayerProgress extends ChangeNotifier {
     // Check if cost is not null and if you have enough money to buy the vehicle
     if (_money >= cost && !isBought(id)) {
       _bought.add(id);
-      _money -= cost;
-      print(_money);
+      setMoney(-cost);
       notifyListeners();
     }
   }
@@ -68,8 +67,10 @@ class PlayerProgress extends ChangeNotifier {
     }
   }
 
-  void setMoney(int earn) {
+  Future<void> setMoney(int earn) async {
     _money += earn;
+
+    await _store.saveMoneyEarned(_money);
     notifyListeners();
   }
 
@@ -102,6 +103,13 @@ class PlayerProgress extends ChangeNotifier {
       notifyListeners();
     } else if (level < _highestLevelReached) {
       await _store.saveHighestLevelReached(_highestLevelReached);
+    }
+    //Money save
+    final money = await _store.getMoneyEarned();
+    if (money != _money) {
+      _money = money;
+      notifyListeners();
+      await _store.saveMoneyEarned(money);
     }
   }
 }
