@@ -4,6 +4,7 @@
 
 import 'dart:async';
 
+import 'package:basic/common/function.dart';
 import 'package:basic/game_internals/transport_state.dart';
 import 'package:basic/player_progress/player_progress.dart';
 import 'package:basic/transport/address.dart';
@@ -34,6 +35,10 @@ class TransportScreen extends StatefulWidget {
 }
 
 class _TransportScreenState extends State<TransportScreen> {
+  //timer
+  int _secondsElapsed = 0;
+  Timer? _timer;
+
   static const _celebrationDuration = Duration(milliseconds: 2000);
 
   static const _preCelebrationDuration = Duration(milliseconds: 500);
@@ -42,13 +47,24 @@ class _TransportScreenState extends State<TransportScreen> {
 
   bool pickDone = false;
 
-  late DateTime _startOfPlay;
+  // late DateTime _startOfPlay;
 
   @override
   void initState() {
     super.initState();
 
-    _startOfPlay = DateTime.now();
+    // _startOfPlay = DateTime.now();
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        _secondsElapsed++;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
   }
 
   @override
@@ -101,28 +117,27 @@ class _TransportScreenState extends State<TransportScreen> {
                           children: [
                             Column(
                               children: [
-                                Expanded(
-                                  child: Text(
-                                    !pickDone
-                                        ? gameAddress
-                                            .firstWhere((element) =>
-                                                element.number ==
-                                                widget.booking.from)
-                                            .name
-                                        : gameAddress
-                                            .firstWhere((element) =>
-                                                element.number ==
-                                                widget.booking.end)
-                                            .name,
-                                    style: TextStyle(
-                                        fontFamily: 'Electric',
-                                        fontSize: 30,
-                                        height: 1,
-                                        color: palette.backgroundMain),
-                                  ),
+                                Text(
+                                  !pickDone
+                                      ? gameAddress
+                                          .firstWhere((element) =>
+                                              element.number ==
+                                              widget.booking.from)
+                                          .name
+                                      : gameAddress
+                                          .firstWhere((element) =>
+                                              element.number ==
+                                              widget.booking.end)
+                                          .name,
+                                  style: TextStyle(
+                                      fontFamily: 'Electric',
+                                      fontSize: 30,
+                                      height: 1,
+                                      color: palette.backgroundMain),
                                 ),
                                 Text(
-                                  '00:11',
+                                  formatDuration(
+                                      Duration(seconds: _secondsElapsed)),
                                   style: TextStyle(
                                       fontFamily: 'Electric',
                                       fontSize: 30,
@@ -228,7 +243,7 @@ class _TransportScreenState extends State<TransportScreen> {
     //   widget.level.difficulty,
     //   DateTime.now().difference(_startOfPlay),
     // );
-    print(DateTime.now().difference(_startOfPlay));
+    // print(DateTime.now().difference(_startOfPlay));
     final playerProgress = context.read<PlayerProgress>();
 
     playerProgress.setMoney(20);
@@ -248,6 +263,6 @@ class _TransportScreenState extends State<TransportScreen> {
     await Future<void>.delayed(_celebrationDuration);
     if (!mounted) return;
 
-    GoRouter.of(context).go('/');
+    GoRouter.of(context).go('/done/$_secondsElapsed');
   }
 }

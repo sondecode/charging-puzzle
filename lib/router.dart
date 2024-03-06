@@ -6,6 +6,7 @@ import 'package:basic/play_session/play_session_screen.dart';
 import 'package:basic/shopping/item_shopping.dart';
 import 'package:basic/transport/finding.dart';
 import 'package:basic/transport/transport_screen.dart';
+import 'package:basic/win_game/transport_done_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -104,6 +105,33 @@ final router = GoRouter(
             );
           },
         ),
+        GoRoute(
+          path: 'done/:time',
+          // redirect: (context, state) {
+          //   if (state.extra == null) {
+          //     // Trying to navigate to a win screen without any data.
+          //     // Possibly by using the browser's back button.
+          //     return '/';
+          //   }
+
+          //   // Otherwise, do not redirect.
+          //   return null;
+          // },
+          pageBuilder: (context, state) {
+            // final map = state.extra! as Map<String, dynamic>;
+            // final score = map['score'] as Score;
+
+            final time = int.parse(state.pathParameters['time']!);
+            return buildMyTransition<void>(
+              key: ValueKey('done'),
+              color: context.watch<Palette>().backgroundPlaySession,
+              child: TransportDoneScreen(
+                key: const Key('done transport'),
+                secondsElapsed: time,
+              ),
+            );
+          },
+        )
       ],
     ),
   ],
