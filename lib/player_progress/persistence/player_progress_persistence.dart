@@ -14,4 +14,12 @@ abstract class PlayerProgressPersistence {
   Future<int> getMoneyEarned();
 
   Future<void> saveMoneyEarned(int money);
+
+  Future<int> getCurVehicle();
+
+  Future<void> saveCurVehicle(int item);
+
+  Future<List<int>> getOwnVehicles();
+
+  Future<void> saveOwnVehicles(List<int> items);
 }

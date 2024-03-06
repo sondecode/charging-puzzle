@@ -16,7 +16,7 @@ class PlayerProgress extends ChangeNotifier {
 
   int _money = 0;
 
-  int _energy = 10;
+  int _maxEnergy = 5;
 
   int _curVehicle = 1;
 
@@ -43,7 +43,10 @@ class PlayerProgress extends ChangeNotifier {
 
   int get money => _money;
 
-  int get energy => _energy;
+  int get maxEnergy => _maxEnergy;
+
+  VehicleType get curVehicleInfo =>
+      vehicleType.firstWhere((element) => element.number == _curVehicle);
 
   bool isBought(int number) {
     return _bought.contains(number);
@@ -54,6 +57,7 @@ class PlayerProgress extends ChangeNotifier {
     // Check if cost is not null and if you have enough money to buy the vehicle
     if (_money >= cost && !isBought(id)) {
       _bought.add(id);
+      _store.saveOwnVehicles(_bought);
       setMoney(-cost);
       notifyListeners();
     }
@@ -61,8 +65,11 @@ class PlayerProgress extends ChangeNotifier {
 
   void useVehicle(int id) {
     if (_curVehicle != id) {
+      int energy =
+          vehicleType.firstWhere((element) => element.number == id).maxEnergy;
       _curVehicle = id;
-      print('change successful');
+      _maxEnergy = energy;
+      _store.saveCurVehicle(id);
       notifyListeners();
     }
   }
@@ -109,7 +116,24 @@ class PlayerProgress extends ChangeNotifier {
     if (money != _money) {
       _money = money;
       notifyListeners();
-      await _store.saveMoneyEarned(money);
+      // await _store.saveMoneyEarned(money);
+    }
+    //Vehicle save
+    final item = await _store.getCurVehicle();
+    if (item != _curVehicle) {
+      int energy =
+          vehicleType.firstWhere((element) => element.number == item).maxEnergy;
+      _maxEnergy = energy;
+      _curVehicle = item;
+      notifyListeners();
+      // await _store.saveMoneyEarned(money);
+    }
+
+    final items = await _store.getOwnVehicles();
+    if (items != _bought) {
+      _bought = items;
+      notifyListeners();
+      // await _store.saveMoneyEarned(money);
     }
   }
 }

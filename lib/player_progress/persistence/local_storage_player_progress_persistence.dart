@@ -35,4 +35,32 @@ class LocalStoragePlayerProgressPersistence extends PlayerProgressPersistence {
     final prefs = await instanceFuture;
     await prefs.setInt('moneyEarned', money);
   }
+
+  @override
+  Future<int> getCurVehicle() async {
+    final prefs = await instanceFuture;
+    return prefs.getInt('curVehicle') ?? 1;
+  }
+
+  @override
+  Future<void> saveCurVehicle(int item) async {
+    final prefs = await instanceFuture;
+    await prefs.setInt('curVehicle', item);
+  }
+
+  @override
+  Future<List<int>> getOwnVehicles() async {
+    final prefs = await instanceFuture;
+    final result = prefs.getString('curVehicle');
+    if (result != null) {
+      return result.split(',').map(int.parse).toList();
+    }
+    return [1];
+  }
+
+  @override
+  Future<void> saveOwnVehicles(List<int> items) async {
+    final prefs = await instanceFuture;
+    await prefs.setString('curVehicle', items.join(','));
+  }
 }

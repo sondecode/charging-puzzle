@@ -99,7 +99,7 @@ final router = GoRouter(
               key: ValueKey('transport'),
               color: context.watch<Palette>().backgroundPlaySession,
               child: TransportScreen(
-                sample,
+                booking: sample,
                 key: const Key('transport'),
               ),
             );
@@ -120,12 +120,13 @@ final router = GoRouter(
           pageBuilder: (context, state) {
             // final map = state.extra! as Map<String, dynamic>;
             // final score = map['score'] as Score;
-
+            Booking sample = state.extra as Booking;
             final time = int.parse(state.pathParameters['time']!);
             return buildMyTransition<void>(
               key: ValueKey('done'),
               color: context.watch<Palette>().backgroundPlaySession,
               child: TransportDoneScreen(
+                booking: sample,
                 key: const Key('done transport'),
                 secondsElapsed: time,
               ),

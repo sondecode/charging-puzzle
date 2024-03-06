@@ -191,7 +191,7 @@ class MainMenuScreen extends StatelessWidget {
                       color: palette.backgroundMain,
                     ),
                     Text(
-                      playerProgress.energy.toString(),
+                      playerProgress.maxEnergy.toString(),
                       style: TextStyle(
                         fontFamily: 'Electric',
                         fontSize: 30,

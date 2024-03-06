@@ -33,6 +33,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/sprites/
+    - assets/images/sprites/vehicles/
     - assets/music/
     - assets/sfx/
 

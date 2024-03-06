@@ -28,7 +28,7 @@ import '../style/palette.dart';
 class TransportScreen extends StatefulWidget {
   final Booking booking;
 
-  const TransportScreen(this.booking, {super.key});
+  const TransportScreen({super.key, required this.booking});
 
   @override
   State<TransportScreen> createState() => _TransportScreenState();
@@ -243,10 +243,7 @@ class _TransportScreenState extends State<TransportScreen> {
     //   widget.level.difficulty,
     //   DateTime.now().difference(_startOfPlay),
     // );
-    // print(DateTime.now().difference(_startOfPlay));
-    final playerProgress = context.read<PlayerProgress>();
-
-    playerProgress.setMoney(20);
+    // print(DateTime.now().difference(_startOfPlay)
 
     // Let the player see the game just after winning for a bit.
     await Future<void>.delayed(_preCelebrationDuration);
@@ -263,6 +260,6 @@ class _TransportScreenState extends State<TransportScreen> {
     await Future<void>.delayed(_celebrationDuration);
     if (!mounted) return;
 
-    GoRouter.of(context).go('/done/$_secondsElapsed');
+    GoRouter.of(context).go('/done/$_secondsElapsed', extra: widget.booking);
   }
 }

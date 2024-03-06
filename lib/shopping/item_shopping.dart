@@ -2,6 +2,7 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:basic/shopping/item_details.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -69,7 +70,16 @@ class _ItemShoppingScreenState extends State<ItemShoppingScreen> {
               children: [
                 for (final type in vehicleType)
                   ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return ItemDetails(
+                            details: type,
+                          );
+                        },
+                      );
+                    },
                     leading: Text(
                       type.number.toString(),
                       style: TextStyle(
@@ -78,31 +88,61 @@ class _ItemShoppingScreenState extends State<ItemShoppingScreen> {
                         height: 1,
                       ),
                     ),
-                    title: Row(
+                    title: Column(
                       children: [
-                        Text(
-                          '${type.name} - \$${type.cost}',
-                          style: TextStyle(
-                            fontFamily: 'Electric',
-                            fontSize: 20,
-                            height: 1,
-                          ),
-                        ),
-                        playerProgress.isBought(type.number)
-                            ? playerProgress.curVehicle == type.number
-                                ? MyButton(child: Text('Used'))
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              '${type.name} - \$${type.cost}',
+                              style: TextStyle(
+                                fontFamily: 'Electric',
+                                fontSize: 20,
+                                height: 1,
+                              ),
+                            ),
+                            playerProgress.isBought(type.number)
+                                ? playerProgress.curVehicle == type.number
+                                    ? MyButton(
+                                        child: Text(
+                                        'Used',
+                                        style: TextStyle(
+                                          fontFamily: 'Electric',
+                                          fontSize: 20,
+                                          height: 1,
+                                        ),
+                                      ))
+                                    : MyButton(
+                                        child: Text(
+                                          'Use',
+                                          style: TextStyle(
+                                            fontFamily: 'Electric',
+                                            fontSize: 20,
+                                            height: 1,
+                                          ),
+                                        ),
+                                        onPressed: () {
+                                          playerProgress
+                                              .useVehicle(type.number);
+                                        },
+                                      )
                                 : MyButton(
-                                    child: Text('Use'),
+                                    child: Text(
+                                      'Buy',
+                                      style: TextStyle(
+                                        fontFamily: 'Electric',
+                                        fontSize: 20,
+                                        height: 1,
+                                      ),
+                                    ),
                                     onPressed: () {
-                                      playerProgress.useVehicle(type.number);
+                                      playerProgress.buyVehicle(type.number);
                                     },
                                   )
-                            : MyButton(
-                                child: Text('Buy'),
-                                onPressed: () {
-                                  playerProgress.buyVehicle(type.number);
-                                },
-                              )
+                          ],
+                        ),
+                        Image.asset(
+                            'assets/images/sprites/vehicles/${type.name}.png')
                       ],
                     ),
                   )
