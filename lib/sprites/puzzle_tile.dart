@@ -28,7 +28,8 @@ class _PuzzleTileState extends State<PuzzleTile> {
   double rotationAngle = 0.0;
   String letter = "I";
   Widget sprite = Container();
-  bool disable = false;
+  bool _isEnd = false;
+  bool _isStart = false;
 
   @override
   void initState() {
@@ -37,12 +38,16 @@ class _PuzzleTileState extends State<PuzzleTile> {
     letter = widget.letter;
 
     if (isEnd(letter)) {
-      disable = true;
+      _isEnd = true;
+    }
+
+    if (isStart(letter)) {
+      _isStart = true;
     }
 
     //To-do
     if (letter == "Y") {
-      letter = "S";
+      letter = "customer";
     }
 
     sprite = Image.asset('assets/images/sprites/${letter}_sprite.png');
@@ -52,7 +57,7 @@ class _PuzzleTileState extends State<PuzzleTile> {
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
     return GestureDetector(
-        onTap: disable
+        onTap: _isEnd
             ? null
             : () {
                 setState(() {
@@ -61,37 +66,55 @@ class _PuzzleTileState extends State<PuzzleTile> {
                 });
                 widget.onTap(); // Call the onTap callback function
               },
-        child: Transform.rotate(
-          angle: rotationAngle * (3.14159265359 / 180),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.green,
-              border: Border.all(color: Colors.grey),
+        child: Stack(
+          children: [
+            Transform.rotate(
+              angle: rotationAngle * (3.14159265359 / 180),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.green,
+                  border: Border.all(color: Colors.grey),
+                ),
+                child: widget.hide
+                    ? Container()
+                    : Stack(
+                        children: [
+                          _isStart
+                              ? Container(
+                                  width: widget.width,
+                                  height: widget.width,
+                                  child: FittedBox(
+                                      fit: BoxFit.fill,
+                                      child: Image.asset(
+                                          'assets/images/sprites/start_bg.png')))
+                              : _isEnd
+                                  ? Container(
+                                      width: widget.width,
+                                      height: widget.width,
+                                      child: FittedBox(
+                                          fit: BoxFit.fill,
+                                          child: Image.asset(
+                                              'assets/images/sprites/end_bg.png')))
+                                  : Container(),
+                          widget.startBg || _isEnd
+                              ? Container()
+                              : SizedBox(
+                                  width: widget.width,
+                                  height: widget.width,
+                                  child: FittedBox(
+                                      fit: BoxFit.fitHeight, child: sprite)),
+                        ],
+                      ),
+                // Center(child: Text(widget.type)),
+              ),
             ),
-            child: widget.hide
-                ? Container()
-                : Stack(
-                    children: [
-                      isStart(letter)
-                          ? Container(
-                              width: widget.width,
-                              height: widget.width,
-                              child: FittedBox(
-                                  fit: BoxFit.fill,
-                                  child: Image.asset(
-                                      'assets/images/sprites/start_bg.png')))
-                          : Container(),
-                      widget.startBg
-                          ? Container()
-                          : SizedBox(
-                              width: widget.width,
-                              height: widget.width,
-                              child:
-                                  FittedBox(fit: BoxFit.fill, child: sprite)),
-                    ],
-                  ),
-            // Center(child: Text(widget.type)),
-          ),
+            _isEnd
+                ? SizedBox(
+                    width: widget.width,
+                    height: widget.width,
+                    child: FittedBox(fit: BoxFit.fitHeight, child: sprite))
+                : Container()
+          ],
         ));
   }
 }

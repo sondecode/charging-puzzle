@@ -99,21 +99,37 @@ class _TransportScreenState extends State<TransportScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              !pickDone
-                                  ? gameAddress
-                                      .firstWhere((element) =>
-                                          element.number == widget.booking.from)
-                                      .name
-                                  : gameAddress
-                                      .firstWhere((element) =>
-                                          element.number == widget.booking.end)
-                                      .name,
-                              style: TextStyle(
-                                  fontFamily: 'Electric',
-                                  fontSize: 30,
-                                  height: 1,
-                                  color: palette.backgroundMain),
+                            Column(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    !pickDone
+                                        ? gameAddress
+                                            .firstWhere((element) =>
+                                                element.number ==
+                                                widget.booking.from)
+                                            .name
+                                        : gameAddress
+                                            .firstWhere((element) =>
+                                                element.number ==
+                                                widget.booking.end)
+                                            .name,
+                                    style: TextStyle(
+                                        fontFamily: 'Electric',
+                                        fontSize: 30,
+                                        height: 1,
+                                        color: palette.backgroundMain),
+                                  ),
+                                ),
+                                Text(
+                                  '00:11',
+                                  style: TextStyle(
+                                      fontFamily: 'Electric',
+                                      fontSize: 30,
+                                      height: 1,
+                                      color: palette.backgroundMain),
+                                ),
+                              ],
                             ),
                             Row(
                               children: [

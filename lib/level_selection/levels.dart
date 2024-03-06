@@ -27,7 +27,7 @@ const gameLevels = [
         2
       ]),
   GameLevel(
-      name: "Garage",
+      name: "Garage mot phuong troi rat xã xã xa",
       number: 2,
       difficulty: 5,
       achievementIdIOS: 'first_win',

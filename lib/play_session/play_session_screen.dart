@@ -101,13 +101,15 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              widget.level.name,
-                              style: TextStyle(
-                                  fontFamily: 'Electric',
-                                  fontSize: 30,
-                                  height: 1,
-                                  color: palette.backgroundMain),
+                            Expanded(
+                              child: Text(
+                                widget.level.name,
+                                style: TextStyle(
+                                    fontFamily: 'Electric',
+                                    fontSize: 30,
+                                    height: 1,
+                                    color: palette.backgroundMain),
+                              ),
                             ),
                             Row(
                               children: [

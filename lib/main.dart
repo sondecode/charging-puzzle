@@ -75,7 +75,7 @@ class MyApp extends StatelessWidget {
           final palette = context.watch<Palette>();
 
           return MaterialApp.router(
-            title: 'My Flutter Game',
+            title: 'Electric Vehicles Driver',
             debugShowCheckedModeBanner: false,
             theme: ThemeData.from(
               colorScheme: ColorScheme.fromSeed(
