@@ -24,7 +24,7 @@ class ItemDetails extends StatelessWidget {
                 //   radius: 40,
                 //   backgroundImage: AssetImage("ass"),
                 // ),
-                Icon(size: 40, Icons.woman_sharp),
+                Icon(size: 90, Icons.directions_car_filled_sharp),
                 SizedBox(width: 20.0),
                 Expanded(
                   child: Column(
@@ -33,24 +33,38 @@ class ItemDetails extends StatelessWidget {
                       Text(
                         details.name,
                         style: TextStyle(
-                          fontSize: 18.0,
+                          fontFamily: 'Electric',
                           fontWeight: FontWeight.bold,
+                          fontSize: 29,
+                          height: 1,
                         ),
                       ),
                       SizedBox(height: 5),
                       Text(
-                        "Pickup point: ${details.bonus}",
-                        style: TextStyle(fontSize: 16.0),
+                        "bonus: \$${details.bonus} /km",
+                        style: TextStyle(
+                          fontFamily: 'Electric',
+                          fontSize: 20,
+                          height: 1,
+                        ),
                       ),
                       SizedBox(height: 5),
                       Text(
-                        "Drop-off point: ${details.maxEnergy}",
-                        style: TextStyle(fontSize: 16.0),
+                        "pin cell: ${details.maxEnergy}",
+                        style: TextStyle(
+                          fontFamily: 'Electric',
+                          fontSize: 20,
+                          height: 1,
+                        ),
                       ),
                       SizedBox(height: 5),
                       Text(
-                        "Distance: ${details.speed} km",
-                        style: TextStyle(fontSize: 16.0),
+                        "speed: ${details.speed} km/h",
+                        style: TextStyle(
+                          fontFamily: 'Electric',
+                          fontSize: 20,
+                          height: 1,
+                        ),
                       ),
                     ],
                   ),
@@ -65,12 +79,26 @@ class ItemDetails extends StatelessWidget {
                   onPressed: () {
                     // _skip();
                   },
-                  child: Text('Skip'),
+                  child: Text(
+                    'Skip',
+                    style: TextStyle(
+                      fontFamily: 'Electric',
+                      fontSize: 20,
+                      height: 1,
+                    ),
+                  ),
                 ),
                 SizedBox(width: 10.0),
                 TextButton(
                   onPressed: () {},
-                  child: Text('Accept'),
+                  child: Text(
+                    'Accept',
+                    style: TextStyle(
+                      fontFamily: 'Electric',
+                      fontSize: 20,
+                      height: 1,
+                    ),
+                  ),
                 ),
               ],
             ),

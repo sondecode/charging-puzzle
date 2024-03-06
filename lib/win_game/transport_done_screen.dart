@@ -3,7 +3,6 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:basic/common/function.dart';
-import 'package:basic/player_progress/player_progress.dart';
 import 'package:basic/settings/settings.dart';
 import 'package:basic/transport/finding.dart';
 import 'package:flutter/material.dart';
@@ -13,29 +12,28 @@ import 'package:provider/provider.dart';
 import '../style/my_button.dart';
 import '../style/palette.dart';
 
-class TransportDoneScreen extends StatelessWidget {
+class TransportDoneScreen extends StatefulWidget {
   final int secondsElapsed;
   final Booking booking;
-
+  final int total;
   static const _gap = SizedBox(height: 20);
 
-  const TransportDoneScreen({
+  TransportDoneScreen({
     super.key,
     required this.secondsElapsed,
     required this.booking,
+    required this.total,
   });
 
   @override
+  State<TransportDoneScreen> createState() => _TransportDoneScreenState();
+}
+
+class _TransportDoneScreenState extends State<TransportDoneScreen> {
+  @override
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
-    final playerProgress = context.watch<PlayerProgress>();
     final settings = context.watch<SettingsController>();
-
-    final _distance = booking.distance;
-    final _bonus = playerProgress.curVehicleInfo.bonus;
-    final _total = _distance * _bonus;
-
-    playerProgress.setMoney(_total.floor());
 
     const gap = SizedBox(height: 10);
 
@@ -55,7 +53,7 @@ class TransportDoneScreen extends StatelessWidget {
             gap,
             Center(
               child: Text(
-                formatDuration(Duration(seconds: secondsElapsed)),
+                formatDuration(Duration(seconds: widget.secondsElapsed)),
                 style: const TextStyle(fontFamily: 'Electric', fontSize: 20),
               ),
             ),
@@ -78,30 +76,40 @@ class TransportDoneScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
-                      Icon(
-                        Icons.star,
-                        size: 100,
-                        color: Colors.yellow,
+                      Expanded(
+                        child: Icon(
+                          Icons.star,
+                          size: 100,
+                          color: Colors.yellow,
+                        ),
                       ),
-                      Icon(
-                        Icons.star,
-                        size: 100,
-                        color: Colors.yellow,
+                      Expanded(
+                        child: Icon(
+                          Icons.star,
+                          size: 100,
+                          color: Colors.yellow,
+                        ),
                       ),
-                      Icon(
-                        Icons.star,
-                        size: 100,
-                        color: Colors.yellow,
+                      Expanded(
+                        child: Icon(
+                          Icons.star,
+                          size: 100,
+                          color: Colors.yellow,
+                        ),
                       ),
-                      Icon(
-                        Icons.star,
-                        size: 100,
-                        color: Colors.yellow,
+                      Expanded(
+                        child: Icon(
+                          Icons.star,
+                          size: 100,
+                          color: Colors.yellow,
+                        ),
                       ),
-                      Icon(
-                        Icons.star,
-                        size: 100,
-                        color: Colors.yellow,
+                      Expanded(
+                        child: Icon(
+                          Icons.star,
+                          size: 100,
+                          color: Colors.yellow,
+                        ),
                       ),
                     ],
                   ),
@@ -115,7 +123,7 @@ class TransportDoneScreen extends StatelessWidget {
                           fontSize: 30,
                         ),
                       ),
-                      Text("${booking.distance} km",
+                      Text("${widget.booking.distance} km",
                           style: const TextStyle(
                             fontFamily: 'Electric',
                             fontSize: 30,
@@ -130,7 +138,7 @@ class TransportDoneScreen extends StatelessWidget {
                             fontFamily: 'Electric',
                             fontSize: 30,
                           )),
-                      Text("\$$_total",
+                      Text("\$${widget.total}",
                           style: const TextStyle(
                             fontFamily: 'Electric',
                             fontSize: 30,
@@ -155,7 +163,7 @@ class TransportDoneScreen extends StatelessWidget {
                 ),
               ),
             ),
-            _gap
+            TransportDoneScreen._gap
           ],
         ),
       ),

@@ -115,36 +115,40 @@ class _TransportScreenState extends State<TransportScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Column(
-                              children: [
-                                Text(
-                                  !pickDone
-                                      ? gameAddress
-                                          .firstWhere((element) =>
-                                              element.number ==
-                                              widget.booking.from)
-                                          .name
-                                      : gameAddress
-                                          .firstWhere((element) =>
-                                              element.number ==
-                                              widget.booking.end)
-                                          .name,
-                                  style: TextStyle(
-                                      fontFamily: 'Electric',
-                                      fontSize: 30,
-                                      height: 1,
-                                      color: palette.backgroundMain),
-                                ),
-                                Text(
-                                  formatDuration(
-                                      Duration(seconds: _secondsElapsed)),
-                                  style: TextStyle(
-                                      fontFamily: 'Electric',
-                                      fontSize: 30,
-                                      height: 1,
-                                      color: palette.backgroundMain),
-                                ),
-                              ],
+                            Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    !pickDone
+                                        ? gameAddress
+                                            .firstWhere((element) =>
+                                                element.number ==
+                                                widget.booking.from)
+                                            .name
+                                        : gameAddress
+                                            .firstWhere((element) =>
+                                                element.number ==
+                                                widget.booking.end)
+                                            .name,
+                                    style: TextStyle(
+                                        fontFamily: 'Electric',
+                                        fontSize: 30,
+                                        height: 1,
+                                        color: palette.backgroundMain),
+                                  ),
+                                  Text(
+                                    formatDuration(
+                                        Duration(seconds: _secondsElapsed)),
+                                    style: TextStyle(
+                                        fontFamily: 'Electric',
+                                        fontSize: 30,
+                                        height: 1,
+                                        color: palette.backgroundMain),
+                                  ),
+                                ],
+                              ),
                             ),
                             Row(
                               children: [
@@ -260,6 +264,17 @@ class _TransportScreenState extends State<TransportScreen> {
     await Future<void>.delayed(_celebrationDuration);
     if (!mounted) return;
 
-    GoRouter.of(context).go('/done/$_secondsElapsed', extra: widget.booking);
+    final playerProgress = context.read<PlayerProgress>();
+    final distance = widget.booking.distance;
+    final bonus = playerProgress.curVehicleInfo.bonus;
+    final total = (distance * bonus).floor();
+
+    playerProgress.setMoney(total);
+
+    GoRouter.of(context).go('/done', extra: {
+      'booking': widget.booking,
+      'total': total,
+      'secondsElapsed': _secondsElapsed
+    });
   }
 }

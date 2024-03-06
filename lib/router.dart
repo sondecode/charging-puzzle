@@ -70,10 +70,12 @@ final router = GoRouter(
                   final map = state.extra! as Map<String, dynamic>;
                   final score = map['score'] as Score;
 
+                  final fact = map['fact'] as String;
                   return buildMyTransition<void>(
                     key: ValueKey('won'),
                     color: context.watch<Palette>().backgroundPlaySession,
                     child: WinGameScreen(
+                      fact: fact,
                       score: score,
                       key: const Key('win game'),
                     ),
@@ -106,7 +108,7 @@ final router = GoRouter(
           },
         ),
         GoRoute(
-          path: 'done/:time',
+          path: 'done',
           // redirect: (context, state) {
           //   if (state.extra == null) {
           //     // Trying to navigate to a win screen without any data.
@@ -120,15 +122,18 @@ final router = GoRouter(
           pageBuilder: (context, state) {
             // final map = state.extra! as Map<String, dynamic>;
             // final score = map['score'] as Score;
-            Booking sample = state.extra as Booking;
-            final time = int.parse(state.pathParameters['time']!);
+            final map = state.extra! as Map<String, dynamic>;
+            final booking = map['booking'] as Booking;
+            final secondsElapsed = map['secondsElapsed'] as int;
+            final total = map['total'] as int;
             return buildMyTransition<void>(
               key: ValueKey('done'),
               color: context.watch<Palette>().backgroundPlaySession,
               child: TransportDoneScreen(
-                booking: sample,
+                booking: booking,
+                total: total,
                 key: const Key('done transport'),
-                secondsElapsed: time,
+                secondsElapsed: secondsElapsed,
               ),
             );
           },

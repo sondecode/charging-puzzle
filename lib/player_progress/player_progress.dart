@@ -75,6 +75,7 @@ class PlayerProgress extends ChangeNotifier {
   }
 
   Future<void> setMoney(int earn) async {
+    print(money);
     _money += earn;
 
     await _store.saveMoneyEarned(_money);

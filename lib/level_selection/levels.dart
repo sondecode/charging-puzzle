@@ -9,6 +9,7 @@ const gameLevels = [
       difficulty: 5,
       achievementIdIOS: 'first_win',
       achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
+      fact: "Xe điện giảm lượng khí thải nhà kính hơn xe xăng",
       initMap: [
         ["C_1", "L_3"],
         ["L_0", "L_1"],
@@ -32,6 +33,7 @@ const gameLevels = [
       difficulty: 5,
       achievementIdIOS: 'first_win',
       achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
+      fact: "Xe điện giảm lượng khí thải nhà kính hơn xe xăng",
       initMap: [
         ["T_0", "I_0", "L_2"],
         ["L_2", "I_0", "L_3"],
@@ -55,6 +57,7 @@ const gameLevels = [
       difficulty: 5,
       achievementIdIOS: 'first_win',
       achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
+      fact: "Xe điện giảm lượng khí thải nhà kính hơn xe xăng",
       initMap: [
         ["T_0", "I_0", "L_2"],
         ["L_2", "I_0", "L_3"],
@@ -85,6 +88,8 @@ class GameLevel {
 
   final String name;
 
+  final String fact;
+
   final List<int> flow;
 
   /// The achievement to unlock when the level is finished, if any.
@@ -97,6 +102,7 @@ class GameLevel {
   const GameLevel({
     required this.number,
     this.name = "Home",
+    required this.fact,
     required this.difficulty,
     required this.initMap,
     required this.winMap,

@@ -2,6 +2,7 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:basic/level_selection/levels.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -12,12 +13,14 @@ import '../style/palette.dart';
 
 class WinGameScreen extends StatelessWidget {
   final Score score;
+  final String fact;
 
   static const _gap = SizedBox(height: 20);
 
   const WinGameScreen({
     super.key,
     required this.score,
+    required this.fact,
   });
 
   @override
@@ -44,6 +47,15 @@ class WinGameScreen extends StatelessWidget {
               child: Text(
                 'Score: ${score.score}\n'
                 'Time: ${score.formattedTime}',
+                style: const TextStyle(fontFamily: 'Electric', fontSize: 20),
+              ),
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            Center(
+              child: Text(
+                'Fact: $fact',
                 style: const TextStyle(fontFamily: 'Electric', fontSize: 20),
               ),
             ),

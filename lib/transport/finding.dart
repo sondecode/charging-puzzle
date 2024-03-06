@@ -131,7 +131,7 @@ class _RadarDialogState extends State<RadarDialog>
                           //   radius: 40,
                           //   backgroundImage: AssetImage("ass"),
                           // ),
-                          Icon(size: 40, Icons.woman_sharp),
+                          Icon(size: 80, Icons.person),
                           SizedBox(width: 20.0),
                           Expanded(
                             child: Column(
@@ -140,24 +140,37 @@ class _RadarDialogState extends State<RadarDialog>
                                 Text(
                                   _selectedCustomer!.name,
                                   style: TextStyle(
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.bold,
+                                      fontFamily: 'Electric',
+                                      fontSize: 29,
+                                      height: 1,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  "pickup point: ${_selectedAddress.first.name}",
+                                  style: TextStyle(
+                                    fontFamily: 'Electric',
+                                    fontSize: 20,
+                                    height: 1,
                                   ),
                                 ),
                                 SizedBox(height: 5),
                                 Text(
-                                  "Pickup point: ${_selectedAddress.first.name}",
-                                  style: TextStyle(fontSize: 16.0),
+                                  "drop-off point: ${_selectedAddress.last.name}",
+                                  style: TextStyle(
+                                    fontFamily: 'Electric',
+                                    fontSize: 20,
+                                    height: 1,
+                                  ),
                                 ),
                                 SizedBox(height: 5),
                                 Text(
-                                  "Drop-off point: ${_selectedAddress.last.name}",
-                                  style: TextStyle(fontSize: 16.0),
-                                ),
-                                SizedBox(height: 5),
-                                Text(
-                                  "Distance: ${_distance} km",
-                                  style: TextStyle(fontSize: 16.0),
+                                  "distance: ${_distance} km",
+                                  style: TextStyle(
+                                    fontFamily: 'Electric',
+                                    fontSize: 20,
+                                    height: 1,
+                                  ),
                                 ),
                               ],
                             ),
@@ -172,7 +185,14 @@ class _RadarDialogState extends State<RadarDialog>
                             onPressed: () {
                               _skip();
                             },
-                            child: Text('Skip'),
+                            child: Text(
+                              'Skip',
+                              style: TextStyle(
+                                fontFamily: 'Electric',
+                                fontSize: 20,
+                                height: 1,
+                              ),
+                            ),
                           ),
                           SizedBox(width: 10.0),
                           TextButton(
@@ -187,7 +207,14 @@ class _RadarDialogState extends State<RadarDialog>
                               GoRouter.of(context)
                                   .push("/transport", extra: booking);
                             },
-                            child: Text('Accept'),
+                            child: Text(
+                              'Accept',
+                              style: TextStyle(
+                                fontFamily: 'Electric',
+                                fontSize: 20,
+                                height: 1,
+                              ),
+                            ),
                           ),
                         ],
                       ),
