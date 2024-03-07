@@ -50,7 +50,7 @@ class _ItemShoppingScreenState extends State<ItemShoppingScreen> {
                 children: [
                   Icon(
                     size: 40,
-                    Icons.monetization_on,
+                    Icons.energy_savings_leaf,
                   ),
                   Text(
                     playerProgress.money.toString(),
@@ -93,13 +93,30 @@ class _ItemShoppingScreenState extends State<ItemShoppingScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              '${type.name} - \$${type.cost}',
-                              style: TextStyle(
-                                fontFamily: 'Electric',
-                                fontSize: 20,
-                                height: 1,
-                              ),
+                            Row(
+                              children: [
+                                Text(
+                                  '${type.name} - ',
+                                  style: TextStyle(
+                                    fontFamily: 'Electric',
+                                    fontSize: 20,
+                                    height: 1,
+                                  ),
+                                ),
+                                Text(
+                                  '${type.cost}',
+                                  style: TextStyle(
+                                    fontFamily: 'Electric',
+                                    fontSize: 20,
+                                    height: 1,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.energy_savings_leaf,
+                                  size: 20,
+                                  color: Colors.black,
+                                ),
+                              ],
                             ),
                             playerProgress.isBought(type.number)
                                 ? playerProgress.curVehicle == type.number

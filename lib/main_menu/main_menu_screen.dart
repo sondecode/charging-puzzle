@@ -208,7 +208,7 @@ class MainMenuScreen extends StatelessWidget {
                   children: [
                     Icon(
                       size: 40,
-                      Icons.monetization_on,
+                      Icons.energy_savings_leaf,
                       color: palette.backgroundMain,
                     ),
                     Text(
@@ -226,7 +226,7 @@ class MainMenuScreen extends StatelessWidget {
                   children: [
                     Icon(
                       size: 40,
-                      Icons.energy_savings_leaf,
+                      Icons.battery_3_bar_sharp,
                       color: palette.backgroundMain,
                     ),
                     Text(

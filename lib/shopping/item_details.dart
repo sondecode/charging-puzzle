@@ -40,13 +40,29 @@ class ItemDetails extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 5),
-                      Text(
-                        "bonus: \$${details.bonus} /km",
-                        style: TextStyle(
-                          fontFamily: 'Electric',
-                          fontSize: 20,
-                          height: 1,
-                        ),
+                      Row(
+                        children: [
+                          Text(
+                            "bonus: ${details.bonus}",
+                            style: TextStyle(
+                              fontFamily: 'Electric',
+                              fontSize: 20,
+                              height: 1,
+                            ),
+                          ),
+                          Icon(
+                            size: 20,
+                            Icons.energy_savings_leaf,
+                          ),
+                          Text(
+                            "/km",
+                            style: TextStyle(
+                              fontFamily: 'Electric',
+                              fontSize: 20,
+                              height: 1,
+                            ),
+                          ),
+                        ],
                       ),
                       SizedBox(height: 5),
                       Text(
