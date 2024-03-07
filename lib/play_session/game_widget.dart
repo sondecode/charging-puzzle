@@ -2,9 +2,9 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:basic/common/function.dart';
-import 'package:basic/sprites/car_sprite.dart';
-import 'package:basic/sprites/puzzle_tile.dart';
+import 'package:ev_driver/common/function.dart';
+import 'package:ev_driver/sprites/car_sprite.dart';
+import 'package:ev_driver/sprites/puzzle_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

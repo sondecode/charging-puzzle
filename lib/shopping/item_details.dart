@@ -1,4 +1,4 @@
-import 'package:basic/shopping/items.dart';
+import 'package:ev_driver/shopping/items.dart';
 import 'package:flutter/material.dart';
 
 class ItemDetails extends StatelessWidget {
@@ -77,22 +77,10 @@ class ItemDetails extends StatelessWidget {
               children: [
                 TextButton(
                   onPressed: () {
-                    // _skip();
+                    Navigator.of(context).pop();
                   },
                   child: Text(
-                    'Skip',
-                    style: TextStyle(
-                      fontFamily: 'Electric',
-                      fontSize: 20,
-                      height: 1,
-                    ),
-                  ),
-                ),
-                SizedBox(width: 10.0),
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    'Accept',
+                    'Close',
                     style: TextStyle(
                       fontFamily: 'Electric',
                       fontSize: 20,

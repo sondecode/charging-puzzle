@@ -1,6 +1,6 @@
 {
-    "name": "basic",
-    "short_name": "basic",
+    "name": "ev_driver",
+    "short_name": "ev_driver",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

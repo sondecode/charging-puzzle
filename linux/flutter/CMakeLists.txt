@@ -35,7 +35,7 @@ set(PROJECT_BUILD_DIR "${PROJECT_DIR}/build/" PARENT_SCOPE)
 set(AOT_LIBRARY "${PROJECT_DIR}/build/lib/libapp.so" PARENT_SCOPE)
 
 list(APPEND FLUTTER_LIBRARY_HEADERS
-  "fl_basic_message_channel.h"
+  "fl_ev_driver_message_channel.h"
   "fl_binary_codec.h"
   "fl_binary_messenger.h"
   "fl_dart_project.h"

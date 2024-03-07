@@ -1,8 +1,8 @@
 # Run with tooling from https://github.com/flutter/codelabs/tree/main/tooling/codelab_rebuild
-name: Basic template rebuild
+name: ev_driver template rebuild
 steps:
   - name: Remove runners
-    rmdirs: 
+    rmdirs:
       - android
       - ios
       - linux
@@ -10,7 +10,7 @@ steps:
       - web
       - windows
   - name: Flutter recreate
-    flutter: create --org com.example --project-name basic .
+    flutter: create --org com.example --project-name ev_driver .
   - name: Remove test/widget_test.dart
     rm: test/widget_test.dart
   - name: Mkdir android/app/src/main/res/mipmap-anydpi-v26

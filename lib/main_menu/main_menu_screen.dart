@@ -2,8 +2,9 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:basic/player_progress/player_progress.dart';
-import 'package:basic/transport/finding.dart';
+import 'package:ev_driver/player_progress/player_progress.dart';
+import 'package:ev_driver/transport/finding.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -78,14 +79,19 @@ class MainMenuScreen extends StatelessWidget {
                 _gap,
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10),
-                  child: Text(
-                    'finding customers:',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: palette.backgroundMain,
-                      fontFamily: 'Electric',
-                      fontSize: 30,
-                      height: 1,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.3),
+                        borderRadius: BorderRadius.circular(4)),
+                    child: Text(
+                      'finding customers:',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: palette.backgroundMain,
+                        fontFamily: 'Electric',
+                        fontSize: 30,
+                        height: 1,
+                      ),
                     ),
                   ),
                 ),
@@ -115,6 +121,39 @@ class MainMenuScreen extends StatelessWidget {
               ],
             ),
           ),
+          kIsWeb
+              ? Positioned(
+                  bottom: 20,
+                  left: 20,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.3),
+                        borderRadius: BorderRadius.circular(4)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          ValueListenableBuilder<bool>(
+                            valueListenable: settingsController.audioOn,
+                            builder: (context, audioOn, child) {
+                              return IconButton(
+                                onPressed: () =>
+                                    settingsController.toggleAudioOn(),
+                                icon: Icon(
+                                  audioOn ? Icons.volume_up : Icons.volume_off,
+                                  color: Colors.white,
+                                ),
+                              );
+                            },
+                          ),
+                          const Text('Music by FanQuan',
+                              style: TextStyle(color: Colors.white)),
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              : Container(),
           Positioned(
             right: 20,
             top: 20,

@@ -2,11 +2,11 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:basic/play_session/play_session_screen.dart';
-import 'package:basic/shopping/item_shopping.dart';
-import 'package:basic/transport/finding.dart';
-import 'package:basic/transport/transport_screen.dart';
-import 'package:basic/win_game/transport_done_screen.dart';
+import 'package:ev_driver/play_session/play_session_screen.dart';
+import 'package:ev_driver/shopping/item_shopping.dart';
+import 'package:ev_driver/transport/finding.dart';
+import 'package:ev_driver/transport/transport_screen.dart';
+import 'package:ev_driver/win_game/transport_done_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';

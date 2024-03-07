@@ -1,4 +1,4 @@
-name: basic
+name: ev_driver
 description: A basic game built in Flutter.
 
 # Prevent accidental publishing to pub.dev.

@@ -4,7 +4,7 @@
 
 import 'dart:async';
 
-import 'package:basic/shopping/items.dart';
+import 'package:ev_driver/shopping/items.dart';
 import 'package:flutter/foundation.dart';
 
 import 'persistence/local_storage_player_progress_persistence.dart';

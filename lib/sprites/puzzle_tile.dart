@@ -1,5 +1,5 @@
-import 'package:basic/common/function.dart';
-import 'package:basic/style/palette.dart';
+import 'package:ev_driver/common/function.dart';
+import 'package:ev_driver/style/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

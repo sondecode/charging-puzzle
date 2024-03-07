@@ -4,13 +4,13 @@
 
 import 'dart:async';
 
-import 'package:basic/common/function.dart';
-import 'package:basic/game_internals/transport_state.dart';
-import 'package:basic/player_progress/player_progress.dart';
-import 'package:basic/transport/address.dart';
-import 'package:basic/transport/finding.dart';
-import 'package:basic/transport/transport2_widget.dart';
-import 'package:basic/transport/transport_widget.dart';
+import 'package:ev_driver/common/function.dart';
+import 'package:ev_driver/game_internals/transport_state.dart';
+import 'package:ev_driver/player_progress/player_progress.dart';
+import 'package:ev_driver/transport/address.dart';
+import 'package:ev_driver/transport/finding.dart';
+import 'package:ev_driver/transport/transport2_widget.dart';
+import 'package:ev_driver/transport/transport_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';

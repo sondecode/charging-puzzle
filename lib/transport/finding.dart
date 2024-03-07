@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:basic/transport/customer.dart';
-import 'package:basic/transport/address.dart';
+import 'package:ev_driver/transport/customer.dart';
+import 'package:ev_driver/transport/address.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -179,36 +179,14 @@ class _RadarDialogState extends State<RadarDialog>
                       ),
                       SizedBox(height: 20.0),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           TextButton(
                             onPressed: () {
-                              _skip();
-                            },
-                            child: Text(
-                              'Skip',
-                              style: TextStyle(
-                                fontFamily: 'Electric',
-                                fontSize: 20,
-                                height: 1,
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 10.0),
-                          TextButton(
-                            onPressed: () {
-                              final booking = Booking(
-                                  customer: _selectedCustomer!,
-                                  from: _selectedAddress.first.number,
-                                  end: _selectedAddress.last.number,
-                                  distance: _distance);
-
                               Navigator.of(context).pop();
-                              GoRouter.of(context)
-                                  .push("/transport", extra: booking);
                             },
                             child: Text(
-                              'Accept',
+                              'Close',
                               style: TextStyle(
                                 fontFamily: 'Electric',
                                 fontSize: 20,
@@ -216,6 +194,45 @@ class _RadarDialogState extends State<RadarDialog>
                               ),
                             ),
                           ),
+                          Row(
+                            children: [
+                              TextButton(
+                                onPressed: () {
+                                  _skip();
+                                },
+                                child: Text(
+                                  'Skip',
+                                  style: TextStyle(
+                                    fontFamily: 'Electric',
+                                    fontSize: 20,
+                                    height: 1,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 10.0),
+                              TextButton(
+                                onPressed: () {
+                                  final booking = Booking(
+                                      customer: _selectedCustomer!,
+                                      from: _selectedAddress.first.number,
+                                      end: _selectedAddress.last.number,
+                                      distance: _distance);
+
+                                  Navigator.of(context).pop();
+                                  GoRouter.of(context)
+                                      .push("/transport", extra: booking);
+                                },
+                                child: Text(
+                                  'Accept',
+                                  style: TextStyle(
+                                    fontFamily: 'Electric',
+                                    fontSize: 20,
+                                    height: 1,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
                         ],
                       ),
                     ],

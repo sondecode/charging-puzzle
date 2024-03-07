@@ -54,7 +54,7 @@ class SettingsScreen extends StatelessWidget {
                   ValueListenableBuilder<bool>(
                     valueListenable: settings.musicOn,
                     builder: (context, musicOn, child) => _SettingsLine(
-                      'Music',
+                      'Music: fanquan - deleted.mp3',
                       Icon(musicOn ? Icons.music_note : Icons.music_off),
                       onSelected: () => settings.toggleMusicOn(),
                     ),

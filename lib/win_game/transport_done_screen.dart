@@ -2,9 +2,9 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:basic/common/function.dart';
-import 'package:basic/settings/settings.dart';
-import 'package:basic/transport/finding.dart';
+import 'package:ev_driver/common/function.dart';
+import 'package:ev_driver/settings/settings.dart';
+import 'package:ev_driver/transport/finding.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
