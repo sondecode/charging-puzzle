@@ -33,6 +33,7 @@ class _GameWidgetState extends State<GameWidget> {
   late double _endX = 0.0;
   late double _endY = 0.0;
   late int carDirect = 0;
+  late bool isVisible = true;
   final stepDuration = 400;
 
   @override
@@ -48,10 +49,16 @@ class _GameWidgetState extends State<GameWidget> {
   Future<void> drivingCar(
       List<int> flow, int currentIndex, double width) async {
     // Base case: if all steps are completed, return
-    if (currentIndex >= flow.length) return;
+    if (currentIndex >= flow.length) {
+      setState(() {
+        isVisible = true;
+      });
+      return;
+    }
 
     final step = flow[currentIndex];
     setState(() {
+      isVisible = false;
       if (step >= 0) {
         spriteImage = 'assets/images/sprites/${letterCar}_${step}_sprite.png';
       } else {
@@ -142,7 +149,7 @@ class _GameWidgetState extends State<GameWidget> {
                     angle: int.parse(data.last),
                     onTap: () async {
                       setState(() {
-                        context.read<AudioController>().playSfx(SfxType.wssh);
+                        context.read<AudioController>().playSfx(SfxType.rotate);
 
                         if (data.first == 'I') {
                           if (data[1] == '1') {
@@ -159,6 +166,11 @@ class _GameWidgetState extends State<GameWidget> {
                       });
                       if (checkMap(stateMap, level.winMap)) {
                         isWin = true;
+
+                        context
+                            .read<AudioController>()
+                            .playSfx(SfxType.carStart);
+
                         await drivingCar(
                             level.flow,
                             0,
@@ -179,19 +191,17 @@ class _GameWidgetState extends State<GameWidget> {
                   ),
                 );
               }),
-          isWin
-              ? Builder(builder: (context) {
-                  return CarWidget(
-                      width: widthLarger
-                          ? _height / stateMap.length
-                          : squareMap
-                              ? _width / stateMap.length
-                              : _height / stateMap.length,
-                      endX: _endX,
-                      endY: _endY,
-                      duration: 500,
-                      image: Image.asset(spriteImage));
-                })
+          isWin & !isVisible
+              ? CarWidget(
+                  width: widthLarger
+                      ? _height / stateMap.length
+                      : squareMap
+                          ? _width / stateMap.length
+                          : _height / stateMap.length,
+                  endX: _endX,
+                  endY: _endY,
+                  duration: 500,
+                  image: Image.asset(spriteImage))
               : Container()
         ]),
       ),

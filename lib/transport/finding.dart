@@ -1,9 +1,12 @@
 import 'dart:math';
 
+import 'package:ev_driver/audio/audio_controller.dart';
+import 'package:ev_driver/audio/sounds.dart';
 import 'package:ev_driver/transport/customer.dart';
 import 'package:ev_driver/transport/address.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class RadarDialog extends StatefulWidget {
   @override
@@ -32,6 +35,7 @@ class _RadarDialogState extends State<RadarDialog>
       ..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
           setState(() {
+            context.read<AudioController>().playSfx(SfxType.congrats);
             _completed = true; // Set completion flag to true
           });
           Future.delayed(Duration(seconds: 1), () {

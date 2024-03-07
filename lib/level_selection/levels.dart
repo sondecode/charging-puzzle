@@ -5,6 +5,30 @@
 const gameLevels = [
   GameLevel(
       name: "Home",
+      number: 0,
+      difficulty: 5,
+      achievementIdIOS: 'first_win',
+      achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
+      fact: "Xe điện giảm lượng khí thải nhà kính hơn xe xăng",
+      initMap: [
+        ["C_1", "L_3"],
+        ["L_0", "L_1"],
+        ["leaf_0", "L_3"],
+      ],
+      winMap: [
+        ["C_1", "0"],
+        ["L_0", "L_2"],
+        ["leaf_0", "L_3"],
+      ],
+      flow: [
+        -1,
+        1,
+        0,
+        1,
+        2
+      ]),
+  GameLevel(
+      name: "Station",
       number: 1,
       difficulty: 5,
       achievementIdIOS: 'first_win',

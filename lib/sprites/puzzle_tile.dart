@@ -80,7 +80,7 @@ class _PuzzleTileState extends State<PuzzleTile> {
                     : Stack(
                         children: [
                           _isStart
-                              ? Container(
+                              ? SizedBox(
                                   width: widget.width,
                                   height: widget.width,
                                   child: FittedBox(
@@ -88,7 +88,7 @@ class _PuzzleTileState extends State<PuzzleTile> {
                                       child: Image.asset(
                                           'assets/images/sprites/start_bg.png')))
                               : _isEnd
-                                  ? Container(
+                                  ? SizedBox(
                                       width: widget.width,
                                       height: widget.width,
                                       child: FittedBox(

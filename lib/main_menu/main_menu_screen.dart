@@ -97,6 +97,7 @@ class MainMenuScreen extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
+                    audioController.playSfx(SfxType.buttonTap);
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {

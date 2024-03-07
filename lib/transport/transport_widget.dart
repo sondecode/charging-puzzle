@@ -149,7 +149,7 @@ class _TransportWidgetState extends State<TransportWidget> {
                     angle: int.parse(data.last),
                     onTap: () async {
                       setState(() {
-                        context.read<AudioController>().playSfx(SfxType.wssh);
+                        context.read<AudioController>().playSfx(SfxType.rotate);
 
                         if (data.first == 'I') {
                           if (data[1] == '1') {
@@ -166,6 +166,9 @@ class _TransportWidgetState extends State<TransportWidget> {
                       });
                       if (checkMap(stateMap, mapAddress.winMap)) {
                         isWin = true;
+                        context
+                            .read<AudioController>()
+                            .playSfx(SfxType.carStart);
                         await drivingCar(
                             mapAddress.flow,
                             0,
@@ -187,18 +190,16 @@ class _TransportWidgetState extends State<TransportWidget> {
                 );
               }),
           isWin
-              ? Builder(builder: (context) {
-                  return CarWidget(
-                      width: widthLarger
-                          ? _height / stateMap.length
-                          : squareMap
-                              ? _width / stateMap.length
-                              : _height / stateMap.length,
-                      endX: _endX,
-                      endY: _endY,
-                      duration: 500,
-                      image: Image.asset(spriteImage));
-                })
+              ? CarWidget(
+                  width: widthLarger
+                      ? _height / stateMap.length
+                      : squareMap
+                          ? _width / stateMap.length
+                          : _height / stateMap.length,
+                  endX: _endX,
+                  endY: _endY,
+                  duration: 500,
+                  image: Image.asset(spriteImage))
               : Container()
         ]),
       ),

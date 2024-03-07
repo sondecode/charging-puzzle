@@ -29,7 +29,7 @@ bool isStart(String letterToCheck) {
 }
 
 bool isEnd(String letterToCheck) {
-  final letters = ["S", "Y"];
+  final letters = ["S", "Y", "house", "H1", "leaf"];
   return letters.contains(letterToCheck);
 }
 

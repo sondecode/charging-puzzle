@@ -75,7 +75,7 @@ class MyApp extends StatelessWidget {
           final palette = context.watch<Palette>();
 
           return MaterialApp.router(
-            title: 'Electric Vehicles Driver',
+            title: 'Electric Vehicle Driver',
             debugShowCheckedModeBanner: false,
             theme: ThemeData.from(
               colorScheme: ColorScheme.fromSeed(
