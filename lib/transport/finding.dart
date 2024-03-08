@@ -78,7 +78,7 @@ class _RadarDialogState extends State<RadarDialog>
       elevation: 0.0,
       backgroundColor: Colors.transparent,
       child: Container(
-          padding: EdgeInsets.all(20.0),
+          padding: EdgeInsets.all(10.0),
           decoration: BoxDecoration(
             color: Colors.white,
             shape: BoxShape.rectangle,
@@ -120,7 +120,7 @@ class _RadarDialogState extends State<RadarDialog>
                   ],
                 )
               : Container(
-                  padding: EdgeInsets.all(20.0),
+                  padding: EdgeInsets.all(5.0),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     shape: BoxShape.rectangle,
@@ -183,14 +183,14 @@ class _RadarDialogState extends State<RadarDialog>
                       ),
                       SizedBox(height: 20.0),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           TextButton(
                             onPressed: () {
-                              Navigator.of(context).pop();
+                              _skip();
                             },
                             child: Text(
-                              'Close',
+                              'Skip',
                               style: TextStyle(
                                 fontFamily: 'Electric',
                                 fontSize: 20,
@@ -198,44 +198,27 @@ class _RadarDialogState extends State<RadarDialog>
                               ),
                             ),
                           ),
-                          Row(
-                            children: [
-                              TextButton(
-                                onPressed: () {
-                                  _skip();
-                                },
-                                child: Text(
-                                  'Skip',
-                                  style: TextStyle(
-                                    fontFamily: 'Electric',
-                                    fontSize: 20,
-                                    height: 1,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(width: 10.0),
-                              TextButton(
-                                onPressed: () {
-                                  final booking = Booking(
-                                      customer: _selectedCustomer!,
-                                      from: _selectedAddress.first.number,
-                                      end: _selectedAddress.last.number,
-                                      distance: _distance);
+                          SizedBox(width: 10.0),
+                          TextButton(
+                            onPressed: () {
+                              final booking = Booking(
+                                  customer: _selectedCustomer!,
+                                  from: _selectedAddress.first.number,
+                                  end: _selectedAddress.last.number,
+                                  distance: _distance);
 
-                                  Navigator.of(context).pop();
-                                  GoRouter.of(context)
-                                      .push("/transport", extra: booking);
-                                },
-                                child: Text(
-                                  'Accept',
-                                  style: TextStyle(
-                                    fontFamily: 'Electric',
-                                    fontSize: 20,
-                                    height: 1,
-                                  ),
-                                ),
+                              Navigator.of(context).pop();
+                              GoRouter.of(context)
+                                  .push("/transport", extra: booking);
+                            },
+                            child: Text(
+                              'Accept',
+                              style: TextStyle(
+                                fontFamily: 'Electric',
+                                fontSize: 20,
+                                height: 1,
                               ),
-                            ],
+                            ),
                           )
                         ],
                       ),
