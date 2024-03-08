@@ -5,30 +5,6 @@
 const gameLevels = [
   GameLevel(
       name: "Home",
-      number: 0,
-      difficulty: 5,
-      achievementIdIOS: 'first_win',
-      achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
-      fact: "Xe điện giảm lượng khí thải nhà kính hơn xe xăng",
-      initMap: [
-        ["C_1", "L_3"],
-        ["L_0", "L_1"],
-        ["leaf_0", "L_3"],
-      ],
-      winMap: [
-        ["C_1", "0"],
-        ["L_0", "L_2"],
-        ["leaf_0", "L_3"],
-      ],
-      flow: [
-        -1,
-        1,
-        0,
-        1,
-        2
-      ]),
-  GameLevel(
-      name: "Station",
       number: 1,
       difficulty: 5,
       achievementIdIOS: 'first_win',
@@ -37,12 +13,12 @@ const gameLevels = [
       initMap: [
         ["C_1", "L_3"],
         ["L_0", "L_1"],
-        ["S_0", "L_3"],
+        ["leaf_0", "L_3"],
       ],
       winMap: [
         ["C_1", "0"],
         ["L_0", "L_2"],
-        ["S_0", "L_3"],
+        ["leaf_0", "L_3"],
       ],
       flow: [
         -1,
@@ -52,7 +28,7 @@ const gameLevels = [
         2
       ]),
   GameLevel(
-      name: "Garage mot phuong troi rat xã xã xa",
+      name: "Garage",
       number: 2,
       difficulty: 5,
       achievementIdIOS: 'first_win',
@@ -75,22 +51,57 @@ const gameLevels = [
         0,
         1
       ]),
+
+  //LV3
   GameLevel(
-      name: "WC",
+      name: "Station",
       number: 3,
       difficulty: 5,
       achievementIdIOS: 'first_win',
       achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
       fact: "Xe điện giảm lượng khí thải nhà kính hơn xe xăng",
       initMap: [
-        ["T_0", "I_0", "L_2"],
-        ["L_2", "I_0", "L_3"],
-        ["L_0", "I_1", "S_3"],
+        ["C_0", "L_2", "L_3"],
+        ["L_1", "L_1", "L_1"],
+        ["L_0", "L_0", "L_1"],
+        ["L_2", "L_2", "L_0"],
+        ["L_2", "L_3", "S_2"]
       ],
       winMap: [
-        ["T_1", "0", "0"],
-        ["L_0", "I_1", "L_2"],
-        ["0", "0", "S_3"],
+        ["C_1", "0", "0"],
+        ["L_0", "L_2", "0"],
+        ["L_1", "L_3", "0"],
+        ["L_0", "L_2", "0"],
+        ["0", "L_0", "S_2"]
+      ],
+      flow: [
+        -1,
+        1,
+        0,
+        1,
+        2
+      ]),
+  //LV4
+  GameLevel(
+      name: "WC",
+      number: 4,
+      difficulty: 5,
+      achievementIdIOS: 'first_win',
+      achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
+      fact: "Xe điện giảm lượng khí thải nhà kính hơn xe xăng",
+      initMap: [
+        ['L_1', 'L_1', '0'],
+        ['L_1', 'L_1', 'L_1'],
+        ['I_0', 'L_0', 'L_1'],
+        ['L_3', 'L_2', 'I_0'],
+        ['0', 'C_1', 'S_3']
+      ],
+      winMap: [
+        ['0', '0', '0'],
+        ['L_1', 'L_2', '0'],
+        ['I_0', 'L_0', 'L_2'],
+        ['L_0', 'L_2', 'I_0'],
+        ['0', 'C_3', 'S_3']
       ],
       flow: [
         -1,
