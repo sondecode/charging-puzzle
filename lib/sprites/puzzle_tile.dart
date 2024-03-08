@@ -9,6 +9,7 @@ class PuzzleTile extends StatefulWidget {
   final Function onTap;
   final bool hide;
   final bool startBg;
+  final bool isBg;
   final double width;
   final int angle;
   const PuzzleTile(
@@ -16,6 +17,7 @@ class PuzzleTile extends StatefulWidget {
       required this.letter,
       required this.onTap,
       required this.hide,
+      this.isBg = false,
       required this.width,
       required this.angle,
       required this.startBg});
@@ -66,55 +68,64 @@ class _PuzzleTileState extends State<PuzzleTile> {
                 });
                 widget.onTap(); // Call the onTap callback function
               },
-        child: Stack(
-          children: [
-            Transform.rotate(
-              angle: rotationAngle * (3.14159265359 / 180),
-              child: Container(
+        child: widget.isBg
+            ? Container(
                 decoration: BoxDecoration(
                   color: Colors.green,
                   border: Border.all(color: Colors.grey),
                 ),
-                child: widget.hide
-                    ? Container()
-                    : Stack(
-                        children: [
-                          _isStart
-                              ? SizedBox(
-                                  width: widget.width,
-                                  height: widget.width,
-                                  child: FittedBox(
-                                      fit: BoxFit.fill,
-                                      child: Image.asset(
-                                          'assets/images/sprites/start_bg.png')))
-                              : _isEnd
-                                  ? SizedBox(
-                                      width: widget.width,
-                                      height: widget.width,
-                                      child: FittedBox(
-                                          fit: BoxFit.fill,
-                                          child: Image.asset(
-                                              'assets/images/sprites/end_bg.png')))
-                                  : Container(),
-                          widget.startBg || _isEnd
-                              ? Container()
-                              : SizedBox(
-                                  width: widget.width,
-                                  height: widget.width,
-                                  child: FittedBox(
-                                      fit: BoxFit.fitHeight, child: sprite)),
-                        ],
+              )
+            : Stack(
+                children: [
+                  Transform.rotate(
+                    angle: rotationAngle * (3.14159265359 / 180),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.green,
+                        border: Border.all(color: Colors.grey),
                       ),
-                // Center(child: Text(widget.type)),
-              ),
-            ),
-            _isEnd
-                ? SizedBox(
-                    width: widget.width,
-                    height: widget.width,
-                    child: FittedBox(fit: BoxFit.fitHeight, child: sprite))
-                : Container()
-          ],
-        ));
+                      child: widget.hide
+                          ? Container()
+                          : Stack(
+                              children: [
+                                _isStart
+                                    ? SizedBox(
+                                        width: widget.width,
+                                        height: widget.width,
+                                        child: FittedBox(
+                                            fit: BoxFit.fill,
+                                            child: Image.asset(
+                                                'assets/images/sprites/start_bg.png')))
+                                    : _isEnd
+                                        ? SizedBox(
+                                            width: widget.width,
+                                            height: widget.width,
+                                            child: FittedBox(
+                                                fit: BoxFit.fill,
+                                                child: Image.asset(
+                                                    'assets/images/sprites/end_bg.png')))
+                                        : Container(),
+                                widget.startBg || _isEnd
+                                    ? Container()
+                                    : SizedBox(
+                                        width: widget.width,
+                                        height: widget.width,
+                                        child: FittedBox(
+                                            fit: BoxFit.fitHeight,
+                                            child: sprite)),
+                              ],
+                            ),
+                      // Center(child: Text(widget.type)),
+                    ),
+                  ),
+                  _isEnd
+                      ? SizedBox(
+                          width: widget.width,
+                          height: widget.width,
+                          child:
+                              FittedBox(fit: BoxFit.fitHeight, child: sprite))
+                      : Container()
+                ],
+              ));
   }
 }

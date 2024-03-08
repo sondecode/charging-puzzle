@@ -35,13 +35,13 @@ const gameLevels = [
       achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
       fact: "Xe điện giảm lượng khí thải nhà kính hơn xe xăng",
       initMap: [
-        ["T_0", "I_0", "L_2"],
-        ["L_2", "I_0", "L_3"],
-        ["L_0", "I_1", "S_3"],
+        ["C_0", "I_1", "L_2"],
+        ["L_2", "I_1", "L_3"],
+        ["L_0", "I_0", "S_3"],
       ],
       winMap: [
-        ["T_1", "0", "0"],
-        ["L_0", "I_1", "L_2"],
+        ["C_1", "0", "0"],
+        ["L_0", "I_0", "L_2"],
         ["0", "0", "S_3"],
       ],
       flow: [
@@ -67,6 +67,7 @@ const gameLevels = [
         ["L_2", "L_2", "L_0"],
         ["L_2", "L_3", "S_2"]
       ],
+      //-todo
       winMap: [
         ["C_1", "0", "0"],
         ["L_0", "L_2", "0"],
@@ -92,16 +93,223 @@ const gameLevels = [
       initMap: [
         ['L_1', 'L_1', '0'],
         ['L_1', 'L_1', 'L_1'],
-        ['I_0', 'L_0', 'L_1'],
-        ['L_3', 'L_2', 'I_0'],
+        ['I_1', 'L_0', 'L_1'],
+        ['L_3', 'L_2', 'I_1'],
         ['0', 'C_1', 'S_3']
       ],
       winMap: [
         ['0', '0', '0'],
         ['L_1', 'L_2', '0'],
-        ['I_0', 'L_0', 'L_2'],
-        ['L_0', 'L_2', 'I_0'],
+        ['I_1', 'L_0', 'L_2'],
+        ['L_0', 'L_2', 'I_1'],
         ['0', 'C_3', 'S_3']
+      ],
+      flow: [
+        -1,
+        1,
+        0,
+        0,
+        1
+      ]),
+  //LV5
+  GameLevel(
+      name: "WC",
+      number: 5,
+      difficulty: 5,
+      achievementIdIOS: 'first_win',
+      achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
+      fact: "Xe điện giảm lượng khí thải nhà kính hơn xe xăng",
+      initMap: [
+        ['L_0', 'L_0', 'L_1'],
+        ['C_2', 'I_1', 'L_1'],
+        ['I_0', 'L_1', 'L_2'],
+        ['L_3', 'L_3', 'S_2']
+      ],
+      winMap: [
+        ['0', '0', '0'],
+        ['C_0', 'I_0', 'L_2'],
+        ['0', 'L_1', 'L_3'],
+        ['0', 'L_0', 'S_2']
+      ],
+      flow: [
+        -1,
+        1,
+        0,
+        0,
+        1
+      ]),
+  //LV7
+  GameLevel(
+      name: "WC",
+      number: 6,
+      difficulty: 5,
+      achievementIdIOS: 'first_win',
+      achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
+      fact: "Xe điện giảm lượng khí thải nhà kính hơn xe xăng",
+      initMap: [
+        ['L_1', 'L_1', 'S_1'],
+        ['I_0', 'L_3', 'T_1'],
+        ['I_0', '0', 'I_0'],
+        ['C_3', '0', 'I_1'],
+        ['S_0', 'I_0', 'L_1']
+      ],
+      winMap: [
+        ['L_1', 'L_2', 'S_1'],
+        ['I_1', 'L_0', 'T_2'],
+        ['I_1', '0', 'I_1'],
+        ['C_3', '0', 'I_1'],
+        ['S_0', 'I_0', 'L_3']
+      ],
+      flow: [
+        -1,
+        1,
+        0,
+        0,
+        1
+      ]),
+  //LV11
+  GameLevel(
+      name: "WC",
+      number: 7,
+      difficulty: 5,
+      achievementIdIOS: 'first_win',
+      achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
+      fact: "Xe điện giảm lượng khí thải nhà kính hơn xe xăng",
+      initMap: [
+        ['L_2', 'L_1', 'L_1'],
+        ['I_0', 'L_2', 'L_3'],
+        ['I_1', 'S_0', 'L_3'],
+        ['I_0', 'I_1', 'C_3'],
+        ['T_3', 'I_0', 'L_0'],
+        ['L_2', 'S_2', 'L_1']
+      ],
+      winMap: [
+        ['L_1', 'L_2', '0'],
+        ['I_1', 'L_0', 'L_2'],
+        ['I_1', 'S_0', 'L_3'],
+        ['I_1', '0', 'C_1'],
+        ['T_0', 'I_0', 'L_3'],
+        ['L_0', 'S_2', '0']
+      ],
+      flow: [
+        -1,
+        1,
+        0,
+        0,
+        1
+      ]),
+  //LV13
+  GameLevel(
+      name: "WC",
+      number: 8,
+      difficulty: 5,
+      achievementIdIOS: 'first_win',
+      achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
+      fact: "Xe điện giảm lượng khí thải nhà kính hơn xe xăng",
+      initMap: [
+        ['T_2', 'S_1', 'I_0', 'I_1'],
+        ['L_2', 'T_2', 'L_2', 'L_3'],
+        ['L_3', 'L_2', 'L_1', 'L_1'],
+        ['L_1', 'L_1', 'I_0', 'S_3'],
+        ['L_1', 'T_0', 'L_0', 'T_2'],
+        ['S_0', 'L_3', 'L_1', 'L_1'],
+        ['L_2', 'L_1', 'L_3', 'I_1'],
+        ['I_0', 'L_1', 'L_2', 'L_0'],
+        ['C_0', 'I_1', 'L_2', 'L_0']
+      ],
+      //to-do
+      winMap: [
+        ['0', 'S_1', '0', '0'],
+        ['0', 'T_0', 'L_2', '0'],
+        ['L_1', 'L_3', 'L_1', 'L_2'],
+        ['L_1', 'L_2', '0', 'S_3'],
+        ['0', 'T_1', 'L_2', '0'],
+        ['S_0', 'L_3', 'L_0', 'L_2'],
+        ['0', '0', '0', 'I_1'],
+        ['0', '0', 'L_1', 'L_3'],
+        ['C_0', 'I_0', 'L_3', '0']
+      ],
+      flow: [
+        -1,
+        1,
+        0,
+        0,
+        1
+      ]),
+  //LV16
+  GameLevel(
+      name: "WC",
+      number: 9,
+      difficulty: 5,
+      achievementIdIOS: 'first_win',
+      achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
+      fact: "Xe điện giảm lượng khí thải nhà kính hơn xe xăng",
+      initMap: [
+        ['L_1', 'L_1', 'L_1', 'L_1'],
+        ['I_0', 'L_1', 'L_1', 'I_0'],
+        ['I_0', '0', '0', 'S_3'],
+        ['I_0', '0', '0', '0'],
+        ['I_0', 'L_1', 'L_1', 'L_1'],
+        ['T_3', 'L_1', 'L_1', 'C_2'],
+        ['I_0', 'L_1', 'L_1', 'L_1'],
+        ['I_0', '0', '0', '0'],
+        ['I_0', '0', '0', 'S_1'],
+        ['I_0', 'L_1', 'L_1', 'I_0'],
+        ['L_1', 'L_1', 'L_1', 'L_1']
+      ],
+      winMap: [
+        ['L_1', 'L_2', 'L_1', 'L_2'],
+        ['I_1', 'L_0', 'L_3', 'I_1'],
+        ['I_1', '0', '0', 'S_3'],
+        ['I_1', '0', '0', '0'],
+        ['I_1', '0', '0', '0'],
+        ['T_1', 'L_2', 'L_1', 'C_2'],
+        ['I_1', 'L_1', 'L_3', '0'],
+        ['I_1', '0', '0', '0'],
+        ['I_1', '0', '0', 'S_1'],
+        ['I_1', 'L_1', 'L_2', 'I_1'],
+        ['L_0', 'L_3', 'L_0', 'L_3']
+      ],
+      flow: [
+        -1,
+        1,
+        0,
+        0,
+        1
+      ]),
+  //LV15
+  GameLevel(
+      name: "WC",
+      number: 10,
+      difficulty: 5,
+      achievementIdIOS: 'first_win',
+      achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
+      fact: "Xe điện giảm lượng khí thải nhà kính hơn xe xăng",
+      initMap: [
+        ['L_1', 'I_0', 'L_1', 'S_1'],
+        ['I_0', 'I_0', 'I_0', 'I_0'],
+        ['C_2', 'L_1', 'T_3', 'L_1'],
+        ['0', 'L_1', 'L_1', 'L_1'],
+        ['0', 'L_1', 'L_1', 'L_1'],
+        ['0', 'S_1', 'L_1', 'L_1'],
+        ['0', 'T_3', 'L_1', 'I_0'],
+        ['0', 'I_0', 'L_1', 'L_1'],
+        ['0', 'I_0', 'L_1', 'S_2'],
+        ['0', 'T_3', 'L_1', 'I_0'],
+        ['0', 'L_1', 'S_2', 'L_1']
+      ],
+      winMap: [
+        ['L_1', 'I_0', 'L_2', 'S_1'],
+        ['I_1', '0', 'I_1', 'I_1'],
+        ['C_3', 'L_1', 'T_3', 'L_3'],
+        ['0', 'L_0', 'L_2', '0'],
+        ['0', '0', 'L_0', 'L_2'],
+        ['0', 'S_1', 'L_1', 'L_3'],
+        ['0', 'T_0', 'L_3', '0'],
+        ['0', 'I_1', '0', '0'],
+        ['0', 'I_1', 'L_1', 'S_2'],
+        ['0', 'T_0', 'L_3', '0'],
+        ['0', 'L_0', 'S_2', '0']
       ],
       flow: [
         -1,

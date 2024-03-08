@@ -146,20 +146,21 @@ class _GameWidgetState extends State<GameWidget> {
                     startBg: isStart(data.first) && isWin,
                     hide: level.winMap[i][j] == "0" && isWin,
                     letter: data.first,
+                    isBg: isBackground(data.first),
                     angle: int.parse(data.last),
                     onTap: () async {
                       setState(() {
                         context.read<AudioController>().playSfx(SfxType.rotate);
 
                         if (data.first == 'I') {
-                          if (data[1] == '1') {
+                          if (data.last == '1') {
                             stateMap[i][j] = "I_0";
                           } else {
                             stateMap[i][j] = "I_1";
                           }
                         } else {
                           stateMap[i][j] =
-                              '${data.first}_${(int.parse(data[1]) + 1) % 4}';
+                              '${data.first}_${(int.parse(data.last) + 1) % 4}';
                         }
                         // Update the stateMap
                         print(stateMap);
