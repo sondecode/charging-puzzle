@@ -42,8 +42,8 @@ class LevelSelectionScreen extends StatelessWidget {
               children: [
                 for (final level in gameLevels)
                   ListTile(
-                    enabled:
-                        playerProgress.highestLevelReached >= level.number - 1,
+                    enabled: true, //to-do
+                    // playerProgress.highestLevelReached >= level.number - 1,
                     onTap: () {
                       final audioController = context.read<AudioController>();
                       audioController.playSfx(SfxType.buttonTap);
