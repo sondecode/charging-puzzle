@@ -90,8 +90,7 @@ final router = GoRouter(
         ),
         GoRoute(
           path: 'shopping',
-          builder: (context, state) =>
-              const ItemShoppingScreen(key: Key('shopping')),
+          builder: (context, state) => ItemShoppingScreen(key: Key('shopping')),
         ),
         GoRoute(
           path: 'transport',

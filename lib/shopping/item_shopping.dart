@@ -4,6 +4,8 @@
 
 import 'package:ev_driver/shopping/item_details.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_google_wallet/flutter_google_wallet_plugin.dart';
+import 'package:flutter_google_wallet/widget/add_to_google_wallet_button.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +17,8 @@ import '../style/palette.dart';
 import 'items.dart';
 
 class ItemShoppingScreen extends StatefulWidget {
-  const ItemShoppingScreen({super.key});
+  final flutterGoogleWalletPlugin = FlutterGoogleWalletPlugin();
+  ItemShoppingScreen({super.key});
 
   static const _gap = SizedBox(height: 20);
 
@@ -24,6 +27,18 @@ class ItemShoppingScreen extends StatefulWidget {
 }
 
 class _ItemShoppingScreenState extends State<ItemShoppingScreen> {
+  late Future<bool> _isWalletAvailable;
+
+  @override
+  void initState() {
+    super.initState();
+    _isWalletAvailable = Future(() async {
+      // return true;
+      await widget.flutterGoogleWalletPlugin.initWalletClient();
+      return widget.flutterGoogleWalletPlugin.getWalletApiAvailabilityStatus();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
@@ -63,6 +78,29 @@ class _ItemShoppingScreenState extends State<ItemShoppingScreen> {
                 ],
               ),
             ],
+          ),
+          FutureBuilder<bool>(
+            future: _isWalletAvailable,
+            builder: (BuildContext context, AsyncSnapshot<bool> available) {
+              if (available.data == true) {
+                return Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: AddToGoogleWalletButton(
+                      locale: const Locale('fr', 'FR'),
+                      onPress: () {
+                        widget.flutterGoogleWalletPlugin.savePasses(
+                            jsonPass: exampleJsonPass,
+                            addToGoogleWalletRequestCode: 2);
+                      },
+                    ),
+                  ),
+                );
+              } else {
+                return const SizedBox.shrink();
+              }
+            },
           ),
           const SizedBox(height: 50),
           Expanded(
@@ -186,3 +224,69 @@ class _ItemShoppingScreenState extends State<ItemShoppingScreen> {
     );
   }
 }
+
+const exampleJsonPass = '''
+{
+  "iss": "player@evdriver-416618.iam.gserviceaccount.com",
+  "aud": "google",
+  "origins": [
+    "http://localhost:3000"
+  ],
+  "typ": "savetowallet",
+  "payload": {
+    "genericObjects": [
+      {
+        "id": "3388000000022324825.codelab_object",
+        "classId": "3388000000022324825.codelab_class",
+        "genericType": "GENERIC_TYPE_UNSPECIFIED",
+        "hexBackgroundColor": "#4285f4",
+        "logo": {
+          "sourceUri": {
+            "uri": "https://storage.googleapis.com/wallet-lab-tools-codelab-artifacts-public/pass_google_logo.jpg"
+          }
+        },
+        "cardTitle": {
+          "defaultValue": {
+            "language": "en-US",
+            "value": "Google I/O '22"
+          }
+        },
+        "subheader": {
+          "defaultValue": {
+            "language": "en-US",
+            "value": "Attendee"
+          }
+        },
+        "header": {
+          "defaultValue": {
+            "language": "en-US",
+            "value": "Alex McJacobs"
+          }
+        },
+        "barcode": {
+          "type": "QR_CODE",
+          "value": "3388000000022324825.codelab_object"
+        },
+        "heroImage": {
+          "sourceUri": {
+            "uri": "https://storage.googleapis.com/wallet-lab-tools-codelab-artifacts-public/google-io-hero-demo-only.jpg"
+          }
+        },
+        "textModulesData": [
+          {
+            "header": "POINTS",
+            "body": "1234",
+            "id": "points"
+          },
+          {
+            "header": "CONTACTS",
+            "body": "20",
+            "id": "contacts"
+          }
+        ]
+      }
+    ]
+  },
+  "iat": 1709926827
+}
+''';

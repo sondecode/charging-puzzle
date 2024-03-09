@@ -7,6 +7,7 @@ import 'dart:developer' as dev;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_google_wallet/generated/l10n.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 
@@ -75,6 +76,7 @@ class MyApp extends StatelessWidget {
           final palette = context.watch<Palette>();
 
           return MaterialApp.router(
+            localizationsDelegates: const [I18nGoogleWallet.delegate],
             title: 'Electric Vehicle Driver',
             debugShowCheckedModeBanner: false,
             theme: ThemeData.from(
