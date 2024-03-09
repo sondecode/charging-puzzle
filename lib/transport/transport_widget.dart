@@ -119,8 +119,8 @@ class _TransportWidgetState extends State<TransportWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final double _width = MediaQuery.of(context).size.width * 0.85 + 65;
-    final double _height = MediaQuery.of(context).size.height * 0.85 - 190;
+    final double _width = MediaQuery.of(context).size.width * 0.95 + 65;
+    final double _height = MediaQuery.of(context).size.height * 0.85 - 10;
 
     final bool widthLarger = _width >= _height;
     final bool squareMap = stateMap.first.length == stateMap.length;

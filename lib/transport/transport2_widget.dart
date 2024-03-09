@@ -118,8 +118,8 @@ class _Transport2WidgetState extends State<Transport2Widget> {
 
   @override
   Widget build(BuildContext context) {
-    final double _width = MediaQuery.of(context).size.width * 0.85 + 65;
-    final double _height = MediaQuery.of(context).size.height * 0.85 - 190;
+    final double _width = MediaQuery.of(context).size.width * 0.95 + 65;
+    final double _height = MediaQuery.of(context).size.height * 0.85 - 10;
 
     final bool widthLarger = _width >= _height;
     final bool squareMap = stateMap.first.length == stateMap.length;
@@ -132,7 +132,7 @@ class _Transport2WidgetState extends State<Transport2Widget> {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Colors.green,
+        // color: Colors.green,
       ),
       height: widthLarger
           ? _height
