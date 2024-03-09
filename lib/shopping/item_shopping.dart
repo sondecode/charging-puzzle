@@ -88,7 +88,7 @@ class _ItemShoppingScreenState extends State<ItemShoppingScreen> {
                   child: Align(
                     alignment: Alignment.topCenter,
                     child: AddToGoogleWalletButton(
-                      locale: const Locale('fr', 'FR'),
+                      locale: const Locale('en', 'US'),
                       onPress: () {
                         widget.flutterGoogleWalletPlugin.savePasses(
                             jsonPass: exampleJsonPass,
@@ -236,57 +236,52 @@ const exampleJsonPass = '''
   "payload": {
     "genericObjects": [
       {
-        "id": "3388000000022324825.codelab_object",
+        "id": "3388000000022324825.codelab_object1",
         "classId": "3388000000022324825.codelab_class",
         "genericType": "GENERIC_TYPE_UNSPECIFIED",
         "hexBackgroundColor": "#4285f4",
         "logo": {
           "sourceUri": {
-            "uri": "https://storage.googleapis.com/wallet-lab-tools-codelab-artifacts-public/pass_google_logo.jpg"
+            "uri": "https://lh3.googleusercontent.com/Ic6alTIG3C_sr6Tqi0E3RJkpubHGXE8smicwdHTleCSsvcoqj6wz8iRMi2ZYj5KRGr66XXB2o87czoI6ATB226q6r2PC4ss"
           }
         },
         "cardTitle": {
           "defaultValue": {
             "language": "en-US",
-            "value": "Google I/O '22"
+            "value": "EVDriver Collection"
           }
         },
         "subheader": {
           "defaultValue": {
             "language": "en-US",
-            "value": "Attendee"
+            "value": "Electric Vehicle"
           }
         },
         "header": {
           "defaultValue": {
             "language": "en-US",
-            "value": "Alex McJacobs"
+            "value": "VF6"
           }
         },
         "barcode": {
           "type": "QR_CODE",
-          "value": "3388000000022324825.codelab_object"
+          "value": "3388000000022324825.codelab_object1"
         },
         "heroImage": {
           "sourceUri": {
-            "uri": "https://storage.googleapis.com/wallet-lab-tools-codelab-artifacts-public/google-io-hero-demo-only.jpg"
+            "uri": "https://shop.vinfastauto.com/on/demandware.static/-/Sites-app_vinfast_vn-Library/default/dwd5cf25f3/reserves/VF6/exterior-vf6-1.jpg"
           }
         },
         "textModulesData": [
           {
-            "header": "POINTS",
-            "body": "1234",
+            "header": "CO2 Cef",
+            "body": "100",
             "id": "points"
-          },
-          {
-            "header": "CONTACTS",
-            "body": "20",
-            "id": "contacts"
           }
         ]
       }
     ]
   },
-  "iat": 1709926827
+  "iat": 1709975018
 }
 ''';
