@@ -69,8 +69,8 @@ class _PuzzleTileState extends State<PuzzleTile> {
         child: widget.isBg
             ? Container(
                 decoration: BoxDecoration(
-                  color: Colors.green,
-                ),
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(8)),
               )
             : Stack(
                 children: [

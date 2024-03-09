@@ -22,6 +22,8 @@ class GameWidget extends StatefulWidget {
   late int carDirect = 0;
   late String letterCar = "C";
   late String spriteImage = 'assets/images/sprites/C_sprite.png';
+  late int startX = 0;
+  late int startY = 0;
   GameWidget({super.key});
   @override
   State<GameWidget> createState() => _GameWidgetState();
@@ -41,7 +43,8 @@ class _GameWidgetState extends State<GameWidget> {
   void initState() {
     super.initState();
     final level = context.read<GameLevel>();
-
+    widget.startX = level.startX;
+    widget.startY = level.startY;
     widget.letterCar = level.sprite;
     widget.spriteImage = 'assets/images/sprites/${widget.letterCar}_sprite.png';
     stateMap = List.generate(
@@ -50,15 +53,23 @@ class _GameWidgetState extends State<GameWidget> {
     );
     switch (level.flow.first) {
       case -3:
+
+        //up
         widget.carDirect = 270;
         break;
       case -1:
+
+        //down
         widget.carDirect = 90;
         break;
       case -2:
+
+        //right
         widget.carDirect = 180;
         break;
       case -5:
+
+        //left
         widget.carDirect = 0;
         break;
       default:
@@ -82,25 +93,28 @@ class _GameWidgetState extends State<GameWidget> {
 
       switch (step) {
         case 3:
+          //up
           _endY -= width;
           widget.carDirect = 270;
           break;
         case 1:
+          //down
           _endY += width;
           widget.carDirect = 90;
           break;
         case 2:
+          //left
           _endX -= width;
-
           widget.carDirect = 180;
           break;
         case 0:
+          //right
           _endX += width;
           widget.carDirect = 0;
           break;
         default:
-          _endY = 0;
-          _endX = 0;
+          _endY = width * widget.startY;
+          _endX = width * widget.startX;
           break;
       }
     });
@@ -116,8 +130,8 @@ class _GameWidgetState extends State<GameWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final double _width = MediaQuery.of(context).size.width * 0.85 + 65;
-    final double _height = MediaQuery.of(context).size.height * 0.85 - 190;
+    final double _width = MediaQuery.of(context).size.width * 0.95 + 65;
+    final double _height = MediaQuery.of(context).size.height * 0.85 - 10;
 
     final bool widthLarger = _width >= _height;
     final bool squareMap = stateMap.first.length == stateMap.length;
@@ -139,7 +153,7 @@ class _GameWidgetState extends State<GameWidget> {
               : _height,
       width: _height / stateMap.length * stateMap.first.length,
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(0.0),
         child: Stack(children: [
           GridView.builder(
               shrinkWrap: true,

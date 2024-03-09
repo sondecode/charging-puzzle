@@ -53,12 +53,23 @@ class WinGameScreen extends StatelessWidget {
             SizedBox(
               height: 50,
             ),
-            Center(
-              child: Text(
-                'Fact: $fact',
-                style: const TextStyle(fontFamily: 'Electric', fontSize: 20),
-              ),
+            Text(
+              'Fact:',
+              style: const TextStyle(fontFamily: 'Electric', fontSize: 20),
             ),
+            Center(
+                child: Container(
+              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              padding: EdgeInsets.all(30),
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.3),
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: Text(
+                fact,
+                style: const TextStyle(color: Colors.white, fontSize: 20),
+              ),
+            )),
             Spacer(),
             MyButton(
               onPressed: () {
