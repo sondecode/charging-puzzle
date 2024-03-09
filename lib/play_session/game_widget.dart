@@ -18,7 +18,10 @@ import '../level_selection/levels.dart';
 ///
 
 class GameWidget extends StatefulWidget {
-  const GameWidget({super.key});
+  late int carDirect = 0;
+  late String letterCar = "C";
+  late String spriteImage = 'assets/images/sprites/C_sprite.png';
+  GameWidget({super.key});
   @override
   State<GameWidget> createState() => _GameWidgetState();
 }
@@ -28,11 +31,8 @@ class _GameWidgetState extends State<GameWidget> {
   late bool isWin = false;
 
   //Car Cood
-  late String letterCar = "C";
-  late String spriteImage = 'assets/images/sprites/C_sprite.png';
   late double _endX = 0.0;
   late double _endY = 0.0;
-  late int carDirect = 0;
   late bool isVisible = true;
   final stepDuration = 400;
 
@@ -40,10 +40,29 @@ class _GameWidgetState extends State<GameWidget> {
   void initState() {
     super.initState();
     final level = context.read<GameLevel>();
+
+    widget.letterCar = level.sprite;
+    widget.spriteImage = 'assets/images/sprites/${widget.letterCar}_sprite.png';
     stateMap = List.generate(
       level.initMap.length,
       (i) => List<String>.from(level.initMap[i]),
     );
+    switch (level.flow.first) {
+      case -3:
+        widget.carDirect = 270;
+        break;
+      case -1:
+        widget.carDirect = 90;
+        break;
+      case -2:
+        widget.carDirect = 180;
+        break;
+      case -5:
+        widget.carDirect = 0;
+        break;
+      default:
+        break;
+    }
   }
 
   Future<void> drivingCar(
@@ -59,24 +78,24 @@ class _GameWidgetState extends State<GameWidget> {
     final step = flow[currentIndex];
     setState(() {
       isVisible = false;
-      if (step >= 0) {
-        spriteImage = 'assets/images/sprites/${letterCar}_${step}_sprite.png';
-      } else {
-        spriteImage = 'assets/images/sprites/${letterCar}_${1}_sprite.png';
-      }
 
       switch (step) {
         case 3:
           _endY -= width;
+          widget.carDirect = 270;
           break;
         case 1:
           _endY += width;
+          widget.carDirect = 90;
           break;
         case 2:
           _endX -= width;
+
+          widget.carDirect = 180;
           break;
         case 0:
           _endX += width;
+          widget.carDirect = 0;
           break;
         default:
           _endY = 0;
@@ -136,16 +155,16 @@ class _GameWidgetState extends State<GameWidget> {
                 j = (index % stateMap.first.length);
 
                 final data = stateMap[i][j].split('_');
-                if (isStart(data.first)) {
-                  letterCar = data.first;
-                }
+
+                final _isStart = isStart(data.first);
 
                 return SizedBox(
                   child: PuzzleTile(
+                    isStart: _isStart,
                     width: _height / stateMap.length,
-                    startBg: isStart(data.first) && isWin,
+                    startBg: _isStart && isWin,
                     hide: level.winMap[i][j] == "0" && isWin,
-                    letter: data.first,
+                    letter: _isStart ? widget.letterCar : data.first,
                     isBg: isBackground(data.first),
                     angle: int.parse(data.last),
                     onTap: () async {
@@ -194,6 +213,7 @@ class _GameWidgetState extends State<GameWidget> {
               }),
           isWin & !isVisible
               ? CarWidget(
+                  degree: widget.carDirect,
                   width: widthLarger
                       ? _height / stateMap.length
                       : squareMap
@@ -202,7 +222,7 @@ class _GameWidgetState extends State<GameWidget> {
                   endX: _endX,
                   endY: _endY,
                   duration: 500,
-                  image: Image.asset(spriteImage))
+                  image: Image.asset(widget.spriteImage))
               : Container()
         ]),
       ),

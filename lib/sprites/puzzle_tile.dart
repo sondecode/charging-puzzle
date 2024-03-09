@@ -9,6 +9,8 @@ class PuzzleTile extends StatefulWidget {
   final Function onTap;
   final bool hide;
   final bool startBg;
+
+  final bool isStart;
   final bool isBg;
   final double width;
   final int angle;
@@ -20,6 +22,7 @@ class PuzzleTile extends StatefulWidget {
       this.isBg = false,
       required this.width,
       required this.angle,
+      required this.isStart,
       required this.startBg});
 
   @override
@@ -31,7 +34,6 @@ class _PuzzleTileState extends State<PuzzleTile> {
   String letter = "I";
   Widget sprite = Container();
   bool _isEnd = false;
-  bool _isStart = false;
 
   @override
   void initState() {
@@ -41,10 +43,6 @@ class _PuzzleTileState extends State<PuzzleTile> {
 
     if (isEnd(letter)) {
       _isEnd = true;
-    }
-
-    if (isStart(letter)) {
-      _isStart = true;
     }
 
     //To-do
@@ -88,7 +86,7 @@ class _PuzzleTileState extends State<PuzzleTile> {
                           ? Container()
                           : Stack(
                               children: [
-                                _isStart
+                                widget.isStart
                                     ? SizedBox(
                                         width: widget.width,
                                         height: widget.width,

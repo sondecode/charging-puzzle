@@ -39,7 +39,7 @@ const gameAddress = [
       ],
       winMap: [
         ["X_1", "0", "0"],
-        ["L_0", "I_1", "L_2"],
+        ["L_0", "I_0", "L_2"],
         ["0", "0", "Y_3"],
       ],
       flow: [
@@ -57,12 +57,12 @@ const gameAddress = [
       achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
       initMap: [
         ["X_0", "I_0", "L_2"],
-        ["L_2", "I_0", "L_3"],
+        ["L_1", "I_1", "L_3"],
         ["L_0", "I_1", "Y_3"],
       ],
       winMap: [
         ["X_1", "0", "0"],
-        ["L_0", "I_1", "L_2"],
+        ["L_0", "I_0", "L_2"],
         ["0", "0", "Y_3"],
       ],
       flow: [

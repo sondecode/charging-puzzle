@@ -7,6 +7,7 @@ import 'dart:async';
 import 'package:ev_driver/common/function.dart';
 import 'package:ev_driver/game_internals/transport_state.dart';
 import 'package:ev_driver/player_progress/player_progress.dart';
+import 'package:ev_driver/shopping/items.dart';
 import 'package:ev_driver/transport/address.dart';
 import 'package:ev_driver/transport/finding.dart';
 import 'package:ev_driver/transport/transport2_widget.dart';
@@ -47,18 +48,18 @@ class _TransportScreenState extends State<TransportScreen> {
 
   bool pickDone = false;
 
-  // late DateTime _startOfPlay;
+  late DateTime _startOfPlay;
 
   @override
   void initState() {
     super.initState();
 
-    // _startOfPlay = DateTime.now();
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      setState(() {
-        _secondsElapsed++;
-      });
-    });
+    _startOfPlay = DateTime.now();
+    // _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    //   setState(() {
+    //     _secondsElapsed++;
+    //   });
+    // });
   }
 
   @override
@@ -69,7 +70,9 @@ class _TransportScreenState extends State<TransportScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final palette = context.watch<Palette>();
+    final palette = context.read<Palette>();
+    final playerProgress = context.read<PlayerProgress>();
+    final _letterCar = findCar(playerProgress.curVehicle).name;
 
     final double _width = MediaQuery.of(context).size.width;
     final double _height = MediaQuery.of(context).size.height;
@@ -138,15 +141,15 @@ class _TransportScreenState extends State<TransportScreen> {
                                         height: 1,
                                         color: palette.backgroundMain),
                                   ),
-                                  Text(
-                                    formatDuration(
-                                        Duration(seconds: _secondsElapsed)),
-                                    style: TextStyle(
-                                        fontFamily: 'Electric',
-                                        fontSize: 30,
-                                        height: 1,
-                                        color: palette.backgroundMain),
-                                  ),
+                                  // Text(
+                                  //   formatDuration(
+                                  //       Duration(seconds: _secondsElapsed)),
+                                  //   style: TextStyle(
+                                  //       fontFamily: 'Electric',
+                                  //       fontSize: 30,
+                                  //       height: 1,
+                                  //       color: palette.backgroundMain),
+                                  // ),
                                 ],
                               ),
                             ),
@@ -205,9 +208,13 @@ class _TransportScreenState extends State<TransportScreen> {
                           children: [
                             !pickDone
                                 ? TransportWidget(
-                                    addressNumber: widget.booking.from)
+                                    addressNumber: widget.booking.from,
+                                    letterCar: _letterCar,
+                                  )
                                 : Transport2Widget(
-                                    addressNumber: widget.booking.end)
+                                    addressNumber: widget.booking.end,
+                                    letterCar: _letterCar,
+                                  )
                             // TransportWidget(),
                           ],
                         ),
@@ -274,7 +281,7 @@ class _TransportScreenState extends State<TransportScreen> {
     GoRouter.of(context).go('/done', extra: {
       'booking': widget.booking,
       'total': total,
-      'secondsElapsed': _secondsElapsed
+      'secondsElapsed': DateTime.now().difference(_startOfPlay).inSeconds
     });
   }
 }

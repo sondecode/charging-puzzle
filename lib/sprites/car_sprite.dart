@@ -4,12 +4,14 @@ class CarWidget extends StatefulWidget {
   final double endX;
   final double endY;
   final int duration;
+  final int degree;
   final Image image;
   final double width;
 
   const CarWidget({
     super.key,
     required this.width,
+    required this.degree,
     required this.endX,
     required this.endY,
     required this.duration,
@@ -30,7 +32,9 @@ class _CarWidgetState extends State<CarWidget> {
       child: SizedBox(
         height: widget.width,
         width: widget.width,
-        child: widget.image,
+        child: Transform.rotate(
+            angle: widget.degree * 3.1415926535897932 / 180,
+            child: widget.image),
       ),
     );
   }

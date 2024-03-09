@@ -165,7 +165,7 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
                         // The actual UI of the game.
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
+                          children: [
                             GameWidget(),
                           ],
                         ),

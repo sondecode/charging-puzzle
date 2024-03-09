@@ -20,8 +20,12 @@ import '../audio/sounds.dart';
 ///
 
 class Transport2Widget extends StatefulWidget {
+  late int carDirect = 0;
+  final String letterCar;
+  late String spriteImage = 'assets/images/sprites/C_sprite.png';
   final int addressNumber;
-  const Transport2Widget({super.key, required this.addressNumber});
+  Transport2Widget(
+      {super.key, required this.addressNumber, required this.letterCar});
   @override
   State<Transport2Widget> createState() => _Transport2WidgetState();
 }
@@ -32,11 +36,9 @@ class _Transport2WidgetState extends State<Transport2Widget> {
   late Address mapAddress;
 
   //Car Cood
-  late String letterCar = "C";
-  late String spriteImage = 'assets/images/sprites/C_sprite.png';
   late double _endX = 0.0;
   late double _endY = 0.0;
-  late int carDirect = 0;
+  late bool isVisible = true;
   final stepDuration = 400;
 
   @override
@@ -44,37 +46,59 @@ class _Transport2WidgetState extends State<Transport2Widget> {
     super.initState();
     mapAddress = gameAddress
         .firstWhere((element) => element.number == widget.addressNumber);
+    widget.spriteImage = 'assets/images/sprites/${widget.letterCar}_sprite.png';
     stateMap = List.generate(
       mapAddress.initMap.length,
       (i) => List<String>.from(mapAddress.initMap[i]),
     );
+    switch (mapAddress.flow.first) {
+      case -3:
+        widget.carDirect = 270;
+        break;
+      case -1:
+        widget.carDirect = 90;
+        break;
+      case -2:
+        widget.carDirect = 180;
+        break;
+      case -5:
+        widget.carDirect = 0;
+        break;
+      default:
+        break;
+    }
   }
 
   Future<void> drivingCar(
       List<int> flow, int currentIndex, double width) async {
     // Base case: if all steps are completed, return
-    if (currentIndex >= flow.length) return;
+    if (currentIndex >= flow.length) {
+      setState(() {
+        isVisible = true;
+      });
+      return;
+    }
 
     final step = flow[currentIndex];
     setState(() {
-      if (step >= 0) {
-        spriteImage = 'assets/images/sprites/${letterCar}_${step}_sprite.png';
-      } else {
-        spriteImage = 'assets/images/sprites/${letterCar}_${1}_sprite.png';
-      }
-
+      isVisible = false;
       switch (step) {
         case 3:
           _endY -= width;
+          widget.carDirect = 270;
           break;
         case 1:
           _endY += width;
+          widget.carDirect = 90;
           break;
         case 2:
           _endX -= width;
+
+          widget.carDirect = 180;
           break;
         case 0:
           _endX += width;
+          widget.carDirect = 0;
           break;
         default:
           _endY = 0;
@@ -134,19 +158,15 @@ class _Transport2WidgetState extends State<Transport2Widget> {
                 j = (index % stateMap.first.length);
 
                 final data = stateMap[i][j].split('_');
-                if (isStart(data.first)) {
-                  letterCar = data.first;
-                  if (letterCar == "X") {
-                    letterCar = findCar(playerProgress.curVehicle).name;
-                  }
-                }
+                final _isStart = isStart(data.first);
 
                 return SizedBox(
                   child: PuzzleTile(
+                    isStart: _isStart,
                     width: _height / stateMap.length,
-                    startBg: isStart(data.first) && isWin,
+                    startBg: _isStart && isWin,
                     hide: mapAddress.winMap[i][j] == "0" && isWin,
-                    letter: data.first == 'X' ? letterCar : data.first,
+                    letter: _isStart ? widget.letterCar : data.first,
                     angle: int.parse(data.last),
                     onTap: () async {
                       setState(() {
@@ -190,8 +210,9 @@ class _Transport2WidgetState extends State<Transport2Widget> {
                   ),
                 );
               }),
-          isWin
+          isWin & !isVisible
               ? CarWidget(
+                  degree: widget.carDirect,
                   width: widthLarger
                       ? _height / stateMap.length
                       : squareMap
@@ -200,7 +221,7 @@ class _Transport2WidgetState extends State<Transport2Widget> {
                   endX: _endX,
                   endY: _endY,
                   duration: 500,
-                  image: Image.asset(spriteImage))
+                  image: Image.asset(widget.spriteImage))
               : Container()
         ]),
       ),
