@@ -18,6 +18,7 @@ import '../level_selection/levels.dart';
 ///
 
 class GameWidget extends StatefulWidget {
+  late bool firstTouch = false;
   late int carDirect = 0;
   late String letterCar = "C";
   late String spriteImage = 'assets/images/sprites/C_sprite.png';
@@ -129,7 +130,7 @@ class _GameWidgetState extends State<GameWidget> {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Colors.green,
+        // color: Colors.green,
       ),
       height: widthLarger
           ? _height
@@ -223,6 +224,23 @@ class _GameWidgetState extends State<GameWidget> {
                   endY: _endY,
                   duration: 500,
                   image: Image.asset(widget.spriteImage))
+              : Container(),
+          level.number == 1 && !widget.firstTouch
+              ? Positioned(
+                  top: _height / stateMap.length,
+                  right: _width / stateMap.length,
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        widget.firstTouch = true;
+                      });
+                    },
+                    child: Icon(
+                      Icons.touch_app,
+                      size: 100,
+                      color: Colors.black.withOpacity(0.7),
+                    ),
+                  ))
               : Container()
         ]),
       ),

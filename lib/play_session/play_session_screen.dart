@@ -185,23 +185,6 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
                     ),
                   ),
                 ),
-                widget.level.number == 1 && !firstTouch
-                    ? Positioned(
-                        left: _width / 2,
-                        top: _height / 2,
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              firstTouch = true;
-                            });
-                          },
-                          child: Icon(
-                            Icons.touch_app,
-                            size: 100,
-                            color: Colors.black.withOpacity(0.7),
-                          ),
-                        ))
-                    : Container()
               ],
             ),
           ),

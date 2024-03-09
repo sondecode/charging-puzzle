@@ -25,24 +25,23 @@ bool checkMap(List<List<String>> map1, List<List<String>> map2) {
 
 bool isStart(String letterToCheck) {
   return letterToCheck == "X";
-  // final letters = [
-  //   "police",
-  //   "C",
-  //   "B",
-  //   "X",
-  //   "feliz",
-  //   "vfe34",
-  //   "vf6",
-  //   "vf7",
-  //   "vf8",
-  //   "vf9",
-  //   "vbus"
-  // ];
-  // return letters.contains(letterToCheck);
 }
 
 bool isEnd(String letterToCheck) {
-  final letters = ["S", "Y", "house", "H1", "leaf"];
+  final letters = [
+    "S",
+    "Y",
+    "house",
+    "solar",
+    "leaf",
+    "turbine",
+    "service",
+    "recycling",
+    "tree",
+    "waste",
+    "factory",
+    "busstop"
+  ];
   return letters.contains(letterToCheck);
 }
 

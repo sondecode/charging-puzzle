@@ -70,7 +70,6 @@ class _PuzzleTileState extends State<PuzzleTile> {
             ? Container(
                 decoration: BoxDecoration(
                   color: Colors.green,
-                  border: Border.all(color: Colors.grey),
                 ),
               )
             : Stack(
@@ -78,10 +77,10 @@ class _PuzzleTileState extends State<PuzzleTile> {
                   Transform.rotate(
                     angle: rotationAngle * (3.14159265359 / 180),
                     child: Container(
+                      margin: EdgeInsets.all(1),
                       decoration: BoxDecoration(
-                        color: Colors.green,
-                        border: Border.all(color: Colors.grey),
-                      ),
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(8)),
                       child: widget.hide
                           ? Container()
                           : Stack(
