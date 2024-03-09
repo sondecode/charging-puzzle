@@ -42,3 +42,7 @@ class VehicleType {
 VehicleType findCar(int id) {
   return vehicleType.firstWhere((element) => element.number == id);
 }
+
+Future<String> findCarName(int id) async {
+  return vehicleType.firstWhere((element) => element.number == id).name;
+}

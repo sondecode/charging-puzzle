@@ -51,7 +51,7 @@ class LocalStoragePlayerProgressPersistence extends PlayerProgressPersistence {
   @override
   Future<List<int>> getOwnVehicles() async {
     final prefs = await instanceFuture;
-    final result = prefs.getString('curVehicle');
+    final result = prefs.getString('boughtVehicles');
     if (result != null) {
       return result.split(',').map(int.parse).toList();
     }
@@ -61,6 +61,6 @@ class LocalStoragePlayerProgressPersistence extends PlayerProgressPersistence {
   @override
   Future<void> saveOwnVehicles(List<int> items) async {
     final prefs = await instanceFuture;
-    await prefs.setString('curVehicle', items.join(','));
+    await prefs.setString('boughtVehicles', items.join(','));
   }
 }

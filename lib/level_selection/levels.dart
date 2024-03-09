@@ -10,13 +10,14 @@ const gameLevels = [
       achievementIdIOS: 'first_win',
       achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
       fact: "Xe điện giảm lượng khí thải nhà kính hơn xe xăng",
+      sprite: "police",
       initMap: [
-        ["C_1", "L_3"],
+        ["X_1", "L_3"],
         ["L_0", "L_1"],
         ["leaf_0", "L_3"],
       ],
       winMap: [
-        ["C_1", "0"],
+        ["X_1", "0"],
         ["L_0", "L_2"],
         ["leaf_0", "L_3"],
       ],
@@ -34,13 +35,14 @@ const gameLevels = [
       achievementIdIOS: 'first_win',
       achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
       fact: "Xe điện giảm lượng khí thải nhà kính hơn xe xăng",
+      sprite: "C",
       initMap: [
-        ["C_0", "I_1", "L_2"],
+        ["X_0", "I_1", "L_2"],
         ["L_2", "I_1", "L_3"],
         ["L_0", "I_0", "S_3"],
       ],
       winMap: [
-        ["C_1", "0", "0"],
+        ["X_1", "0", "0"],
         ["L_0", "I_0", "L_2"],
         ["0", "0", "S_3"],
       ],
@@ -60,6 +62,7 @@ const gameLevels = [
       achievementIdIOS: 'first_win',
       achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
       fact: "Xe điện giảm lượng khí thải nhà kính hơn xe xăng",
+      sprite: "police",
       initMap: [
         ["C_0", "L_2", "L_3"],
         ["L_1", "L_1", "L_1"],
@@ -90,6 +93,7 @@ const gameLevels = [
       achievementIdIOS: 'first_win',
       achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
       fact: "Xe điện giảm lượng khí thải nhà kính hơn xe xăng",
+      sprite: "police",
       initMap: [
         ['L_1', 'L_1', '0'],
         ['L_1', 'L_1', 'L_1'],
@@ -119,6 +123,7 @@ const gameLevels = [
       achievementIdIOS: 'first_win',
       achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
       fact: "Xe điện giảm lượng khí thải nhà kính hơn xe xăng",
+      sprite: "police",
       initMap: [
         ['L_0', 'L_0', 'L_1'],
         ['C_2', 'I_1', 'L_1'],
@@ -146,6 +151,7 @@ const gameLevels = [
       achievementIdIOS: 'first_win',
       achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
       fact: "Xe điện giảm lượng khí thải nhà kính hơn xe xăng",
+      sprite: "police",
       initMap: [
         ['L_1', 'L_1', 'S_1'],
         ['I_0', 'L_3', 'T_1'],
@@ -175,6 +181,7 @@ const gameLevels = [
       achievementIdIOS: 'first_win',
       achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
       fact: "Xe điện giảm lượng khí thải nhà kính hơn xe xăng",
+      sprite: "police",
       initMap: [
         ['L_2', 'L_1', 'L_1'],
         ['I_0', 'L_2', 'L_3'],
@@ -206,6 +213,7 @@ const gameLevels = [
       achievementIdIOS: 'first_win',
       achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
       fact: "Xe điện giảm lượng khí thải nhà kính hơn xe xăng",
+      sprite: "police",
       initMap: [
         ['T_2', 'S_1', 'I_0', 'I_1'],
         ['L_2', 'T_2', 'L_2', 'L_3'],
@@ -254,6 +262,7 @@ const gameLevels = [
       achievementIdIOS: 'first_win',
       achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
       fact: "Xe điện giảm lượng khí thải nhà kính hơn xe xăng",
+      sprite: "police",
       initMap: [
         ['L_1', 'L_1', 'L_1', 'L_1'],
         ['I_0', 'L_1', 'L_1', 'I_0'],
@@ -295,6 +304,7 @@ const gameLevels = [
       achievementIdIOS: 'first_win',
       achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
       fact: "Xe điện giảm lượng khí thải nhà kính hơn xe xăng",
+      sprite: "police",
       initMap: [
         ['L_1', 'I_0', 'L_1', 'S_1'],
         ['I_0', 'I_0', 'I_0', 'I_0'],
@@ -341,6 +351,8 @@ class GameLevel {
 
   final String name;
 
+  final String sprite;
+
   final String fact;
 
   final List<int> flow;
@@ -353,6 +365,7 @@ class GameLevel {
   bool get awardsAchievement => achievementIdAndroid != null;
 
   const GameLevel({
+    required this.sprite,
     required this.number,
     this.name = "Home",
     required this.fact,
