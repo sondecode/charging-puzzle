@@ -37,7 +37,7 @@ class ItemDetails extends StatelessWidget {
                             Text(
                               details.name,
                               style: TextStyle(
-                                fontFamily: 'Electric',
+                                fontFamily: 'Square',
                                 fontWeight: FontWeight.bold,
                                 fontSize: 29,
                                 height: 1,
@@ -49,7 +49,7 @@ class ItemDetails extends StatelessWidget {
                                 Text(
                                   "bonus: ${details.bonus}",
                                   style: TextStyle(
-                                    fontFamily: 'Electric',
+                                    fontFamily: 'Square',
                                     fontSize: 20,
                                     height: 1,
                                   ),
@@ -61,7 +61,7 @@ class ItemDetails extends StatelessWidget {
                                 Text(
                                   "/km",
                                   style: TextStyle(
-                                    fontFamily: 'Electric',
+                                    fontFamily: 'Square',
                                     fontSize: 20,
                                     height: 1,
                                   ),
@@ -72,7 +72,7 @@ class ItemDetails extends StatelessWidget {
                             Text(
                               "pin cell: ${details.maxEnergy}",
                               style: TextStyle(
-                                fontFamily: 'Electric',
+                                fontFamily: 'Square',
                                 fontSize: 20,
                                 height: 1,
                               ),
@@ -81,7 +81,7 @@ class ItemDetails extends StatelessWidget {
                             Text(
                               "speed: ${details.speed} km/h",
                               style: TextStyle(
-                                fontFamily: 'Electric',
+                                fontFamily: 'Square',
                                 fontSize: 20,
                                 height: 1,
                               ),
@@ -102,7 +102,7 @@ class ItemDetails extends StatelessWidget {
                         child: Text(
                           'Close',
                           style: TextStyle(
-                            fontFamily: 'Electric',
+                            fontFamily: 'Square',
                             fontSize: 20,
                             height: 1,
                           ),

@@ -144,7 +144,7 @@ class _RadarDialogState extends State<RadarDialog>
                                 Text(
                                   _selectedCustomer!.name,
                                   style: TextStyle(
-                                      fontFamily: 'Electric',
+                                      fontFamily: 'Square',
                                       fontSize: 29,
                                       height: 1,
                                       fontWeight: FontWeight.bold),
@@ -153,7 +153,7 @@ class _RadarDialogState extends State<RadarDialog>
                                 Text(
                                   "pickup point: ${_selectedAddress.first.name}",
                                   style: TextStyle(
-                                    fontFamily: 'Electric',
+                                    fontFamily: 'Square',
                                     fontSize: 20,
                                     height: 1,
                                   ),
@@ -162,7 +162,7 @@ class _RadarDialogState extends State<RadarDialog>
                                 Text(
                                   "drop-off point: ${_selectedAddress.last.name}",
                                   style: TextStyle(
-                                    fontFamily: 'Electric',
+                                    fontFamily: 'Square',
                                     fontSize: 20,
                                     height: 1,
                                   ),
@@ -171,7 +171,7 @@ class _RadarDialogState extends State<RadarDialog>
                                 Text(
                                   "distance: ${_distance} km",
                                   style: TextStyle(
-                                    fontFamily: 'Electric',
+                                    fontFamily: 'Square',
                                     fontSize: 20,
                                     height: 1,
                                   ),
@@ -192,7 +192,7 @@ class _RadarDialogState extends State<RadarDialog>
                             child: Text(
                               'Skip',
                               style: TextStyle(
-                                fontFamily: 'Electric',
+                                fontFamily: 'Square',
                                 fontSize: 20,
                                 height: 1,
                               ),
@@ -214,7 +214,7 @@ class _RadarDialogState extends State<RadarDialog>
                             child: Text(
                               'Accept',
                               style: TextStyle(
-                                fontFamily: 'Electric',
+                                fontFamily: 'Square',
                                 fontSize: 20,
                                 height: 1,
                               ),

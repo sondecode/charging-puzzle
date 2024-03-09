@@ -2,22 +2,19 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:add_to_google_wallet/widgets/add_to_google_wallet_button.dart';
 import 'package:ev_driver/shopping/item_details.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_google_wallet/flutter_google_wallet_plugin.dart';
-import 'package:flutter_google_wallet/widget/add_to_google_wallet_button.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-import '../audio/audio_controller.dart';
-import '../audio/sounds.dart';
 import '../player_progress/player_progress.dart';
 import '../style/my_button.dart';
 import '../style/palette.dart';
 import 'items.dart';
 
 class ItemShoppingScreen extends StatefulWidget {
-  final flutterGoogleWalletPlugin = FlutterGoogleWalletPlugin();
+  // final flutterGoogleWalletPlugin = FlutterGoogleWalletPlugin();
   ItemShoppingScreen({super.key});
 
   static const _gap = SizedBox(height: 20);
@@ -32,11 +29,11 @@ class _ItemShoppingScreenState extends State<ItemShoppingScreen> {
   @override
   void initState() {
     super.initState();
-    _isWalletAvailable = Future(() async {
-      // return true;
-      await widget.flutterGoogleWalletPlugin.initWalletClient();
-      return widget.flutterGoogleWalletPlugin.getWalletApiAvailabilityStatus();
-    });
+    // _isWalletAvailable = Future(() async {
+    //   // return true;
+    //   await widget.flutterGoogleWalletPlugin.initWalletClient();
+    //   return widget.flutterGoogleWalletPlugin.getWalletApiAvailabilityStatus();
+    // });
   }
 
   @override
@@ -53,7 +50,7 @@ class _ItemShoppingScreenState extends State<ItemShoppingScreen> {
             child: Center(
               child: Text(
                 'Electric Vehicle Store',
-                style: TextStyle(fontFamily: 'Electric', fontSize: 30),
+                style: TextStyle(fontFamily: 'Square', fontSize: 30),
               ),
             ),
           ),
@@ -70,7 +67,7 @@ class _ItemShoppingScreenState extends State<ItemShoppingScreen> {
                   Text(
                     playerProgress.money.toString(),
                     style: TextStyle(
-                      fontFamily: 'Electric',
+                      fontFamily: 'Square',
                       fontSize: 30,
                       height: 1,
                     ),
@@ -79,29 +76,36 @@ class _ItemShoppingScreenState extends State<ItemShoppingScreen> {
               ),
             ],
           ),
-          FutureBuilder<bool>(
-            future: _isWalletAvailable,
-            builder: (BuildContext context, AsyncSnapshot<bool> available) {
-              if (available.data == true) {
-                return Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Align(
-                    alignment: Alignment.topCenter,
-                    child: AddToGoogleWalletButton(
-                      locale: const Locale('en', 'US'),
-                      onPress: () {
-                        widget.flutterGoogleWalletPlugin.savePasses(
-                            jsonPass: exampleJsonPass,
-                            addToGoogleWalletRequestCode: 2);
-                      },
-                    ),
-                  ),
-                );
-              } else {
-                return const SizedBox.shrink();
-              }
-            },
+          const SizedBox(height: 8.0),
+          AddToGoogleWalletButton(
+            pass: exampleJsonPass,
+            onError: (Object error) => _onError(context, error),
+            onSuccess: () => _onSuccess(context),
+            onCanceled: () => _onCanceled(context),
           ),
+          // FutureBuilder<bool>(
+          //   future: _isWalletAvailable,
+          //   builder: (BuildContext context, AsyncSnapshot<bool> available) {
+          //     if (available.data == true) {
+          //       return Padding(
+          //         padding: const EdgeInsets.all(10),
+          //         child: Align(
+          //           alignment: Alignment.topCenter,
+          //           child: AddToGoogleWalletButton(
+          //             locale: const Locale('en', 'US'),
+          //             onPress: () {
+          //               widget.flutterGoogleWalletPlugin.savePasses(
+          //                   jsonPass: exampleJsonPass,
+          //                   addToGoogleWalletRequestCode: 2);
+          //             },
+          //           ),
+          //         ),
+          //       );
+          //     } else {
+          //       return const SizedBox.shrink();
+          //     }
+          //   },
+          // ),
           const SizedBox(height: 50),
           Expanded(
             child: ListView(
@@ -121,7 +125,7 @@ class _ItemShoppingScreenState extends State<ItemShoppingScreen> {
                     leading: Text(
                       type.number.toString(),
                       style: TextStyle(
-                        fontFamily: 'Electric',
+                        fontFamily: 'Square',
                         fontSize: 20,
                         height: 1,
                       ),
@@ -136,7 +140,7 @@ class _ItemShoppingScreenState extends State<ItemShoppingScreen> {
                                 Text(
                                   '${type.name} - ',
                                   style: TextStyle(
-                                    fontFamily: 'Electric',
+                                    fontFamily: 'Square',
                                     fontSize: 20,
                                     height: 1,
                                   ),
@@ -144,7 +148,7 @@ class _ItemShoppingScreenState extends State<ItemShoppingScreen> {
                                 Text(
                                   '${type.cost}',
                                   style: TextStyle(
-                                    fontFamily: 'Electric',
+                                    fontFamily: 'Square',
                                     fontSize: 20,
                                     height: 1,
                                   ),
@@ -162,7 +166,7 @@ class _ItemShoppingScreenState extends State<ItemShoppingScreen> {
                                         child: Text(
                                         'Used',
                                         style: TextStyle(
-                                          fontFamily: 'Electric',
+                                          fontFamily: 'Square',
                                           fontSize: 20,
                                           height: 1,
                                         ),
@@ -171,7 +175,7 @@ class _ItemShoppingScreenState extends State<ItemShoppingScreen> {
                                         child: Text(
                                           'Use',
                                           style: TextStyle(
-                                            fontFamily: 'Electric',
+                                            fontFamily: 'Square',
                                             fontSize: 20,
                                             height: 1,
                                           ),
@@ -185,7 +189,7 @@ class _ItemShoppingScreenState extends State<ItemShoppingScreen> {
                                     child: Text(
                                       'Buy',
                                       style: TextStyle(
-                                        fontFamily: 'Electric',
+                                        fontFamily: 'Square',
                                         fontSize: 20,
                                         height: 1,
                                       ),
@@ -212,7 +216,7 @@ class _ItemShoppingScreenState extends State<ItemShoppingScreen> {
               'Back',
               style: TextStyle(
                 color: Colors.blueGrey,
-                fontFamily: 'Electric',
+                fontFamily: 'Square',
                 fontSize: 25,
                 height: 1,
               ),
@@ -223,6 +227,31 @@ class _ItemShoppingScreenState extends State<ItemShoppingScreen> {
       ),
     );
   }
+
+  void _onError(BuildContext context, Object error) =>
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.red,
+          content: Text(error.toString()),
+        ),
+      );
+
+  void _onSuccess(BuildContext context) =>
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.green,
+          content:
+              Text('Pass has been successfully added to the Google Wallet.'),
+        ),
+      );
+
+  void _onCanceled(BuildContext context) =>
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.yellow,
+          content: Text('Adding a pass has been canceled.'),
+        ),
+      );
 }
 
 const exampleJsonPass = '''
@@ -254,7 +283,7 @@ const exampleJsonPass = '''
         "subheader": {
           "defaultValue": {
             "language": "en-US",
-            "value": "Electric Vehicle"
+            "value": "Square Vehicle"
           }
         },
         "header": {

@@ -19,7 +19,11 @@ dependencies:
   logging: ^1.2.0
   provider: ^6.0.5
   shared_preferences: ^2.2.2
-  flutter_google_wallet: ^0.1.4
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.18.1
+  intl_translation: ^0.18.2
+  add_to_google_wallet: ^0.0.3
 
 dev_dependencies:
   flutter_lints: ^3.0.0
@@ -29,6 +33,7 @@ dev_dependencies:
   test: ^1.24.3
 
 flutter:
+  generate: true
   uses-material-design: true
 
   assets:
@@ -37,16 +42,11 @@ flutter:
     - assets/images/sprites/vehicles/
     - assets/music/
     - assets/sfx/
-    - packages/flutter_google_wallet/assets/svg/button/frFR_add_to_google_wallet_wallet-button.svg
-    - packages/flutter_google_wallet/assets/svg/button/enUS_add_to_google_wallet_wallet-button.svg
 
   fonts:
-    - family: Permanent Marker
+    - family: Square
       fonts:
-        - asset: assets/fonts/Permanent_Marker/PermanentMarker-Regular.ttf
-    - family: Electric
-      fonts:
-        - asset: assets/fonts/Electric/electric.ttf
+        - asset: assets/fonts/Square/Square.ttf
 
 flutter_launcher_icons:
   android: true

@@ -13,6 +13,7 @@ import '../audio/audio_controller.dart';
 import '../audio/sounds.dart';
 import '../settings/settings.dart';
 import '../style/palette.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MainMenuScreen extends StatelessWidget {
   const MainMenuScreen({super.key});
@@ -84,11 +85,11 @@ class MainMenuScreen extends StatelessWidget {
                         color: Colors.black.withOpacity(0.3),
                         borderRadius: BorderRadius.circular(4)),
                     child: Text(
-                      'finding customers:',
+                      AppLocalizations.of(context)!.helloWorld,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: palette.backgroundMain,
-                        fontFamily: 'Electric',
+                        fontFamily: 'Square',
                         fontSize: 30,
                         height: 1,
                       ),
@@ -215,7 +216,7 @@ class MainMenuScreen extends StatelessWidget {
                     Text(
                       playerProgress.money.toString(),
                       style: TextStyle(
-                        fontFamily: 'Electric',
+                        fontFamily: 'Square',
                         fontSize: 30,
                         height: 1,
                         color: palette.backgroundMain,
@@ -233,7 +234,7 @@ class MainMenuScreen extends StatelessWidget {
                     Text(
                       playerProgress.maxEnergy.toString(),
                       style: TextStyle(
-                        fontFamily: 'Electric',
+                        fontFamily: 'Square',
                         fontSize: 30,
                         height: 1,
                         color: palette.backgroundMain,

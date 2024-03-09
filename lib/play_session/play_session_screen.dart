@@ -107,7 +107,7 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
                               child: Text(
                                 widget.level.name,
                                 style: TextStyle(
-                                    fontFamily: 'Electric',
+                                    fontFamily: 'Square',
                                     fontSize: 30,
                                     height: 1,
                                     color: palette.backgroundMain),

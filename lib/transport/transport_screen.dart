@@ -136,7 +136,7 @@ class _TransportScreenState extends State<TransportScreen> {
                                                 widget.booking.end)
                                             .name,
                                     style: TextStyle(
-                                        fontFamily: 'Electric',
+                                        fontFamily: 'Square',
                                         fontSize: 30,
                                         height: 1,
                                         color: palette.backgroundMain),
@@ -145,7 +145,7 @@ class _TransportScreenState extends State<TransportScreen> {
                                   //   formatDuration(
                                   //       Duration(seconds: _secondsElapsed)),
                                   //   style: TextStyle(
-                                  //       fontFamily: 'Electric',
+                                  //       fontFamily: 'Square',
                                   //       fontSize: 30,
                                   //       height: 1,
                                   //       color: palette.backgroundMain),

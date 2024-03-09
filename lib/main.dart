@@ -4,10 +4,11 @@
 
 import 'dart:developer' as dev;
 
+import 'package:ev_driver/settings/language_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_google_wallet/generated/l10n.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +18,7 @@ import 'player_progress/player_progress.dart';
 import 'router.dart';
 import 'settings/settings.dart';
 import 'style/palette.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   // Basic logging setup.
@@ -76,7 +78,17 @@ class MyApp extends StatelessWidget {
           final palette = context.watch<Palette>();
 
           return MaterialApp.router(
-            localizationsDelegates: const [I18nGoogleWallet.delegate],
+            localizationsDelegates: const [
+              AppLocalizations.delegate, // Add this line
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            // locale: Provider.of<LanguageProvider>(context).locale,
+            supportedLocales: const [
+              Locale('en'),
+              Locale('vi'),
+            ],
             title: 'Electric Vehicle Driver',
             debugShowCheckedModeBanner: false,
             theme: ThemeData.from(
