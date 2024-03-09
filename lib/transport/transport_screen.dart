@@ -141,15 +141,15 @@ class _TransportScreenState extends State<TransportScreen> {
                                         height: 1,
                                         color: palette.backgroundMain),
                                   ),
-                                  Text(
-                                    formatDuration(
-                                        Duration(seconds: _secondsElapsed)),
-                                    style: TextStyle(
-                                        fontFamily: 'Electric',
-                                        fontSize: 30,
-                                        height: 1,
-                                        color: palette.backgroundMain),
-                                  ),
+                                  // Text(
+                                  //   formatDuration(
+                                  //       Duration(seconds: _secondsElapsed)),
+                                  //   style: TextStyle(
+                                  //       fontFamily: 'Electric',
+                                  //       fontSize: 30,
+                                  //       height: 1,
+                                  //       color: palette.backgroundMain),
+                                  // ),
                                 ],
                               ),
                             ),
@@ -281,7 +281,7 @@ class _TransportScreenState extends State<TransportScreen> {
     GoRouter.of(context).go('/done', extra: {
       'booking': widget.booking,
       'total': total,
-      'secondsElapsed': _secondsElapsed
+      'secondsElapsed': DateTime.now().difference(_startOfPlay).inSeconds
     });
   }
 }
