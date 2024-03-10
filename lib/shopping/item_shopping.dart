@@ -4,6 +4,7 @@
 
 import 'package:add_to_google_wallet/widgets/add_to_google_wallet_button.dart';
 import 'package:ev_driver/shopping/item_details.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -159,12 +160,23 @@ class ItemShoppingScreen extends StatelessWidget {
                         Image.asset(
                             'assets/images/sprites/vehicles/${type.name}.png'),
                         playerProgress.isBought(type.number)
-                            ? AddToGoogleWalletButton(
-                                pass: collectionPass(type),
-                                onError: (Object error) =>
-                                    _onError(context, error),
-                                onSuccess: () => _onSuccess(context),
-                                onCanceled: () => _onCanceled(context),
+                            ? IgnorePointer(
+                                ignoring: kIsWeb,
+                                child: Column(
+                                  children: [
+                                    AddToGoogleWalletButton(
+                                      pass: collectionPass(type),
+                                      onError: (Object error) =>
+                                          _onError(context, error),
+                                      onSuccess: () => _onSuccess(context),
+                                      onCanceled: () => _onCanceled(context),
+                                    ),
+                                    Text(
+                                      'Available in Android',
+                                      style: TextStyle(fontSize: 10),
+                                    )
+                                  ],
+                                ),
                               )
                             : Container(),
                       ],
