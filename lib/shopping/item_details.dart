@@ -38,6 +38,7 @@ class ItemDetails extends StatelessWidget {
                               details.name,
                               style: TextStyle(
                                 fontFamily: 'Square',
+                                fontStyle: FontStyle.italic,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 29,
                                 height: 1,
@@ -50,6 +51,7 @@ class ItemDetails extends StatelessWidget {
                                   "bonus: ${details.bonus}",
                                   style: TextStyle(
                                     fontFamily: 'Square',
+                                    fontStyle: FontStyle.italic,
                                     fontSize: 20,
                                     height: 1,
                                   ),
@@ -62,6 +64,7 @@ class ItemDetails extends StatelessWidget {
                                   "/km",
                                   style: TextStyle(
                                     fontFamily: 'Square',
+                                    fontStyle: FontStyle.italic,
                                     fontSize: 20,
                                     height: 1,
                                   ),
@@ -73,6 +76,7 @@ class ItemDetails extends StatelessWidget {
                               "pin cell: ${details.maxEnergy}",
                               style: TextStyle(
                                 fontFamily: 'Square',
+                                fontStyle: FontStyle.italic,
                                 fontSize: 20,
                                 height: 1,
                               ),
@@ -82,6 +86,7 @@ class ItemDetails extends StatelessWidget {
                               "speed: ${details.speed} km/h",
                               style: TextStyle(
                                 fontFamily: 'Square',
+                                fontStyle: FontStyle.italic,
                                 fontSize: 20,
                                 height: 1,
                               ),
@@ -103,6 +108,7 @@ class ItemDetails extends StatelessWidget {
                           'Close',
                           style: TextStyle(
                             fontFamily: 'Square',
+                            fontStyle: FontStyle.italic,
                             fontSize: 20,
                             height: 1,
                           ),

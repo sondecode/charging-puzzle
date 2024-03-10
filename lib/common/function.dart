@@ -56,3 +56,7 @@ String formatDuration(Duration duration) {
   String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
   return "$twoDigitMinutes:$twoDigitSeconds";
 }
+
+bool mapLongerScreen(double map, double screen) {
+  return map > screen;
+}

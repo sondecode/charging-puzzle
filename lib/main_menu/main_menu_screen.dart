@@ -81,6 +81,7 @@ class MainMenuScreen extends StatelessWidget {
                       style: TextStyle(
                         color: palette.backgroundMain,
                         fontFamily: 'Square',
+                        fontStyle: FontStyle.italic,
                         fontSize: 30,
                         height: 1,
                       ),
@@ -208,6 +209,7 @@ class MainMenuScreen extends StatelessWidget {
                       playerProgress.money.toString(),
                       style: TextStyle(
                         fontFamily: 'Square',
+                        fontStyle: FontStyle.italic,
                         fontSize: 30,
                         height: 1,
                         color: palette.backgroundMain,
@@ -226,6 +228,7 @@ class MainMenuScreen extends StatelessWidget {
                       playerProgress.maxEnergy.toString(),
                       style: TextStyle(
                         fontFamily: 'Square',
+                        fontStyle: FontStyle.italic,
                         fontSize: 30,
                         height: 1,
                         color: palette.backgroundMain,

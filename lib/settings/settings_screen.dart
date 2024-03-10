@@ -36,6 +36,7 @@ class SettingsScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: 'Square',
+                      fontStyle: FontStyle.italic,
                       fontSize: 55,
                       height: 1,
                     ),
@@ -55,7 +56,7 @@ class SettingsScreen extends StatelessWidget {
                   ValueListenableBuilder<bool>(
                     valueListenable: settings.musicOn,
                     builder: (context, musicOn, child) => _SettingsLine(
-                      'Music: fanquan - deleted.mp3',
+                      'Music: fanquan - City',
                       Icon(musicOn ? Icons.music_note : Icons.music_off),
                       onSelected: () => settings.toggleMusicOn(),
                     ),
@@ -87,6 +88,7 @@ class SettingsScreen extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.blueGrey,
                     fontFamily: 'Square',
+                    fontStyle: FontStyle.italic,
                     fontSize: 25,
                     height: 1,
                   ),
@@ -119,6 +121,7 @@ class _NameChangeLine extends StatelessWidget {
             Text(title,
                 style: const TextStyle(
                   fontFamily: 'Square',
+                  fontStyle: FontStyle.italic,
                   fontSize: 30,
                 )),
             const Spacer(),
@@ -128,6 +131,7 @@ class _NameChangeLine extends StatelessWidget {
                 '‘$name’',
                 style: const TextStyle(
                   fontFamily: 'Square',
+                  fontStyle: FontStyle.italic,
                   fontSize: 30,
                 ),
               ),
@@ -165,6 +169,7 @@ class _SettingsLine extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   fontFamily: 'Square',
+                  fontStyle: FontStyle.italic,
                   fontSize: 30,
                 ),
               ),

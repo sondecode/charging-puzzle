@@ -137,6 +137,7 @@ class _TransportScreenState extends State<TransportScreen> {
                                             .name,
                                     style: TextStyle(
                                         fontFamily: 'Square',
+                                        fontStyle: FontStyle.italic,
                                         fontSize: 30,
                                         height: 1,
                                         color: palette.backgroundMain),
@@ -146,6 +147,7 @@ class _TransportScreenState extends State<TransportScreen> {
                                   //       Duration(seconds: _secondsElapsed)),
                                   //   style: TextStyle(
                                   //       fontFamily: 'Square',
+                                  // fontStyle: FontStyle.italic,
                                   //       fontSize: 30,
                                   //       height: 1,
                                   //       color: palette.backgroundMain),

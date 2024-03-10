@@ -32,7 +32,10 @@ class LevelSelectionScreen extends StatelessWidget {
             child: Center(
               child: Text(
                 'Select level',
-                style: TextStyle(fontFamily: 'Square', fontSize: 30),
+                style: TextStyle(
+                    fontFamily: 'Square',
+                    fontStyle: FontStyle.italic,
+                    fontSize: 30),
               ),
             ),
           ),
@@ -54,6 +57,7 @@ class LevelSelectionScreen extends StatelessWidget {
                       level.number.toString(),
                       style: TextStyle(
                         fontFamily: 'Square',
+                        fontStyle: FontStyle.italic,
                         fontSize: 20,
                         height: 1,
                       ),
@@ -62,6 +66,7 @@ class LevelSelectionScreen extends StatelessWidget {
                       level.name,
                       style: TextStyle(
                         fontFamily: 'Square',
+                        fontStyle: FontStyle.italic,
                         fontSize: 20,
                         height: 1,
                       ),
@@ -79,6 +84,7 @@ class LevelSelectionScreen extends StatelessWidget {
               style: TextStyle(
                 color: Colors.blueGrey,
                 fontFamily: 'Square',
+                fontStyle: FontStyle.italic,
                 fontSize: 25,
                 height: 1,
               ),

@@ -145,6 +145,7 @@ class _RadarDialogState extends State<RadarDialog>
                                   _selectedCustomer!.name,
                                   style: TextStyle(
                                       fontFamily: 'Square',
+                                      fontStyle: FontStyle.italic,
                                       fontSize: 29,
                                       height: 1,
                                       fontWeight: FontWeight.bold),
@@ -160,6 +161,7 @@ class _RadarDialogState extends State<RadarDialog>
                                       _selectedAddress.first.name,
                                       style: TextStyle(
                                         fontFamily: 'Square',
+                                        fontStyle: FontStyle.italic,
                                         fontSize: 20,
                                         height: 1,
                                       ),
@@ -177,6 +179,7 @@ class _RadarDialogState extends State<RadarDialog>
                                       "${_selectedAddress.last.name}",
                                       style: TextStyle(
                                         fontFamily: 'Square',
+                                        fontStyle: FontStyle.italic,
                                         fontSize: 20,
                                         height: 1,
                                       ),
@@ -188,6 +191,7 @@ class _RadarDialogState extends State<RadarDialog>
                                   "distance: ${_distance} km",
                                   style: TextStyle(
                                     fontFamily: 'Square',
+                                    fontStyle: FontStyle.italic,
                                     fontSize: 20,
                                     height: 1,
                                   ),
@@ -209,6 +213,7 @@ class _RadarDialogState extends State<RadarDialog>
                               'Skip',
                               style: TextStyle(
                                 fontFamily: 'Square',
+                                fontStyle: FontStyle.italic,
                                 fontSize: 20,
                                 height: 1,
                               ),
@@ -231,6 +236,7 @@ class _RadarDialogState extends State<RadarDialog>
                               'Accept',
                               style: TextStyle(
                                 fontFamily: 'Square',
+                                fontStyle: FontStyle.italic,
                                 fontSize: 20,
                                 height: 1,
                               ),

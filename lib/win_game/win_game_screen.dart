@@ -39,7 +39,10 @@ class WinGameScreen extends StatelessWidget {
             const Center(
               child: Text(
                 'You won!',
-                style: TextStyle(fontFamily: 'Square', fontSize: 50),
+                style: TextStyle(
+                    fontFamily: 'Square',
+                    fontStyle: FontStyle.italic,
+                    fontSize: 50),
               ),
             ),
             gap,
@@ -47,7 +50,10 @@ class WinGameScreen extends StatelessWidget {
               child: Text(
                 'Score: ${score.score}\n'
                 'Time: ${score.formattedTime}',
-                style: const TextStyle(fontFamily: 'Square', fontSize: 20),
+                style: const TextStyle(
+                    fontFamily: 'Square',
+                    fontStyle: FontStyle.italic,
+                    fontSize: 20),
               ),
             ),
             SizedBox(
@@ -55,7 +61,10 @@ class WinGameScreen extends StatelessWidget {
             ),
             Text(
               'Fact:',
-              style: const TextStyle(fontFamily: 'Square', fontSize: 20),
+              style: const TextStyle(
+                  fontFamily: 'Square',
+                  fontStyle: FontStyle.italic,
+                  fontSize: 20),
             ),
             Center(
                 child: Container(
@@ -80,6 +89,7 @@ class WinGameScreen extends StatelessWidget {
                 style: TextStyle(
                   color: Colors.blueGrey,
                   fontFamily: 'Square',
+                  fontStyle: FontStyle.italic,
                   fontSize: 25,
                   height: 1,
                 ),

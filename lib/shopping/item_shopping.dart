@@ -36,7 +36,10 @@ class ItemShoppingScreen extends StatelessWidget {
             child: Center(
               child: Text(
                 'Electric Vehicle Store',
-                style: TextStyle(fontFamily: 'Square', fontSize: 30),
+                style: TextStyle(
+                    fontFamily: 'Square',
+                    fontStyle: FontStyle.italic,
+                    fontSize: 30),
               ),
             ),
           ),
@@ -54,6 +57,7 @@ class ItemShoppingScreen extends StatelessWidget {
                     playerProgress.money.toString(),
                     style: TextStyle(
                       fontFamily: 'Square',
+                      fontStyle: FontStyle.italic,
                       fontSize: 30,
                       height: 1,
                     ),
@@ -83,6 +87,7 @@ class ItemShoppingScreen extends StatelessWidget {
                       type.number.toString(),
                       style: TextStyle(
                         fontFamily: 'Square',
+                        fontStyle: FontStyle.italic,
                         fontSize: 20,
                         height: 1,
                       ),
@@ -98,6 +103,7 @@ class ItemShoppingScreen extends StatelessWidget {
                                   '${type.name} - ',
                                   style: TextStyle(
                                     fontFamily: 'Square',
+                                    fontStyle: FontStyle.italic,
                                     fontSize: 20,
                                     height: 1,
                                   ),
@@ -106,6 +112,7 @@ class ItemShoppingScreen extends StatelessWidget {
                                   '${type.cost}',
                                   style: TextStyle(
                                     fontFamily: 'Square',
+                                    fontStyle: FontStyle.italic,
                                     fontSize: 20,
                                     height: 1,
                                   ),
@@ -124,6 +131,7 @@ class ItemShoppingScreen extends StatelessWidget {
                                         'Used',
                                         style: TextStyle(
                                           fontFamily: 'Square',
+                                          fontStyle: FontStyle.italic,
                                           fontSize: 20,
                                           height: 1,
                                         ),
@@ -133,6 +141,7 @@ class ItemShoppingScreen extends StatelessWidget {
                                           'Use',
                                           style: TextStyle(
                                             fontFamily: 'Square',
+                                            fontStyle: FontStyle.italic,
                                             fontSize: 20,
                                             height: 1,
                                           ),
@@ -147,6 +156,7 @@ class ItemShoppingScreen extends StatelessWidget {
                                       'Buy',
                                       style: TextStyle(
                                         fontFamily: 'Square',
+                                        fontStyle: FontStyle.italic,
                                         fontSize: 20,
                                         height: 1,
                                       ),
@@ -194,6 +204,7 @@ class ItemShoppingScreen extends StatelessWidget {
               style: TextStyle(
                 color: Colors.blueGrey,
                 fontFamily: 'Square',
+                fontStyle: FontStyle.italic,
                 fontSize: 25,
                 height: 1,
               ),

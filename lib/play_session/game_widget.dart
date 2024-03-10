@@ -65,12 +65,12 @@ class _GameWidgetState extends State<GameWidget> {
       case -2:
 
         //right
-        widget.carDirect = 180;
+        widget.carDirect = 0;
         break;
       case -5:
 
         //left
-        widget.carDirect = 0;
+        widget.carDirect = 180;
         break;
       default:
         break;
@@ -130,7 +130,7 @@ class _GameWidgetState extends State<GameWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final double _width = MediaQuery.of(context).size.width * 0.95 + 65;
+    final double _width = MediaQuery.of(context).size.width * 0.95 + 15;
     final double _height = MediaQuery.of(context).size.height * 0.85 - 30;
 
     final bool widthLarger = _width >= _height;
@@ -141,6 +141,9 @@ class _GameWidgetState extends State<GameWidget> {
     // stateMap = level.initMap;
     final levelState = context.watch<LevelState>();
 
+    final selectedMapwith = mapLongerScreen(
+        stateMap.length / stateMap.first.length, _height / _width);
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -149,7 +152,7 @@ class _GameWidgetState extends State<GameWidget> {
       height: widthLarger
           ? _height
           : squareMap
-              ? _width
+              ? _width + 60
               : _height,
       width: _height / stateMap.length * stateMap.first.length,
       child: Padding(
@@ -197,23 +200,26 @@ class _GameWidgetState extends State<GameWidget> {
                               '${data.first}_${(int.parse(data.last) + 1) % 4}';
                         }
                         // Update the stateMap
-                        print(stateMap);
                       });
                       if (checkMap(stateMap, level.winMap)) {
                         isWin = true;
+                        widget.firstTouch = false;
 
                         context
                             .read<AudioController>()
                             .playSfx(SfxType.carStart);
 
                         await drivingCar(
-                            level.flow,
-                            0,
-                            widthLarger
-                                ? _height / stateMap.length
-                                : squareMap
-                                    ? _width / stateMap.length
-                                    : _height / stateMap.length);
+                          level.flow,
+                          0,
+                          widthLarger
+                              ? _height / stateMap.length
+                              : squareMap
+                                  ? _width / stateMap.length
+                                  : !selectedMapwith
+                                      ? _width / stateMap.first.length
+                                      : _height / stateMap.length,
+                        );
                         Future.delayed(
                             Duration(
                                 milliseconds: stepDuration * level.flow.length),
@@ -233,7 +239,9 @@ class _GameWidgetState extends State<GameWidget> {
                       ? _height / stateMap.length
                       : squareMap
                           ? _width / stateMap.length
-                          : _height / stateMap.length,
+                          : !selectedMapwith
+                              ? _width / stateMap.first.length
+                              : _height / stateMap.length,
                   endX: _endX,
                   endY: _endY,
                   duration: 500,

@@ -64,10 +64,10 @@ class _TransportWidgetState extends State<TransportWidget> {
         widget.carDirect = 90;
         break;
       case -2:
-        widget.carDirect = 180;
+        widget.carDirect = 0;
         break;
       case -5:
-        widget.carDirect = 0;
+        widget.carDirect = 180;
         break;
       default:
         break;
@@ -123,7 +123,7 @@ class _TransportWidgetState extends State<TransportWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final double _width = MediaQuery.of(context).size.width * 0.95 + 65;
+    final double _width = MediaQuery.of(context).size.width * 0.95 + 15;
     final double _height = MediaQuery.of(context).size.height * 0.85 - 30;
 
     final bool widthLarger = _width >= _height;
@@ -131,7 +131,8 @@ class _TransportWidgetState extends State<TransportWidget> {
 
     // stateMap = level.initMap;
     final transportState = context.watch<TransportState>();
-
+    final selectedMapwith = mapLongerScreen(
+        stateMap.length / stateMap.first.length, _height / _width);
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -144,7 +145,7 @@ class _TransportWidgetState extends State<TransportWidget> {
               : _height,
       width: _height / stateMap.length * stateMap.first.length,
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(0.0),
         child: Stack(children: [
           GridView.builder(
               shrinkWrap: true,
@@ -188,7 +189,6 @@ class _TransportWidgetState extends State<TransportWidget> {
                               '${data.first}_${(int.parse(data[1]) + 1) % 4}';
                         }
                         // Update the stateMap
-                        print(stateMap);
                       });
                       if (checkMap(stateMap, mapAddress.winMap)) {
                         isWin = true;
@@ -196,13 +196,16 @@ class _TransportWidgetState extends State<TransportWidget> {
                             .read<AudioController>()
                             .playSfx(SfxType.carStart);
                         await drivingCar(
-                            mapAddress.flow,
-                            0,
-                            widthLarger
-                                ? _height / stateMap.length
-                                : squareMap
-                                    ? _width / stateMap.length
-                                    : _height / stateMap.length);
+                          mapAddress.flow,
+                          0,
+                          widthLarger
+                              ? _height / stateMap.length
+                              : squareMap
+                                  ? _width / stateMap.length
+                                  : !selectedMapwith
+                                      ? _width / stateMap.first.length
+                                      : _height / stateMap.length,
+                        );
                         Future.delayed(
                             Duration(
                                 milliseconds: stepDuration *
@@ -222,7 +225,9 @@ class _TransportWidgetState extends State<TransportWidget> {
                       ? _height / stateMap.length
                       : squareMap
                           ? _width / stateMap.length
-                          : _height / stateMap.length,
+                          : !selectedMapwith
+                              ? _width / stateMap.first.length
+                              : _height / stateMap.length,
                   endX: _endX,
                   endY: _endY,
                   duration: 500,

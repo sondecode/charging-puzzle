@@ -47,14 +47,20 @@ class _TransportDoneScreenState extends State<TransportDoneScreen> {
             const Center(
               child: Text(
                 'Done!',
-                style: TextStyle(fontFamily: 'Square', fontSize: 50),
+                style: TextStyle(
+                    fontFamily: 'Square',
+                    fontStyle: FontStyle.italic,
+                    fontSize: 50),
               ),
             ),
             gap,
             Center(
               child: Text(
                 formatDuration(Duration(seconds: widget.secondsElapsed)),
-                style: const TextStyle(fontFamily: 'Square', fontSize: 20),
+                style: const TextStyle(
+                    fontFamily: 'Square',
+                    fontStyle: FontStyle.italic,
+                    fontSize: 20),
               ),
             ),
             Padding(
@@ -69,6 +75,7 @@ class _TransportDoneScreenState extends State<TransportDoneScreen> {
                       'Driver: $name',
                       style: const TextStyle(
                         fontFamily: 'Square',
+                        fontStyle: FontStyle.italic,
                         fontSize: 30,
                       ),
                     ),
@@ -120,12 +127,14 @@ class _TransportDoneScreenState extends State<TransportDoneScreen> {
                         'Distance',
                         style: TextStyle(
                           fontFamily: 'Square',
+                          fontStyle: FontStyle.italic,
                           fontSize: 30,
                         ),
                       ),
                       Text("${widget.booking.distance} km",
                           style: const TextStyle(
                             fontFamily: 'Square',
+                            fontStyle: FontStyle.italic,
                             fontSize: 30,
                           )),
                     ],
@@ -136,11 +145,13 @@ class _TransportDoneScreenState extends State<TransportDoneScreen> {
                       const Text('Total',
                           style: TextStyle(
                             fontFamily: 'Square',
+                            fontStyle: FontStyle.italic,
                             fontSize: 30,
                           )),
                       Text("\$${widget.total}",
                           style: const TextStyle(
                             fontFamily: 'Square',
+                            fontStyle: FontStyle.italic,
                             fontSize: 30,
                           )),
                     ],
@@ -158,6 +169,7 @@ class _TransportDoneScreenState extends State<TransportDoneScreen> {
                 style: TextStyle(
                   color: Colors.blueGrey,
                   fontFamily: 'Square',
+                  fontStyle: FontStyle.italic,
                   fontSize: 25,
                   height: 1,
                 ),
