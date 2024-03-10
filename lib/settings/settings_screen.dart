@@ -74,6 +74,39 @@ class SettingsScreen extends StatelessWidget {
                       );
                     },
                   ),
+                  _SettingsLine(
+                    'About',
+                    const Icon(Icons.help),
+                    onSelected: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('About App'),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                Text('App Name: EVDriver'),
+                                Text('Version: 1.0.0'),
+                                Text('Author: N.T.Son'),
+                                Text('Copyright © 2024'),
+                              ],
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context)
+                                      .pop(); // Close the dialog
+                                },
+                                child: Text('Close'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                  ),
                   // _LanguageChangeLine(AppLocalizations.of(context)!.language),
                   _gap,
                 ],

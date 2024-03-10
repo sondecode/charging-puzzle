@@ -72,7 +72,7 @@ class _TransportScreenState extends State<TransportScreen> {
   Widget build(BuildContext context) {
     final palette = context.read<Palette>();
     final playerProgress = context.read<PlayerProgress>();
-    final _letterCar = findCar(playerProgress.curVehicle).name;
+    final _car = findCar(playerProgress.curVehicle);
 
     final double _width = MediaQuery.of(context).size.width;
     final double _height = MediaQuery.of(context).size.height;
@@ -211,11 +211,12 @@ class _TransportScreenState extends State<TransportScreen> {
                             !pickDone
                                 ? TransportWidget(
                                     addressNumber: widget.booking.from,
-                                    letterCar: _letterCar,
+                                    letterCar: _car.name,
+                                    speed: _car.speed,
                                   )
                                 : Transport2Widget(
                                     addressNumber: widget.booking.end,
-                                    letterCar: _letterCar,
+                                    letterCar: _car.name,
                                   )
                             // TransportWidget(),
                           ],

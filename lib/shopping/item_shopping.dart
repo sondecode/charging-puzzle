@@ -26,6 +26,7 @@ class ItemShoppingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
     final playerProgress = context.watch<PlayerProgress>();
+    print(DateTime.now().hashCode);
 
     return Scaffold(
       backgroundColor: palette.backgroundLevelSelection,
@@ -182,7 +183,7 @@ class ItemShoppingScreen extends StatelessWidget {
                                       onCanceled: () => _onCanceled(context),
                                     ),
                                     Text(
-                                      'Available in Android',
+                                      'Available on Android',
                                       style: TextStyle(fontSize: 10),
                                     )
                                   ],
@@ -253,7 +254,7 @@ String collectionPass(VehicleType type) => '''
   "payload": {
     "genericObjects": [
       {
-        "id": "3388000000022324825.${type.name.toLowerCase()}",
+        "id": "3388000000022324825.${type.name.toLowerCase()}${DateTime.now().hashCode}",
         "classId": "3388000000022324825.codelab_class",
         "genericType": "GENERIC_TYPE_UNSPECIFIED",
         "hexBackgroundColor": "#4285f4",
@@ -271,7 +272,7 @@ String collectionPass(VehicleType type) => '''
         "subheader": {
           "defaultValue": {
             "language": "en-US",
-            "value": "Square Vehicle"
+            "value": "Electric Vehicle"
           }
         },
         "header": {
@@ -280,13 +281,9 @@ String collectionPass(VehicleType type) => '''
             "value": "${type.name.toUpperCase()}"
           }
         },
-        "barcode": {
-          "type": "QR_CODE",
-          "value": "3388000000022324825.codelab_object1"
-        },
         "heroImage": {
           "sourceUri": {
-            "uri": "https://shop.vinfastauto.com/on/demandware.static/-/Sites-app_vinfast_vn-Library/default/dwd5cf25f3/reserves/VF6/exterior-vf6-1.jpg"
+            "uri": "${type.imgLink}"
           }
         },
         "textModulesData": [

@@ -221,11 +221,11 @@ class MainMenuScreen extends StatelessWidget {
                   children: [
                     Icon(
                       size: 40,
-                      Icons.battery_3_bar_sharp,
+                      Icons.local_taxi_outlined,
                       color: palette.backgroundMain,
                     ),
                     Text(
-                      playerProgress.maxEnergy.toString(),
+                      playerProgress.amountCar.toString(),
                       style: TextStyle(
                         fontFamily: 'Square',
                         fontStyle: FontStyle.italic,

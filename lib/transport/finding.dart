@@ -17,7 +17,7 @@ class _RadarDialogState extends State<RadarDialog>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
-  Customer? _selectedCustomer;
+  String? _selectedCustomer;
   List<Address> _selectedAddress = [];
   int _distance = 1;
 
@@ -142,7 +142,7 @@ class _RadarDialogState extends State<RadarDialog>
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  _selectedCustomer!.name,
+                                  _selectedCustomer!,
                                   style: TextStyle(
                                       fontFamily: 'Square',
                                       fontStyle: FontStyle.italic,
@@ -252,7 +252,7 @@ class _RadarDialogState extends State<RadarDialog>
 }
 
 class Booking {
-  final Customer customer;
+  final String customer;
 
   final int from;
 

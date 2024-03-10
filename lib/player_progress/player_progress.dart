@@ -45,6 +45,8 @@ class PlayerProgress extends ChangeNotifier {
 
   int get maxEnergy => _maxEnergy;
 
+  int get amountCar => _bought.length;
+
   VehicleType get curVehicleInfo =>
       vehicleType.firstWhere((element) => element.number == _curVehicle);
 

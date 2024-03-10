@@ -1,18 +1,34 @@
-class Customer {
-  final int id;
-  final String avatar;
-
-  final String name;
-
-  const Customer({
-    this.name = "VF1",
-    required this.id,
-    required this.avatar,
-  });
-}
-
-const customerList = [
-  Customer(id: 1, name: "Vu Cong Vinh", avatar: "vinh.png"),
-  Customer(id: 2, name: "Nguyen Son", avatar: "son.png"),
-  Customer(id: 3, name: "Minh Duc", avatar: "duc.png"),
+List<String> customerList = [
+  'N.T.Son',
+  'N.T.N.Ha',
+  'N.M.Duc',
+  'Elon Musk',
+  'Jeff Bezos',
+  'Bill Gates',
+  'Mark Zuckerberg',
+  'Barack Obama',
+  'Narendra Modi',
+  'Angela Merkel',
+  'Xi Jinping',
+  'Joe Biden',
+  'Cristiano Ronaldo',
+  'Lionel Messi',
+  'Oprah Winfrey',
+  'Beyoncé',
+  'Taylor Swift',
+  'Kim Kardashian',
+  'Kanye West',
+  'Rihanna',
+  'LeBron James',
+  'Stephen Curry',
+  'Serena Williams',
+  'Virat Kohli',
+  'Novak Djokovic',
+  'Emma Watson',
+  'Dwayne "The Rock" Johnson',
+  'Tom Hanks',
+  'Ellen DeGeneres',
+  'Adele',
+  'Son H.M',
+  'P.N.Vuong'
 ];

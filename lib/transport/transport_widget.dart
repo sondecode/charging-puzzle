@@ -24,10 +24,14 @@ class TransportWidget extends StatefulWidget {
   final String letterCar;
   late int startX = 0;
   late int startY = 0;
+  final int speed;
   late String spriteImage = 'assets/images/sprites/C_sprite.png';
   final int addressNumber;
   TransportWidget(
-      {super.key, required this.addressNumber, required this.letterCar});
+      {super.key,
+      required this.addressNumber,
+      required this.letterCar,
+      required this.speed});
   @override
   State<TransportWidget> createState() => _TransportWidgetState();
 }
@@ -41,7 +45,7 @@ class _TransportWidgetState extends State<TransportWidget> {
   late double _endX = 0.0;
   late double _endY = 0.0;
   late bool isVisible = true;
-  final stepDuration = 400;
+  late int stepDuration = 450 - widget.speed;
 
   @override
   void initState() {
