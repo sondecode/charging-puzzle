@@ -111,7 +111,7 @@ class _RadarDialogState extends State<RadarDialog>
                     Text(
                       _completed
                           ? 'Complete'
-                          : 'Searching for signal...', // Update text based on completion flag
+                          : 'Searching for customer...', // Update text based on completion flag
                       style: TextStyle(
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold,
@@ -150,22 +150,38 @@ class _RadarDialogState extends State<RadarDialog>
                                       fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(height: 5),
-                                Text(
-                                  "pickup point: ${_selectedAddress.first.name}",
-                                  style: TextStyle(
-                                    fontFamily: 'Square',
-                                    fontSize: 20,
-                                    height: 1,
-                                  ),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.hail_rounded,
+                                      size: 20,
+                                    ),
+                                    Text(
+                                      _selectedAddress.first.name,
+                                      style: TextStyle(
+                                        fontFamily: 'Square',
+                                        fontSize: 20,
+                                        height: 1,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 SizedBox(height: 5),
-                                Text(
-                                  "drop-off point: ${_selectedAddress.last.name}",
-                                  style: TextStyle(
-                                    fontFamily: 'Square',
-                                    fontSize: 20,
-                                    height: 1,
-                                  ),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.location_on_outlined,
+                                      size: 20,
+                                    ),
+                                    Text(
+                                      "${_selectedAddress.last.name}",
+                                      style: TextStyle(
+                                        fontFamily: 'Square',
+                                        fontSize: 20,
+                                        height: 1,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 SizedBox(height: 5),
                                 Text(

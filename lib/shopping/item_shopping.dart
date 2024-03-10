@@ -13,28 +13,13 @@ import '../style/my_button.dart';
 import '../style/palette.dart';
 import 'items.dart';
 
-class ItemShoppingScreen extends StatefulWidget {
+class ItemShoppingScreen extends StatelessWidget {
   // final flutterGoogleWalletPlugin = FlutterGoogleWalletPlugin();
   ItemShoppingScreen({super.key});
 
   static const _gap = SizedBox(height: 20);
 
-  @override
-  State<ItemShoppingScreen> createState() => _ItemShoppingScreenState();
-}
-
-class _ItemShoppingScreenState extends State<ItemShoppingScreen> {
   late Future<bool> _isWalletAvailable;
-
-  @override
-  void initState() {
-    super.initState();
-    // _isWalletAvailable = Future(() async {
-    //   // return true;
-    //   await widget.flutterGoogleWalletPlugin.initWalletClient();
-    //   return widget.flutterGoogleWalletPlugin.getWalletApiAvailabilityStatus();
-    // });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,35 +62,6 @@ class _ItemShoppingScreenState extends State<ItemShoppingScreen> {
             ],
           ),
           const SizedBox(height: 8.0),
-          AddToGoogleWalletButton(
-            pass: exampleJsonPass,
-            onError: (Object error) => _onError(context, error),
-            onSuccess: () => _onSuccess(context),
-            onCanceled: () => _onCanceled(context),
-          ),
-          // FutureBuilder<bool>(
-          //   future: _isWalletAvailable,
-          //   builder: (BuildContext context, AsyncSnapshot<bool> available) {
-          //     if (available.data == true) {
-          //       return Padding(
-          //         padding: const EdgeInsets.all(10),
-          //         child: Align(
-          //           alignment: Alignment.topCenter,
-          //           child: AddToGoogleWalletButton(
-          //             locale: const Locale('en', 'US'),
-          //             onPress: () {
-          //               widget.flutterGoogleWalletPlugin.savePasses(
-          //                   jsonPass: exampleJsonPass,
-          //                   addToGoogleWalletRequestCode: 2);
-          //             },
-          //           ),
-          //         ),
-          //       );
-          //     } else {
-          //       return const SizedBox.shrink();
-          //     }
-          //   },
-          // ),
           const SizedBox(height: 50),
           Expanded(
             child: ListView(
@@ -201,7 +157,16 @@ class _ItemShoppingScreenState extends State<ItemShoppingScreen> {
                           ],
                         ),
                         Image.asset(
-                            'assets/images/sprites/vehicles/${type.name}.png')
+                            'assets/images/sprites/vehicles/${type.name}.png'),
+                        playerProgress.isBought(type.number)
+                            ? AddToGoogleWalletButton(
+                                pass: collectionPass(type),
+                                onError: (Object error) =>
+                                    _onError(context, error),
+                                onSuccess: () => _onSuccess(context),
+                                onCanceled: () => _onCanceled(context),
+                              )
+                            : Container(),
                       ],
                     ),
                   )
@@ -222,7 +187,7 @@ class _ItemShoppingScreenState extends State<ItemShoppingScreen> {
               ),
             ),
           ),
-          ItemShoppingScreen._gap,
+          _gap,
         ]),
       ),
     );
@@ -254,7 +219,7 @@ class _ItemShoppingScreenState extends State<ItemShoppingScreen> {
       );
 }
 
-const exampleJsonPass = '''
+String collectionPass(VehicleType type) => '''
 {
   "iss": "player@evdriver-416618.iam.gserviceaccount.com",
   "aud": "google",
@@ -265,7 +230,7 @@ const exampleJsonPass = '''
   "payload": {
     "genericObjects": [
       {
-        "id": "3388000000022324825.codelab_object1",
+        "id": "3388000000022324825.${type.name.toLowerCase()}",
         "classId": "3388000000022324825.codelab_class",
         "genericType": "GENERIC_TYPE_UNSPECIFIED",
         "hexBackgroundColor": "#4285f4",
@@ -289,7 +254,7 @@ const exampleJsonPass = '''
         "header": {
           "defaultValue": {
             "language": "en-US",
-            "value": "VF6"
+            "value": "${type.name.toUpperCase()}"
           }
         },
         "barcode": {

@@ -4,7 +4,6 @@
 
 import 'dart:developer' as dev;
 
-import 'package:ev_driver/settings/language_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

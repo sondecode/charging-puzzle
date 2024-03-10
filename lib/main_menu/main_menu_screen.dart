@@ -48,15 +48,6 @@ class MainMenuScreen extends StatelessWidget {
                   'assets/images/sprites/logo.png',
                   width: 600,
                 ),
-                // const Text(
-                //   'Electric Vehicles\nDriver!',
-                //   textAlign: TextAlign.center,
-                //   style: TextStyle(
-                //     fontFamily: 'Electric',
-                //     fontSize: 90,
-                //     height: 1,
-                //   ),
-                // ),
                 _gap,
                 ElevatedButton(
                   onPressed: () {
@@ -116,7 +107,7 @@ class MainMenuScreen extends StatelessWidget {
                   ),
                   child: Icon(
                     size: 50,
-                    Icons.radar,
+                    Icons.local_taxi_outlined,
                     color: Colors.white,
                   ),
                 ),
