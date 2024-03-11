@@ -116,8 +116,8 @@ class SettingsScreen extends StatelessWidget {
                 onPressed: () {
                   GoRouter.of(context).pop();
                 },
-                child: const Text(
-                  'Back',
+                child: Text(
+                  AppLocalizations.of(context)!.back,
                   style: TextStyle(
                     color: Colors.blueGrey,
                     fontFamily: 'Square',

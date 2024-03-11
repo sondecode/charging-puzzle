@@ -2,7 +2,6 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:ev_driver/level_selection/levels.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -10,6 +9,7 @@ import 'package:provider/provider.dart';
 import '../game_internals/score.dart';
 import '../style/my_button.dart';
 import '../style/palette.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WinGameScreen extends StatelessWidget {
   final Score score;
@@ -36,9 +36,9 @@ class WinGameScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             gap,
-            const Center(
+            Center(
               child: Text(
-                'You won!',
+                AppLocalizations.of(context)!.youWon,
                 style: TextStyle(
                     fontFamily: 'Square',
                     fontStyle: FontStyle.italic,
@@ -48,8 +48,7 @@ class WinGameScreen extends StatelessWidget {
             gap,
             Center(
               child: Text(
-                'Score: ${score.score}\n'
-                'Time: ${score.formattedTime}',
+                '${AppLocalizations.of(context)!.score}${score.score}\n${AppLocalizations.of(context)!.time}${score.formattedTime}',
                 style: const TextStyle(
                     fontFamily: 'Square',
                     fontStyle: FontStyle.italic,
@@ -60,7 +59,7 @@ class WinGameScreen extends StatelessWidget {
               height: 50,
             ),
             Text(
-              'Fact:',
+              AppLocalizations.of(context)!.fact,
               style: const TextStyle(
                   fontFamily: 'Square',
                   fontStyle: FontStyle.italic,
@@ -84,8 +83,8 @@ class WinGameScreen extends StatelessWidget {
               onPressed: () {
                 GoRouter.of(context).go('/play');
               },
-              child: const Text(
-                'Continue',
+              child: Text(
+                AppLocalizations.of(context)!.continue1,
                 style: TextStyle(
                   color: Colors.blueGrey,
                   fontFamily: 'Square',

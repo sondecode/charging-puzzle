@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 
 import '../style/my_button.dart';
 import '../style/palette.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TransportDoneScreen extends StatefulWidget {
   final int secondsElapsed;
@@ -164,8 +165,8 @@ class _TransportDoneScreenState extends State<TransportDoneScreen> {
               onPressed: () {
                 GoRouter.of(context).go('/');
               },
-              child: const Text(
-                'Back',
+              child: Text(
+                AppLocalizations.of(context)!.back,
                 style: TextStyle(
                   color: Colors.blueGrey,
                   fontFamily: 'Square',

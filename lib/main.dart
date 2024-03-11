@@ -83,10 +83,11 @@ class MyApp extends StatelessWidget {
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
-            // locale: Provider.of<LanguageProvider>(context).locale,
+            // locale: Locale('ja'),
             supportedLocales: const [
               Locale('en'),
               Locale('vi'),
+              Locale('ja'),
             ],
             title: 'Electric Vehicle Driver',
             debugShowCheckedModeBanner: false,

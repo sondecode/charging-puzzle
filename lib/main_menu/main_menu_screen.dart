@@ -76,7 +76,7 @@ class MainMenuScreen extends StatelessWidget {
                         color: Colors.black.withOpacity(0.3),
                         borderRadius: BorderRadius.circular(4)),
                     child: Text(
-                      AppLocalizations.of(context)!.helloWorld,
+                      AppLocalizations.of(context)!.taximode,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: palette.backgroundMain,

@@ -216,6 +216,7 @@ class _TransportScreenState extends State<TransportScreen> {
                                   )
                                 : Transport2Widget(
                                     addressNumber: widget.booking.end,
+                                    speed: _car.speed,
                                     letterCar: _car.name,
                                   )
                             // TransportWidget(),

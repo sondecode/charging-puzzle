@@ -13,20 +13,17 @@ import '../player_progress/player_progress.dart';
 import '../style/my_button.dart';
 import '../style/palette.dart';
 import 'items.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ItemShoppingScreen extends StatelessWidget {
   // final flutterGoogleWalletPlugin = FlutterGoogleWalletPlugin();
-  ItemShoppingScreen({super.key});
+  const ItemShoppingScreen({super.key});
 
   static const _gap = SizedBox(height: 20);
-
-  late Future<bool> _isWalletAvailable;
-
   @override
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
     final playerProgress = context.watch<PlayerProgress>();
-    print(DateTime.now().hashCode);
 
     return Scaffold(
       backgroundColor: palette.backgroundLevelSelection,
@@ -176,14 +173,15 @@ class ItemShoppingScreen extends StatelessWidget {
                                 child: Column(
                                   children: [
                                     AddToGoogleWalletButton(
-                                      pass: collectionPass(type),
+                                      pass: collectionPass(
+                                          type, playerProgress.userId),
                                       onError: (Object error) =>
                                           _onError(context, error),
                                       onSuccess: () => _onSuccess(context),
                                       onCanceled: () => _onCanceled(context),
                                     ),
                                     Text(
-                                      'Available on Android',
+                                      AppLocalizations.of(context)!.available,
                                       style: TextStyle(fontSize: 10),
                                     )
                                   ],
@@ -200,8 +198,8 @@ class ItemShoppingScreen extends StatelessWidget {
             onPressed: () {
               GoRouter.of(context).pop();
             },
-            child: const Text(
-              'Back',
+            child: Text(
+              AppLocalizations.of(context)!.back,
               style: TextStyle(
                 color: Colors.blueGrey,
                 fontFamily: 'Square',
@@ -243,7 +241,7 @@ class ItemShoppingScreen extends StatelessWidget {
       );
 }
 
-String collectionPass(VehicleType type) => '''
+String collectionPass(VehicleType type, String userId) => '''
 {
   "iss": "player@evdriver-416618.iam.gserviceaccount.com",
   "aud": "google",
@@ -254,7 +252,7 @@ String collectionPass(VehicleType type) => '''
   "payload": {
     "genericObjects": [
       {
-        "id": "3388000000022324825.${type.name.toLowerCase()}${DateTime.now().hashCode}",
+        "id": "3388000000022324825.$userId.${type.name.toLowerCase()}",
         "classId": "3388000000022324825.codelab_class",
         "genericType": "GENERIC_TYPE_UNSPECIFIED",
         "hexBackgroundColor": "#4285f4",

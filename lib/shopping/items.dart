@@ -11,7 +11,7 @@ const vehicleType = [
       bonus: 1,
       maxEnergy: 5,
       imgLink:
-          "https://lh3.googleusercontent.com/proxy/KT8lqVCbWR0Q2W1_ULFPQ9AStK3mM79lq0aeD4esO0wVEseKavPXyQVdMvtznUSgZE_67aRZZZL5-R0NgTDhtMtEWdE0Tc0_CiUdcfSlLBXsiA"),
+          "https://shop.vinfastauto.com/on/demandware.static/-/Sites-app_vinfast_vn-Library/default/dw0933a87c/images/PDP-XMD/felizs/img-top-felizs-white.webp"),
   VehicleType(
       number: 2,
       name: "vfe34",

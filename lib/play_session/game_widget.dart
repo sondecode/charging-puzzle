@@ -178,6 +178,7 @@ class _GameWidgetState extends State<GameWidget> {
 
                 return SizedBox(
                   child: PuzzleTile(
+                    disable: isWin,
                     isStart: _isStart,
                     width: _height / stateMap.length,
                     startBg: _isStart && isWin,

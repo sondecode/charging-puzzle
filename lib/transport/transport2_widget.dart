@@ -25,9 +25,14 @@ class Transport2Widget extends StatefulWidget {
   late String spriteImage = 'assets/images/sprites/C_sprite.png';
   late int startX = 0;
   late int startY = 0;
+
+  final int speed;
   final int addressNumber;
   Transport2Widget(
-      {super.key, required this.addressNumber, required this.letterCar});
+      {super.key,
+      required this.addressNumber,
+      required this.letterCar,
+      required this.speed});
   @override
   State<Transport2Widget> createState() => _Transport2WidgetState();
 }
@@ -41,7 +46,7 @@ class _Transport2WidgetState extends State<Transport2Widget> {
   late double _endX = 0.0;
   late double _endY = 0.0;
   late bool isVisible = true;
-  final stepDuration = 400;
+  late int stepDuration = 600 - widget.speed;
 
   @override
   void initState() {
@@ -167,6 +172,7 @@ class _Transport2WidgetState extends State<Transport2Widget> {
 
                 return SizedBox(
                   child: PuzzleTile(
+                    disable: isWin,
                     isStart: _isStart,
                     width: _height / stateMap.length,
                     startBg: _isStart && isWin,

@@ -9,7 +9,7 @@ class PuzzleTile extends StatefulWidget {
   final Function onTap;
   final bool hide;
   final bool startBg;
-
+  final bool disable;
   final bool isStart;
   final bool isBg;
   final double width;
@@ -18,6 +18,7 @@ class PuzzleTile extends StatefulWidget {
       {super.key,
       required this.letter,
       required this.onTap,
+      required this.disable,
       required this.hide,
       this.isBg = false,
       required this.width,
@@ -57,7 +58,7 @@ class _PuzzleTileState extends State<PuzzleTile> {
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
     return GestureDetector(
-        onTap: _isEnd
+        onTap: _isEnd || widget.disable
             ? null
             : () {
                 setState(() {

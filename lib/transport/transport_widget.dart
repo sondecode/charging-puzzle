@@ -45,7 +45,7 @@ class _TransportWidgetState extends State<TransportWidget> {
   late double _endX = 0.0;
   late double _endY = 0.0;
   late bool isVisible = true;
-  late int stepDuration = 450 - widget.speed;
+  late int stepDuration = 600 - widget.speed;
 
   @override
   void initState() {
@@ -171,6 +171,7 @@ class _TransportWidgetState extends State<TransportWidget> {
 
                 return SizedBox(
                   child: PuzzleTile(
+                    disable: isWin,
                     isStart: _isStart,
                     width: _height / stateMap.length,
                     startBg: _isStart && isWin,

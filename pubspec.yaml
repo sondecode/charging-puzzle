@@ -24,6 +24,7 @@ dependencies:
   intl: ^0.18.1
   intl_translation: ^0.18.2
   add_to_google_wallet: ^0.0.3
+  uuid: ^4.3.3
 
 dev_dependencies:
   flutter_lints: ^3.0.0

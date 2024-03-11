@@ -4,6 +4,7 @@
 
 import 'dart:async';
 
+import 'package:ev_driver/common/translate.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logging/logging.dart' hide Level;
@@ -105,7 +106,7 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
                           children: [
                             Expanded(
                               child: Text(
-                                widget.level.name,
+                                transNameLevel(context, widget.level.number),
                                 style: TextStyle(
                                     fontFamily: 'Square',
                                     fontStyle: FontStyle.italic,
@@ -221,7 +222,8 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
     await Future<void>.delayed(_celebrationDuration);
     if (!mounted) return;
 
-    GoRouter.of(context)
-        .go('/play/won', extra: {'score': score, 'fact': widget.level.fact});
+    final String fact = transFact(context, widget.level.number);
+
+    GoRouter.of(context).go('/play/won', extra: {'score': score, 'fact': fact});
   }
 }

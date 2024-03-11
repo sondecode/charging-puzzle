@@ -4,13 +4,10 @@
 
 const gameLevels = [
   GameLevel(
-      name: "Begin",
       number: 1,
       difficulty: 5,
       achievementIdIOS: 'first_win',
       achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
-      fact:
-          "Xe điện được trang bị động cơ chạy bằng điện vậy nên tiết kiệm nhiên liệu, ít gây ra khí thải. Để di chuyển xe điện cần sạc điện vào pin.",
       sprite: "C",
       initMap: [
         ["X_1", "L_3"],
@@ -30,13 +27,10 @@ const gameLevels = [
         2
       ]),
   GameLevel(
-      name: "Co2 certificate",
       number: 2,
       difficulty: 5,
       achievementIdIOS: 'first_win',
       achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
-      fact:
-          "Xe điện thải ít khí nhà kính (CO2) hơn xe động cơ đốt trong. CO2 Certificate có thể được dùng để mua vật phẩm trong trò chơi này.",
       sprite: "C",
       initMap: [
         ["X_0", "I_1", "L_2"],
@@ -58,13 +52,10 @@ const gameLevels = [
 
   //LV3
   GameLevel(
-      name: "Home",
       number: 3,
       difficulty: 5,
       achievementIdIOS: 'first_win',
       achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
-      fact:
-          "Xe điện có thể tạo ra một môi trường yên tĩnh hơn khi di chuyển, đặc biệt là trong khu vực đô thị và các khu dân cư nhỏ.",
       sprite: "C",
       initMap: [
         ["X_0", "L_2", "L_3"],
@@ -94,13 +85,10 @@ const gameLevels = [
       ]),
   //LV4
   GameLevel(
-      name: "Solar panel",
       number: 4,
       difficulty: 5,
       achievementIdIOS: 'first_win',
       achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
-      fact:
-          "Sử dụng năng lượng mặt trời giúp giảm lượng khí thải carbon được sinh ra từ việc sử dụng năng lượng hóa thạch, giúp giảm thiểu ảnh hưởng đến biến đổi khí hậu và môi trường.",
       sprite: "C",
       startX: 1,
       startY: 4,
@@ -132,13 +120,10 @@ const gameLevels = [
       ]),
   //LV5
   GameLevel(
-      name: "Wind turbine",
       number: 5,
       difficulty: 5,
       achievementIdIOS: 'first_win',
       achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
-      fact:
-          "Tua bin gió sử dụng sức gió để tạo ra năng lượng điện, đây là một nguồn năng lượng tái tạo không giới hạn, giúp giảm đi chi phí điện hàng tháng.",
       sprite: "C",
       startX: 0,
       startY: 1,
@@ -165,13 +150,10 @@ const gameLevels = [
       ]),
   //LV7
   GameLevel(
-      name: "Car service",
       number: 6,
       difficulty: 5,
       achievementIdIOS: 'first_win',
       achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
-      fact:
-          "Bảo trì xe điện đơn giản và tiết kiệm hơn xe xăng do có ít bộ phận chuyển động và không cần thay dầu động cơ, nhưng vẫn cần thực hiện định kỳ để đảm bảo hiệu suất và an toàn.",
       sprite: "C",
       startY: 3,
       startX: 0,
@@ -201,13 +183,10 @@ const gameLevels = [
       ]),
   //LV11
   GameLevel(
-      name: "Recycling",
       number: 7,
       difficulty: 5,
       achievementIdIOS: 'first_win',
       achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
-      fact:
-          "Xe điện có thể tái chế đến 70% của các thành phần và vật liệu để giảm lượng rác thải và tối ưu hóa sự bền vững.",
       sprite: "C",
       startY: 3,
       startX: 2,
@@ -244,13 +223,10 @@ const gameLevels = [
       ]),
   //LV13
   GameLevel(
-      name: "Pollution",
       number: 8,
       difficulty: 5,
       achievementIdIOS: 'first_win',
       achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
-      fact:
-          "Ở một số quốc gia, các tội phạm môi trường có thể nhận án phạt cực kỳ nặng, bao gồm cả án tù dài hạn, phạt tiền lớn, hoặc cả hai, do hậu quả của hành vi của họ gây ra cho môi trường và sức khỏe của cộng đồng có thể rất nghiêm trọng",
       sprite: "police",
       startX: 0,
       startY: 8,
@@ -300,13 +276,10 @@ const gameLevels = [
       ]),
   //LV16
   GameLevel(
-      name: "Bus stop",
       number: 9,
       difficulty: 5,
       achievementIdIOS: 'first_win',
       achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
-      fact:
-          "Sử dụng phương tiện công cộng không chỉ là một cách hiệu quả để giảm lượng ô nhiễm môi trường mà còn mang lại nhiều lợi ích khác cho môi trường sống và sức khỏe của cộng đồng.",
       sprite: "vbus",
       startX: 3,
       startY: 5,
@@ -358,13 +331,10 @@ const gameLevels = [
       ]),
   //LV15
   GameLevel(
-      name: "Finish",
       number: 10,
       difficulty: 5,
       achievementIdIOS: 'first_win',
       achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
-      fact:
-          "Mọi người cần cùng nhau góp sức để xây dựng một tương lai bền vững cho hành tinh chúng ta.",
       sprite: "police",
       startX: 0,
       startY: 2,
@@ -429,11 +399,7 @@ class GameLevel {
 
   final List<List<String>> winMap;
 
-  final String name;
-
   final String sprite;
-
-  final String fact;
 
   final int startX;
 
@@ -453,8 +419,6 @@ class GameLevel {
     required this.number,
     this.startX = 0,
     this.startY = 0,
-    this.name = "Home",
-    required this.fact,
     required this.difficulty,
     required this.initMap,
     required this.winMap,
