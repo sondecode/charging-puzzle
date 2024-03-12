@@ -31,8 +31,8 @@ class SettingsScreen extends StatelessWidget {
               Column(
                 children: [
                   _gap,
-                  const Text(
-                    'Settings',
+                  Text(
+                    AppLocalizations.of(context)!.settings,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: 'Square',
@@ -42,13 +42,13 @@ class SettingsScreen extends StatelessWidget {
                     ),
                   ),
                   _gap,
-                  const _NameChangeLine(
-                    'Name',
+                  _NameChangeLine(
+                    AppLocalizations.of(context)!.name,
                   ),
                   ValueListenableBuilder<bool>(
                     valueListenable: settings.soundsOn,
                     builder: (context, soundsOn, child) => _SettingsLine(
-                      'Sound FX',
+                      AppLocalizations.of(context)!.soundFX,
                       Icon(soundsOn ? Icons.graphic_eq : Icons.volume_off),
                       onSelected: () => settings.toggleSoundsOn(),
                     ),
@@ -56,13 +56,13 @@ class SettingsScreen extends StatelessWidget {
                   ValueListenableBuilder<bool>(
                     valueListenable: settings.musicOn,
                     builder: (context, musicOn, child) => _SettingsLine(
-                      'Music: fanquan - City',
+                      AppLocalizations.of(context)!.music,
                       Icon(musicOn ? Icons.music_note : Icons.music_off),
                       onSelected: () => settings.toggleMusicOn(),
                     ),
                   ),
                   _SettingsLine(
-                    'Reset progress',
+                    AppLocalizations.of(context)!.reset,
                     const Icon(Icons.delete),
                     onSelected: () {
                       context.read<PlayerProgress>().reset();
@@ -75,7 +75,7 @@ class SettingsScreen extends StatelessWidget {
                     },
                   ),
                   _SettingsLine(
-                    'About',
+                    AppLocalizations.of(context)!.about,
                     const Icon(Icons.help),
                     onSelected: () {
                       showDialog(

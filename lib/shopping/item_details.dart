@@ -1,5 +1,6 @@
 import 'package:ev_driver/shopping/items.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ItemDetails extends StatelessWidget {
   final VehicleType details;
@@ -48,7 +49,7 @@ class ItemDetails extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  "bonus: ${details.bonus}",
+                                  "${AppLocalizations.of(context)!.bonus}: ${details.bonus}",
                                   style: TextStyle(
                                     fontFamily: 'Square',
                                     fontStyle: FontStyle.italic,
@@ -73,7 +74,7 @@ class ItemDetails extends StatelessWidget {
                             ),
                             SizedBox(height: 5),
                             Text(
-                              "pin cell: ${details.maxEnergy}",
+                              "${AppLocalizations.of(context)!.pinCell}: ${details.maxEnergy}",
                               style: TextStyle(
                                 fontFamily: 'Square',
                                 fontStyle: FontStyle.italic,
@@ -83,7 +84,7 @@ class ItemDetails extends StatelessWidget {
                             ),
                             SizedBox(height: 5),
                             Text(
-                              "speed: ${details.speed} km/h",
+                              "${AppLocalizations.of(context)!.speed}: ${details.speed} km/h",
                               style: TextStyle(
                                 fontFamily: 'Square',
                                 fontStyle: FontStyle.italic,
@@ -105,7 +106,7 @@ class ItemDetails extends StatelessWidget {
                           Navigator.of(context).pop();
                         },
                         child: Text(
-                          'Close',
+                          AppLocalizations.of(context)!.close,
                           style: TextStyle(
                             fontFamily: 'Square',
                             fontStyle: FontStyle.italic,

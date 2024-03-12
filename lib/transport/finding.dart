@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class RadarDialog extends StatefulWidget {
   @override
   _RadarDialogState createState() => _RadarDialogState();
@@ -110,8 +112,9 @@ class _RadarDialogState extends State<RadarDialog>
                     SizedBox(height: 20.0),
                     Text(
                       _completed
-                          ? 'Complete'
-                          : 'Searching for customer...', // Update text based on completion flag
+                          ? AppLocalizations.of(context)!.complete
+                          : AppLocalizations.of(context)!
+                              .searching, // Update text based on completion flag
                       style: TextStyle(
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold,
@@ -188,7 +191,7 @@ class _RadarDialogState extends State<RadarDialog>
                                 ),
                                 SizedBox(height: 5),
                                 Text(
-                                  "distance: ${_distance} km",
+                                  "${AppLocalizations.of(context)!.distance2} ${_distance} km",
                                   style: TextStyle(
                                     fontFamily: 'Square',
                                     fontStyle: FontStyle.italic,
@@ -210,7 +213,7 @@ class _RadarDialogState extends State<RadarDialog>
                               _skip();
                             },
                             child: Text(
-                              'Skip',
+                              AppLocalizations.of(context)!.skip,
                               style: TextStyle(
                                 fontFamily: 'Square',
                                 fontStyle: FontStyle.italic,
@@ -233,7 +236,7 @@ class _RadarDialogState extends State<RadarDialog>
                                   .push("/transport", extra: booking);
                             },
                             child: Text(
-                              'Accept',
+                              AppLocalizations.of(context)!.accept,
                               style: TextStyle(
                                 fontFamily: 'Square',
                                 fontStyle: FontStyle.italic,

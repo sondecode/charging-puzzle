@@ -29,11 +29,11 @@ class ItemShoppingScreen extends StatelessWidget {
       backgroundColor: palette.backgroundLevelSelection,
       body: SafeArea(
         child: Column(children: [
-          const Padding(
+          Padding(
             padding: EdgeInsets.all(16),
             child: Center(
               child: Text(
-                'Electric Vehicle Store',
+                AppLocalizations.of(context)!.storeName,
                 style: TextStyle(
                     fontFamily: 'Square',
                     fontStyle: FontStyle.italic,
@@ -65,7 +65,6 @@ class ItemShoppingScreen extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 8.0),
-          const SizedBox(height: 50),
           Expanded(
             child: ListView(
               children: [
@@ -126,7 +125,7 @@ class ItemShoppingScreen extends StatelessWidget {
                                 ? playerProgress.curVehicle == type.number
                                     ? MyButton(
                                         child: Text(
-                                        'Used',
+                                        AppLocalizations.of(context)!.inUse,
                                         style: TextStyle(
                                           fontFamily: 'Square',
                                           fontStyle: FontStyle.italic,
@@ -136,7 +135,7 @@ class ItemShoppingScreen extends StatelessWidget {
                                       ))
                                     : MyButton(
                                         child: Text(
-                                          'Use',
+                                          AppLocalizations.of(context)!.use,
                                           style: TextStyle(
                                             fontFamily: 'Square',
                                             fontStyle: FontStyle.italic,
@@ -151,7 +150,7 @@ class ItemShoppingScreen extends StatelessWidget {
                                       )
                                 : MyButton(
                                     child: Text(
-                                      'Buy',
+                                      AppLocalizations.of(context)!.buy,
                                       style: TextStyle(
                                         fontFamily: 'Square',
                                         fontStyle: FontStyle.italic,
