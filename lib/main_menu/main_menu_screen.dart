@@ -13,6 +13,7 @@ import '../audio/audio_controller.dart';
 import '../audio/sounds.dart';
 import '../settings/settings.dart';
 import '../style/palette.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MainMenuScreen extends StatelessWidget {
   const MainMenuScreen({super.key});
@@ -47,15 +48,6 @@ class MainMenuScreen extends StatelessWidget {
                   'assets/images/sprites/logo.png',
                   width: 600,
                 ),
-                // const Text(
-                //   'Electric Vehicles\nDriver!',
-                //   textAlign: TextAlign.center,
-                //   style: TextStyle(
-                //     fontFamily: 'Electric',
-                //     fontSize: 90,
-                //     height: 1,
-                //   ),
-                // ),
                 _gap,
                 ElevatedButton(
                   onPressed: () {
@@ -84,11 +76,12 @@ class MainMenuScreen extends StatelessWidget {
                         color: Colors.black.withOpacity(0.3),
                         borderRadius: BorderRadius.circular(4)),
                     child: Text(
-                      'finding customers:',
+                      AppLocalizations.of(context)!.taximode,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: palette.backgroundMain,
-                        fontFamily: 'Electric',
+                        fontFamily: 'Square',
+                        fontStyle: FontStyle.italic,
                         fontSize: 30,
                         height: 1,
                       ),
@@ -115,7 +108,7 @@ class MainMenuScreen extends StatelessWidget {
                   ),
                   child: Icon(
                     size: 50,
-                    Icons.radar,
+                    Icons.local_taxi_outlined,
                     color: Colors.white,
                   ),
                 ),
@@ -215,7 +208,8 @@ class MainMenuScreen extends StatelessWidget {
                     Text(
                       playerProgress.money.toString(),
                       style: TextStyle(
-                        fontFamily: 'Electric',
+                        fontFamily: 'Square',
+                        fontStyle: FontStyle.italic,
                         fontSize: 30,
                         height: 1,
                         color: palette.backgroundMain,
@@ -227,13 +221,14 @@ class MainMenuScreen extends StatelessWidget {
                   children: [
                     Icon(
                       size: 40,
-                      Icons.battery_3_bar_sharp,
+                      Icons.local_taxi_outlined,
                       color: palette.backgroundMain,
                     ),
                     Text(
-                      playerProgress.maxEnergy.toString(),
+                      playerProgress.amountCar.toString(),
                       style: TextStyle(
-                        fontFamily: 'Electric',
+                        fontFamily: 'Square',
+                        fontStyle: FontStyle.italic,
                         fontSize: 30,
                         height: 1,
                         color: palette.backgroundMain,

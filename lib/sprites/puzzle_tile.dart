@@ -9,7 +9,7 @@ class PuzzleTile extends StatefulWidget {
   final Function onTap;
   final bool hide;
   final bool startBg;
-
+  final bool disable;
   final bool isStart;
   final bool isBg;
   final double width;
@@ -18,6 +18,7 @@ class PuzzleTile extends StatefulWidget {
       {super.key,
       required this.letter,
       required this.onTap,
+      required this.disable,
       required this.hide,
       this.isBg = false,
       required this.width,
@@ -57,7 +58,7 @@ class _PuzzleTileState extends State<PuzzleTile> {
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
     return GestureDetector(
-        onTap: _isEnd
+        onTap: _isEnd || widget.disable
             ? null
             : () {
                 setState(() {
@@ -69,19 +70,18 @@ class _PuzzleTileState extends State<PuzzleTile> {
         child: widget.isBg
             ? Container(
                 decoration: BoxDecoration(
-                  color: Colors.green,
-                  border: Border.all(color: Colors.grey),
-                ),
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(8)),
               )
             : Stack(
                 children: [
                   Transform.rotate(
                     angle: rotationAngle * (3.14159265359 / 180),
                     child: Container(
+                      margin: EdgeInsets.all(1),
                       decoration: BoxDecoration(
-                        color: Colors.green,
-                        border: Border.all(color: Colors.grey),
-                      ),
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(8)),
                       child: widget.hide
                           ? Container()
                           : Stack(

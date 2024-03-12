@@ -11,6 +11,7 @@ import '../style/my_button.dart';
 import '../style/palette.dart';
 import 'custom_name_dialog.dart';
 import 'settings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -30,23 +31,24 @@ class SettingsScreen extends StatelessWidget {
               Column(
                 children: [
                   _gap,
-                  const Text(
-                    'Settings',
+                  Text(
+                    AppLocalizations.of(context)!.settings,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontFamily: 'Electric',
+                      fontFamily: 'Square',
+                      fontStyle: FontStyle.italic,
                       fontSize: 55,
                       height: 1,
                     ),
                   ),
                   _gap,
-                  const _NameChangeLine(
-                    'Name',
+                  _NameChangeLine(
+                    AppLocalizations.of(context)!.name,
                   ),
                   ValueListenableBuilder<bool>(
                     valueListenable: settings.soundsOn,
                     builder: (context, soundsOn, child) => _SettingsLine(
-                      'Sound FX',
+                      AppLocalizations.of(context)!.soundFX,
                       Icon(soundsOn ? Icons.graphic_eq : Icons.volume_off),
                       onSelected: () => settings.toggleSoundsOn(),
                     ),
@@ -54,13 +56,13 @@ class SettingsScreen extends StatelessWidget {
                   ValueListenableBuilder<bool>(
                     valueListenable: settings.musicOn,
                     builder: (context, musicOn, child) => _SettingsLine(
-                      'Music: fanquan - deleted.mp3',
+                      AppLocalizations.of(context)!.music,
                       Icon(musicOn ? Icons.music_note : Icons.music_off),
                       onSelected: () => settings.toggleMusicOn(),
                     ),
                   ),
                   _SettingsLine(
-                    'Reset progress',
+                    AppLocalizations.of(context)!.reset,
                     const Icon(Icons.delete),
                     onSelected: () {
                       context.read<PlayerProgress>().reset();
@@ -72,6 +74,40 @@ class SettingsScreen extends StatelessWidget {
                       );
                     },
                   ),
+                  _SettingsLine(
+                    AppLocalizations.of(context)!.about,
+                    const Icon(Icons.help),
+                    onSelected: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('About App'),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                Text('App Name: EVDriver'),
+                                Text('Version: 1.0.0'),
+                                Text('Author: N.T.Son'),
+                                Text('Copyright © 2024'),
+                              ],
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context)
+                                      .pop(); // Close the dialog
+                                },
+                                child: Text('Close'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                  ),
+                  // _LanguageChangeLine(AppLocalizations.of(context)!.language),
                   _gap,
                 ],
               ),
@@ -80,11 +116,12 @@ class SettingsScreen extends StatelessWidget {
                 onPressed: () {
                   GoRouter.of(context).pop();
                 },
-                child: const Text(
-                  'Back',
+                child: Text(
+                  AppLocalizations.of(context)!.back,
                   style: TextStyle(
                     color: Colors.blueGrey,
-                    fontFamily: 'Electric',
+                    fontFamily: 'Square',
+                    fontStyle: FontStyle.italic,
                     fontSize: 25,
                     height: 1,
                   ),
@@ -116,7 +153,8 @@ class _NameChangeLine extends StatelessWidget {
           children: [
             Text(title,
                 style: const TextStyle(
-                  fontFamily: 'Electric',
+                  fontFamily: 'Square',
+                  fontStyle: FontStyle.italic,
                   fontSize: 30,
                 )),
             const Spacer(),
@@ -125,7 +163,8 @@ class _NameChangeLine extends StatelessWidget {
               builder: (context, name, child) => Text(
                 '‘$name’',
                 style: const TextStyle(
-                  fontFamily: 'Electric',
+                  fontFamily: 'Square',
+                  fontStyle: FontStyle.italic,
                   fontSize: 30,
                 ),
               ),
@@ -162,7 +201,8 @@ class _SettingsLine extends StatelessWidget {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
-                  fontFamily: 'Electric',
+                  fontFamily: 'Square',
+                  fontStyle: FontStyle.italic,
                   fontSize: 30,
                 ),
               ),

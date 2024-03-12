@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 
 import '../style/my_button.dart';
 import '../style/palette.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TransportDoneScreen extends StatefulWidget {
   final int secondsElapsed;
@@ -47,14 +48,20 @@ class _TransportDoneScreenState extends State<TransportDoneScreen> {
             const Center(
               child: Text(
                 'Done!',
-                style: TextStyle(fontFamily: 'Electric', fontSize: 50),
+                style: TextStyle(
+                    fontFamily: 'Square',
+                    fontStyle: FontStyle.italic,
+                    fontSize: 50),
               ),
             ),
             gap,
             Center(
               child: Text(
                 formatDuration(Duration(seconds: widget.secondsElapsed)),
-                style: const TextStyle(fontFamily: 'Electric', fontSize: 20),
+                style: const TextStyle(
+                    fontFamily: 'Square',
+                    fontStyle: FontStyle.italic,
+                    fontSize: 20),
               ),
             ),
             Padding(
@@ -68,7 +75,8 @@ class _TransportDoneScreenState extends State<TransportDoneScreen> {
                     builder: (context, name, child) => Text(
                       'Driver: $name',
                       style: const TextStyle(
-                        fontFamily: 'Electric',
+                        fontFamily: 'Square',
+                        fontStyle: FontStyle.italic,
                         fontSize: 30,
                       ),
                     ),
@@ -119,13 +127,15 @@ class _TransportDoneScreenState extends State<TransportDoneScreen> {
                       const Text(
                         'Distance',
                         style: TextStyle(
-                          fontFamily: 'Electric',
+                          fontFamily: 'Square',
+                          fontStyle: FontStyle.italic,
                           fontSize: 30,
                         ),
                       ),
                       Text("${widget.booking.distance} km",
                           style: const TextStyle(
-                            fontFamily: 'Electric',
+                            fontFamily: 'Square',
+                            fontStyle: FontStyle.italic,
                             fontSize: 30,
                           )),
                     ],
@@ -135,12 +145,14 @@ class _TransportDoneScreenState extends State<TransportDoneScreen> {
                     children: [
                       const Text('Total',
                           style: TextStyle(
-                            fontFamily: 'Electric',
+                            fontFamily: 'Square',
+                            fontStyle: FontStyle.italic,
                             fontSize: 30,
                           )),
                       Text("\$${widget.total}",
                           style: const TextStyle(
-                            fontFamily: 'Electric',
+                            fontFamily: 'Square',
+                            fontStyle: FontStyle.italic,
                             fontSize: 30,
                           )),
                     ],
@@ -153,11 +165,12 @@ class _TransportDoneScreenState extends State<TransportDoneScreen> {
               onPressed: () {
                 GoRouter.of(context).go('/');
               },
-              child: const Text(
-                'Back',
+              child: Text(
+                AppLocalizations.of(context)!.back,
                 style: TextStyle(
                   color: Colors.blueGrey,
-                  fontFamily: 'Electric',
+                  fontFamily: 'Square',
+                  fontStyle: FontStyle.italic,
                   fontSize: 25,
                   height: 1,
                 ),

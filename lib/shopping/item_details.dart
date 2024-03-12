@@ -1,5 +1,6 @@
 import 'package:ev_driver/shopping/items.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ItemDetails extends StatelessWidget {
   final VehicleType details;
@@ -37,7 +38,8 @@ class ItemDetails extends StatelessWidget {
                             Text(
                               details.name,
                               style: TextStyle(
-                                fontFamily: 'Electric',
+                                fontFamily: 'Square',
+                                fontStyle: FontStyle.italic,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 29,
                                 height: 1,
@@ -47,9 +49,10 @@ class ItemDetails extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  "bonus: ${details.bonus}",
+                                  "${AppLocalizations.of(context)!.bonus}: ${details.bonus}",
                                   style: TextStyle(
-                                    fontFamily: 'Electric',
+                                    fontFamily: 'Square',
+                                    fontStyle: FontStyle.italic,
                                     fontSize: 20,
                                     height: 1,
                                   ),
@@ -61,7 +64,8 @@ class ItemDetails extends StatelessWidget {
                                 Text(
                                   "/km",
                                   style: TextStyle(
-                                    fontFamily: 'Electric',
+                                    fontFamily: 'Square',
+                                    fontStyle: FontStyle.italic,
                                     fontSize: 20,
                                     height: 1,
                                   ),
@@ -70,18 +74,20 @@ class ItemDetails extends StatelessWidget {
                             ),
                             SizedBox(height: 5),
                             Text(
-                              "pin cell: ${details.maxEnergy}",
+                              "${AppLocalizations.of(context)!.pinCell}: ${details.maxEnergy}",
                               style: TextStyle(
-                                fontFamily: 'Electric',
+                                fontFamily: 'Square',
+                                fontStyle: FontStyle.italic,
                                 fontSize: 20,
                                 height: 1,
                               ),
                             ),
                             SizedBox(height: 5),
                             Text(
-                              "speed: ${details.speed} km/h",
+                              "${AppLocalizations.of(context)!.speed}: ${details.speed} km/h",
                               style: TextStyle(
-                                fontFamily: 'Electric',
+                                fontFamily: 'Square',
+                                fontStyle: FontStyle.italic,
                                 fontSize: 20,
                                 height: 1,
                               ),
@@ -100,9 +106,10 @@ class ItemDetails extends StatelessWidget {
                           Navigator.of(context).pop();
                         },
                         child: Text(
-                          'Close',
+                          AppLocalizations.of(context)!.close,
                           style: TextStyle(
-                            fontFamily: 'Electric',
+                            fontFamily: 'Square',
+                            fontStyle: FontStyle.italic,
                             fontSize: 20,
                             height: 1,
                           ),

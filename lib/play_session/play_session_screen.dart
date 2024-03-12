@@ -4,6 +4,7 @@
 
 import 'dart:async';
 
+import 'package:ev_driver/common/translate.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logging/logging.dart' hide Level;
@@ -105,9 +106,10 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
                           children: [
                             Expanded(
                               child: Text(
-                                widget.level.name,
+                                transNameLevel(context, widget.level.number),
                                 style: TextStyle(
-                                    fontFamily: 'Electric',
+                                    fontFamily: 'Square',
+                                    fontStyle: FontStyle.italic,
                                     fontSize: 30,
                                     height: 1,
                                     color: palette.backgroundMain),
@@ -185,23 +187,6 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
                     ),
                   ),
                 ),
-                widget.level.number == 1 && !firstTouch
-                    ? Positioned(
-                        left: _width / 2,
-                        top: _height / 2,
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              firstTouch = true;
-                            });
-                          },
-                          child: Icon(
-                            Icons.touch_app,
-                            size: 100,
-                            color: Colors.black.withOpacity(0.7),
-                          ),
-                        ))
-                    : Container()
               ],
             ),
           ),
@@ -237,7 +222,8 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
     await Future<void>.delayed(_celebrationDuration);
     if (!mounted) return;
 
-    GoRouter.of(context)
-        .go('/play/won', extra: {'score': score, 'fact': widget.level.fact});
+    final String fact = transFact(context, widget.level.number);
+
+    GoRouter.of(context).go('/play/won', extra: {'score': score, 'fact': fact});
   }
 }

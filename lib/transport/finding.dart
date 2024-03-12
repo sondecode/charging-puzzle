@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class RadarDialog extends StatefulWidget {
   @override
   _RadarDialogState createState() => _RadarDialogState();
@@ -17,7 +19,7 @@ class _RadarDialogState extends State<RadarDialog>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
-  Customer? _selectedCustomer;
+  String? _selectedCustomer;
   List<Address> _selectedAddress = [];
   int _distance = 1;
 
@@ -110,8 +112,9 @@ class _RadarDialogState extends State<RadarDialog>
                     SizedBox(height: 20.0),
                     Text(
                       _completed
-                          ? 'Complete'
-                          : 'Searching for signal...', // Update text based on completion flag
+                          ? AppLocalizations.of(context)!.complete
+                          : AppLocalizations.of(context)!
+                              .searching, // Update text based on completion flag
                       style: TextStyle(
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold,
@@ -142,36 +145,56 @@ class _RadarDialogState extends State<RadarDialog>
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  _selectedCustomer!.name,
+                                  _selectedCustomer!,
                                   style: TextStyle(
-                                      fontFamily: 'Electric',
+                                      fontFamily: 'Square',
+                                      fontStyle: FontStyle.italic,
                                       fontSize: 29,
                                       height: 1,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(height: 5),
-                                Text(
-                                  "pickup point: ${_selectedAddress.first.name}",
-                                  style: TextStyle(
-                                    fontFamily: 'Electric',
-                                    fontSize: 20,
-                                    height: 1,
-                                  ),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.hail_rounded,
+                                      size: 20,
+                                    ),
+                                    Text(
+                                      _selectedAddress.first.name,
+                                      style: TextStyle(
+                                        fontFamily: 'Square',
+                                        fontStyle: FontStyle.italic,
+                                        fontSize: 20,
+                                        height: 1,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 5),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.location_on_outlined,
+                                      size: 20,
+                                    ),
+                                    Text(
+                                      "${_selectedAddress.last.name}",
+                                      style: TextStyle(
+                                        fontFamily: 'Square',
+                                        fontStyle: FontStyle.italic,
+                                        fontSize: 20,
+                                        height: 1,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 SizedBox(height: 5),
                                 Text(
-                                  "drop-off point: ${_selectedAddress.last.name}",
+                                  "${AppLocalizations.of(context)!.distance2} ${_distance} km",
                                   style: TextStyle(
-                                    fontFamily: 'Electric',
-                                    fontSize: 20,
-                                    height: 1,
-                                  ),
-                                ),
-                                SizedBox(height: 5),
-                                Text(
-                                  "distance: ${_distance} km",
-                                  style: TextStyle(
-                                    fontFamily: 'Electric',
+                                    fontFamily: 'Square',
+                                    fontStyle: FontStyle.italic,
                                     fontSize: 20,
                                     height: 1,
                                   ),
@@ -190,9 +213,10 @@ class _RadarDialogState extends State<RadarDialog>
                               _skip();
                             },
                             child: Text(
-                              'Skip',
+                              AppLocalizations.of(context)!.skip,
                               style: TextStyle(
-                                fontFamily: 'Electric',
+                                fontFamily: 'Square',
+                                fontStyle: FontStyle.italic,
                                 fontSize: 20,
                                 height: 1,
                               ),
@@ -212,9 +236,10 @@ class _RadarDialogState extends State<RadarDialog>
                                   .push("/transport", extra: booking);
                             },
                             child: Text(
-                              'Accept',
+                              AppLocalizations.of(context)!.accept,
                               style: TextStyle(
-                                fontFamily: 'Electric',
+                                fontFamily: 'Square',
+                                fontStyle: FontStyle.italic,
                                 fontSize: 20,
                                 height: 1,
                               ),
@@ -230,7 +255,7 @@ class _RadarDialogState extends State<RadarDialog>
 }
 
 class Booking {
-  final Customer customer;
+  final String customer;
 
   final int from;
 

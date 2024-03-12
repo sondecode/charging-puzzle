@@ -22,10 +22,16 @@ import '../audio/sounds.dart';
 class TransportWidget extends StatefulWidget {
   late int carDirect = 0;
   final String letterCar;
+  late int startX = 0;
+  late int startY = 0;
+  final int speed;
   late String spriteImage = 'assets/images/sprites/C_sprite.png';
   final int addressNumber;
   TransportWidget(
-      {super.key, required this.addressNumber, required this.letterCar});
+      {super.key,
+      required this.addressNumber,
+      required this.letterCar,
+      required this.speed});
   @override
   State<TransportWidget> createState() => _TransportWidgetState();
 }
@@ -39,7 +45,7 @@ class _TransportWidgetState extends State<TransportWidget> {
   late double _endX = 0.0;
   late double _endY = 0.0;
   late bool isVisible = true;
-  final stepDuration = 400;
+  late int stepDuration = 600 - widget.speed;
 
   @override
   void initState() {
@@ -47,6 +53,8 @@ class _TransportWidgetState extends State<TransportWidget> {
     mapAddress = gameAddress
         .firstWhere((element) => element.number == widget.addressNumber);
 
+    widget.startX = mapAddress.startX;
+    widget.startY = mapAddress.startY;
     widget.spriteImage = 'assets/images/sprites/${widget.letterCar}_sprite.png';
     stateMap = List.generate(
       mapAddress.initMap.length,
@@ -60,10 +68,10 @@ class _TransportWidgetState extends State<TransportWidget> {
         widget.carDirect = 90;
         break;
       case -2:
-        widget.carDirect = 180;
+        widget.carDirect = 0;
         break;
       case -5:
-        widget.carDirect = 0;
+        widget.carDirect = 180;
         break;
       default:
         break;
@@ -102,8 +110,8 @@ class _TransportWidgetState extends State<TransportWidget> {
           widget.carDirect = 0;
           break;
         default:
-          _endY = 0;
-          _endX = 0;
+          _endY = width * widget.startY;
+          _endX = width * widget.startX;
           break;
       }
     });
@@ -119,19 +127,20 @@ class _TransportWidgetState extends State<TransportWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final double _width = MediaQuery.of(context).size.width * 0.85 + 65;
-    final double _height = MediaQuery.of(context).size.height * 0.85 - 190;
+    final double _width = MediaQuery.of(context).size.width * 0.95 + 15;
+    final double _height = MediaQuery.of(context).size.height * 0.85 - 30;
 
     final bool widthLarger = _width >= _height;
     final bool squareMap = stateMap.first.length == stateMap.length;
 
     // stateMap = level.initMap;
     final transportState = context.watch<TransportState>();
-
+    final selectedMapwith = mapLongerScreen(
+        stateMap.length / stateMap.first.length, _height / _width);
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Colors.green,
+        // color: Colors.green,
       ),
       height: widthLarger
           ? _height
@@ -140,7 +149,7 @@ class _TransportWidgetState extends State<TransportWidget> {
               : _height,
       width: _height / stateMap.length * stateMap.first.length,
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(0.0),
         child: Stack(children: [
           GridView.builder(
               shrinkWrap: true,
@@ -162,11 +171,13 @@ class _TransportWidgetState extends State<TransportWidget> {
 
                 return SizedBox(
                   child: PuzzleTile(
+                    disable: isWin,
                     isStart: _isStart,
                     width: _height / stateMap.length,
                     startBg: _isStart && isWin,
                     hide: mapAddress.winMap[i][j] == "0" && isWin,
                     letter: _isStart ? widget.letterCar : data.first,
+                    isBg: isBackground(data.first),
                     angle: int.parse(data.last),
                     onTap: () async {
                       setState(() {
@@ -183,7 +194,6 @@ class _TransportWidgetState extends State<TransportWidget> {
                               '${data.first}_${(int.parse(data[1]) + 1) % 4}';
                         }
                         // Update the stateMap
-                        print(stateMap);
                       });
                       if (checkMap(stateMap, mapAddress.winMap)) {
                         isWin = true;
@@ -191,13 +201,16 @@ class _TransportWidgetState extends State<TransportWidget> {
                             .read<AudioController>()
                             .playSfx(SfxType.carStart);
                         await drivingCar(
-                            mapAddress.flow,
-                            0,
-                            widthLarger
-                                ? _height / stateMap.length
-                                : squareMap
-                                    ? _width / stateMap.length
-                                    : _height / stateMap.length);
+                          mapAddress.flow,
+                          0,
+                          widthLarger
+                              ? _height / stateMap.length
+                              : squareMap
+                                  ? _width / stateMap.length
+                                  : !selectedMapwith
+                                      ? _width / stateMap.first.length
+                                      : _height / stateMap.length,
+                        );
                         Future.delayed(
                             Duration(
                                 milliseconds: stepDuration *
@@ -217,7 +230,9 @@ class _TransportWidgetState extends State<TransportWidget> {
                       ? _height / stateMap.length
                       : squareMap
                           ? _width / stateMap.length
-                          : _height / stateMap.length,
+                          : !selectedMapwith
+                              ? _width / stateMap.first.length
+                              : _height / stateMap.length,
                   endX: _endX,
                   endY: _endY,
                   duration: 500,

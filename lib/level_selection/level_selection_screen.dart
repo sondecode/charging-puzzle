@@ -2,6 +2,7 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:ev_driver/common/translate.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +13,7 @@ import '../player_progress/player_progress.dart';
 import '../style/my_button.dart';
 import '../style/palette.dart';
 import 'levels.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LevelSelectionScreen extends StatelessWidget {
   const LevelSelectionScreen({super.key});
@@ -27,12 +29,15 @@ class LevelSelectionScreen extends StatelessWidget {
       backgroundColor: palette.backgroundLevelSelection,
       body: SafeArea(
         child: Column(children: [
-          const Padding(
+          Padding(
             padding: EdgeInsets.all(16),
             child: Center(
               child: Text(
-                'Select level',
-                style: TextStyle(fontFamily: 'Electric', fontSize: 30),
+                AppLocalizations.of(context)!.selectLevel,
+                style: TextStyle(
+                    fontFamily: 'Square',
+                    fontStyle: FontStyle.italic,
+                    fontSize: 30),
               ),
             ),
           ),
@@ -42,8 +47,8 @@ class LevelSelectionScreen extends StatelessWidget {
               children: [
                 for (final level in gameLevels)
                   ListTile(
-                    enabled: true, //to-do
-                    // playerProgress.highestLevelReached >= level.number - 1,
+                    enabled:
+                        playerProgress.highestLevelReached >= level.number - 1,
                     onTap: () {
                       final audioController = context.read<AudioController>();
                       audioController.playSfx(SfxType.buttonTap);
@@ -53,15 +58,17 @@ class LevelSelectionScreen extends StatelessWidget {
                     leading: Text(
                       level.number.toString(),
                       style: TextStyle(
-                        fontFamily: 'Electric',
+                        fontFamily: 'Square',
+                        fontStyle: FontStyle.italic,
                         fontSize: 20,
                         height: 1,
                       ),
                     ),
                     title: Text(
-                      level.name,
+                      transNameLevel(context, level.number),
                       style: TextStyle(
-                        fontFamily: 'Electric',
+                        fontFamily: 'Square',
+                        fontStyle: FontStyle.italic,
                         fontSize: 20,
                         height: 1,
                       ),
@@ -74,11 +81,12 @@ class LevelSelectionScreen extends StatelessWidget {
             onPressed: () {
               GoRouter.of(context).pop();
             },
-            child: const Text(
-              'Back',
+            child: Text(
+              AppLocalizations.of(context)!.back,
               style: TextStyle(
                 color: Colors.blueGrey,
-                fontFamily: 'Electric',
+                fontFamily: 'Square',
+                fontStyle: FontStyle.italic,
                 fontSize: 25,
                 height: 1,
               ),

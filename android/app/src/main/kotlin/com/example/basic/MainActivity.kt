@@ -1,4 +1,4 @@
-package com.example.ev_driver
+package com.davutru.evdriver
 
 import io.flutter.embedding.android.FlutterActivity
 

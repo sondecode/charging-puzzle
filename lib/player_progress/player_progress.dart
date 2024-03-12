@@ -6,6 +6,7 @@ import 'dart:async';
 
 import 'package:ev_driver/shopping/items.dart';
 import 'package:flutter/foundation.dart';
+import 'package:uuid/uuid.dart';
 
 import 'persistence/local_storage_player_progress_persistence.dart';
 import 'persistence/player_progress_persistence.dart';
@@ -13,6 +14,8 @@ import 'persistence/player_progress_persistence.dart';
 /// Encapsulates the player's progress.
 class PlayerProgress extends ChangeNotifier {
   static const maxHighestScoresPerPlayer = 10;
+
+  String _userId = Uuid().v4();
 
   int _money = 0;
 
@@ -41,9 +44,13 @@ class PlayerProgress extends ChangeNotifier {
 
   int get curVehicle => _curVehicle;
 
+  String get userId => _userId;
+
   int get money => _money;
 
   int get maxEnergy => _maxEnergy;
+
+  int get amountCar => _bought.length;
 
   VehicleType get curVehicleInfo =>
       vehicleType.firstWhere((element) => element.number == _curVehicle);
@@ -105,6 +112,15 @@ class PlayerProgress extends ChangeNotifier {
 
   /// Fetches the latest data from the backing persistence store.
   Future<void> _getLatestFromStore() async {
+    //userId
+    final userId = await _store.getUserId();
+    if (userId != '') {
+      _userId = userId;
+      notifyListeners();
+    } else {
+      _store.saveUserId(_userId);
+    }
+    //Level
     final level = await _store.getHighestLevelReached();
     if (level > _highestLevelReached) {
       _highestLevelReached = level;
