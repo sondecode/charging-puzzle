@@ -166,27 +166,6 @@ class ItemShoppingScreen extends StatelessWidget {
                         ),
                         Image.asset(
                             'assets/images/sprites/vehicles/${type.name}.png'),
-                        playerProgress.isBought(type.number)
-                            ? IgnorePointer(
-                                ignoring: kIsWeb,
-                                child: Column(
-                                  children: [
-                                    AddToGoogleWalletButton(
-                                      pass: collectionPass(
-                                          type, playerProgress.userId),
-                                      onError: (Object error) =>
-                                          _onError(context, error),
-                                      onSuccess: () => _onSuccess(context),
-                                      onCanceled: () => _onCanceled(context),
-                                    ),
-                                    Text(
-                                      AppLocalizations.of(context)!.available,
-                                      style: TextStyle(fontSize: 10),
-                                    )
-                                  ],
-                                ),
-                              )
-                            : Container(),
                       ],
                     ),
                   )
@@ -213,86 +192,4 @@ class ItemShoppingScreen extends StatelessWidget {
       ),
     );
   }
-
-  void _onError(BuildContext context, Object error) =>
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: Colors.red,
-          content: Text(error.toString()),
-        ),
-      );
-
-  void _onSuccess(BuildContext context) =>
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: Colors.green,
-          content:
-              Text('Pass has been successfully added to the Google Wallet.'),
-        ),
-      );
-
-  void _onCanceled(BuildContext context) =>
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: Colors.yellow,
-          content: Text('Adding a pass has been canceled.'),
-        ),
-      );
 }
-
-String collectionPass(VehicleType type, String userId) => '''
-{
-  "iss": "player@evdriver-416618.iam.gserviceaccount.com",
-  "aud": "google",
-  "origins": [
-    "http://localhost:3000"
-  ],
-  "typ": "savetowallet",
-  "payload": {
-    "genericObjects": [
-      {
-        "id": "3388000000022324825.$userId.${type.name.toLowerCase()}",
-        "classId": "3388000000022324825.codelab_class",
-        "genericType": "GENERIC_TYPE_UNSPECIFIED",
-        "hexBackgroundColor": "#4285f4",
-        "logo": {
-          "sourceUri": {
-            "uri": "https://lh3.googleusercontent.com/Ic6alTIG3C_sr6Tqi0E3RJkpubHGXE8smicwdHTleCSsvcoqj6wz8iRMi2ZYj5KRGr66XXB2o87czoI6ATB226q6r2PC4ss"
-          }
-        },
-        "cardTitle": {
-          "defaultValue": {
-            "language": "en-US",
-            "value": "EVDriver Collection"
-          }
-        },
-        "subheader": {
-          "defaultValue": {
-            "language": "en-US",
-            "value": "Electric Vehicle"
-          }
-        },
-        "header": {
-          "defaultValue": {
-            "language": "en-US",
-            "value": "${type.name.toUpperCase()}"
-          }
-        },
-        "heroImage": {
-          "sourceUri": {
-            "uri": "${type.imgLink}"
-          }
-        },
-        "textModulesData": [
-          {
-            "header": "CO2 Cef",
-            "body": "100",
-            "id": "points"
-          }
-        ]
-      }
-    ]
-  },
-  "iat": 1709975018
-}
-''';
